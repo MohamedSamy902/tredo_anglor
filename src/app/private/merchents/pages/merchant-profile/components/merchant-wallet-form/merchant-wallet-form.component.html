@@ -1,0 +1,64 @@
+<div class="merchant-wallet-form">
+  <form [formGroup]="merchantWalletForm">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row row-cols-1 row-cols-md-2">
+
+          <div class="col mb-4">
+            <label class="mb-2">رصيد المحفظة</label>
+            <input [class.invalid]="merchantWalletForm.get('balance')?.invalid && isSubmited" formControlName="balance"
+              class="form-control" type="number" />
+            <div class="error"
+              *ngIf="merchantWalletForm.get('balance')?.invalid && (merchantWalletForm.get('balance')?.dirty || isSubmited)">
+              يجب كتابة الرصيد
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">
+              <b>حالة المحفظة </b>
+              (اختار من الاتي)
+            </label>
+            <select [class.invalid]="merchantWalletForm.get('status')?.invalid && isSubmited" formControlName="status"
+              class="form-select" aria-label="Default select example">
+              <option [value]="1">Active</option>
+              <option [value]="2">Inactive</option>
+              <option [value]="3">Deleted</option>
+              <option [value]="4">Suspended</option>
+            </select>
+            <div class="error"
+              *ngIf=" merchantWalletForm.get('status')?.invalid && (merchantWalletForm.get('status')?.dirty || isSubmited)">
+              يجب اختيار حالة المحفظة
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">
+              <b>Allow Credit</b>
+              (اختار من الاتي)
+            </label>
+            <select [class.invalid]="merchantWalletForm.get('allowCredit')?.invalid && isSubmited"
+              formControlName="allowCredit" class="form-select" aria-label="Default select example">
+              <option [value]="true">نعم</option>
+              <option [value]="false">لا</option>
+            </select>
+            <div class="error"
+              *ngIf=" merchantWalletForm.get('allowCredit')?.invalid && (merchantWalletForm.get('allowCredit')?.dirty || isSubmited)">
+              يجب اختيار Allow Credit
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">Ref Code</label>
+            <input [class.invalid]="merchantWalletForm.get('refCode')?.invalid && isSubmited" formControlName="refCode"
+              class="form-control" type="text" />
+            <div class="error"
+              *ngIf="merchantWalletForm.get('refCode')?.invalid && (merchantWalletForm.get('refCode')?.dirty || isSubmited)">
+              يجب كتابة Ref Code
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,138 @@
+<div class="form container-fluid p-lg-5">
+  <div class="row">
+    <div class="col-lg-8 ">
+      <div class="border mt-2 form-border">
+        <h3 class="form-header">تفاصيل الطلب:</h3>
+        <div class="row ">
+         <div class="col-4 mb-4">
+            <h6 class="mb-2">نوع الشحنة : <b>{{orderDetails?.shippingType?.['nameAr']}}</b> </h6>
+          </div>
+           <div class="col-8 mb-4">
+            <h6 class="mb-2">وصف الشحنة : <b>{{orderDetails?.description}}</b> </h6>
+          </div>
+
+          <div class="col-6 mb-4">
+            <h6 class="mb-2"> طريقة التحصيل : <b>  <u *ngIf="orderDetails?.codActive" >{{ 'CodValue'|translate}}</u> {{orderDetails?.codActive ?    '(' + orderDetails?.codValue +')' : "Online"}}</b>
+            </h6>
+          </div>
+          <div class="col-6 d-inline-flex ">
+
+          <div class="col mb-4">
+            <h6 class="mb-2">الوزن: <b>{{orderDetails?.['weight']}}</b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2">الابعاد : <b>{{orderDetails?.['dimensions']}}</b></h6>
+          </div>
+          <!-- <div class="col mb-4">
+            <h6 class="mb-2"> العرض : <b>{{orderDetails?.['width']}}</b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2"> الارتفاع : <b>{{orderDetails?.['height']}}</b></h6>
+          </div> -->
+        </div>
+      </div>
+      <h3 class="form-header"> الارسال من: <b>{{orderDetails?.merchantWarehouse?.['nameTag']}}</b></h3>
+
+      </div>
+    </div>
+  <div class="col-4  mt-3">
+     <button type="button" name="" id="" class="btn btn-primary   btn-block m-2  col-12"
+       (click)="track()" [disabled]=" orderDetails?.operationalStatus>4"
+       >{{'OrderTrack'|translate}} <i class="fas fa-bolt    "></i></button>
+          <button type="button" name="" id="" class="btn btn-danger   btn-block m-2 col-12 "
+       (click)="delete()" [disabled]=" orderDetails?.operationalStatus!==2"
+       >{{'OrderCancel'|translate}} <i class="fas fa-trash-alt    "></i></button>
+
+    </div>
+    <div class="col-lg-8 mt-2 mb-2">
+      <div class="border pb-0 form-border">
+        <h4>تتبع الطلب</h4>
+
+        <div class="stepper-wrapper" style="width: 100%;">
+          <div class="stepper-item text-center" [ngClass]="{'active completed': orderDetails?.actions[0]}">
+            <div class="step-counter"><i class="fa-solid fa-box"></i></div>
+            <div class="step-name  py-4" *ngIf="orderDetails?.actions[0]">
+              <p>{{orderDetails?.actions[0]['actionDate'] | date: 'medium'}}</p>
+              <p class="text-bold">{{ 'ordersStatus.' + orderDetails?.actions[0]['status'] | translate}}</p>
+            </div>
+          </div>
+          <div class="stepper-item text-center" [ngClass]="{'active completed': orderDetails?.actions[1]}">
+            <div class="step-counter"><i class="fa-solid fa-box"></i></div>
+            <div class="step-name  py-4" *ngIf="orderDetails?.actions[1]">
+              <p>{{orderDetails?.actions[1]['actionDate'] | date: 'medium'}}</p>
+              <p class="text-bold">{{ 'ordersStatus.' + orderDetails?.actions[1]['status'] | translate}}</p>
+            </div>
+          </div>
+          <div class="stepper-item text-center" [ngClass]="{'active completed': orderDetails?.actions[2]}">
+            <div class="step-counter"><i class="fa-solid fa-box"></i></div>
+            <div class="step-name  py-4" *ngIf="orderDetails?.actions[2]">
+              <p>{{orderDetails?.actions[2]['actionDate'] | date: 'medium'}}</p>
+              <p class="text-bold">{{ 'ordersStatus.' + orderDetails?.actions[2]['status'] | translate}}</p>
+            </div>
+          </div>
+          <div class="stepper-item text-center" [ngClass]="{'active completed': orderDetails?.actions[3]}">
+            <div class="step-counter"><i class="fa-solid fa-box"></i></div>
+            <div class="step-name  py-4" *ngIf="orderDetails?.actions[3]">
+              <p>{{orderDetails?.actions[3]['actionDate'] | date: 'medium'}}</p>
+              <p class="text-bold">{{ 'ordersStatus.' + orderDetails?.actions[3]['status'] | translate}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 d-none d-lg-block">
+      <img src="assets/imgs/Delivery-amico.png" alt="" class="form-img">
+    </div>
+
+    <div class="col-lg-8 ">
+      <div class="border mt-5 form-border">
+        <h3 class="form-header">حالة الطلب : <b>{{ 'ordersStatus.' + orderDetails?.operationalStatus |
+            translate}}</b>
+        </h3>
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col mb-4">
+            <h6 class="mb-2"> سعر الطلب : <b>{{orderDetails?.totalCost}}</b></h6>
+          </div>
+        </div>
+
+        <h3 class="form-header">شركة الشحن : <b>{{orderDetails?.['vendor']?.['nameAr']}}</b></h3>
+        <div class="row row-cols-1 row-cols-md-2">
+          <div class="col mb-4">
+            <h6 class="mb-2">نقطة الانطلاق : <b>{{orderDetails?.sendFromCity?.['nameAr']}}</b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2">نقطة الاستلام : <b>{{orderDetails?.sendToCity?.['nameAr']}}</b></h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8 ">
+      <div class="border mt-5 form-border">
+        <h3 class="form-header"> المستهلك النهائي:</h3>
+        <div class="row row-cols-1 row-cols-md-2">
+           <div class="col mb-4">
+            <h6 class="mb-2">الاسم :  <b>{{orderDetails?.customerName}} </b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2">رقم الهاتف : <b>{{orderDetails?.dropOffMobileNu}} </b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2">المدينة : <b>{{orderDetails?.sendToCity?.['nameAr']}}</b></h6>
+          </div>
+
+           <!--  <div class="col mb-4">
+            <h6 class="mb-2">رقم البناء : <b>صندوق</b></h6>
+          </div>
+          <div class="col mb-4">
+            <h6 class="mb-2">رقم الوحدة : <b>صندوق</b></h6>
+          </div> -->
+        </div>
+ <div class="col-12">
+            <h6 class="mb-2">عنوان : <b><b>{{orderDetails?.dropOffAddress}}</b></b></h6>
+          </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="stepper-wrapper">
+  <div class="stepper-item" [class.active]="firstform" [class.completed]="secondform || thirdform" (click)="showForm()">
+    <div class="step-counter">1</div>
+    <div class="step-name">طلب شحن</div>
+  </div>
+  <div class="stepper-item" [class.active]="secondform" [class.completed]="thirdform" (click)="showForm2()">
+    <div class="step-counter">2</div>
+    <div class="step-name">اختيار شركة الشحن</div>
+  </div>
+  <!-- <div class="stepper-item" [class.active]="thirdform" (click)="showForm3()">
+    <div class="step-counter">3</div>
+    <div class="step-name">الدفع لشركة الشحن</div>
+  </div> -->
+</div>
+
+<div class="dash-header p-2 justify-content-between d-flex p-lg-5">
+  <div>
+    <p class="description">
+      <b class="text-black">حساب شركة الشحن</b>
+    </p>
+    <p class="desc"> سوف تعرف مصاريف شركة الشحن الخاصه بك من هنا </p>
+  </div>
+</div>
+
+<div class="p-2 px-lg-5 table-header d-flex align-items-center">
+  <div class="total-card d-inline-block">
+    <div class="d-flex align-items-center">
+      <img width="35" height="35" src="assets/imgs/money-bag.png" alt="">
+      <span class="card-desc">مصاريف شركة الطارق</span>
+    </div>
+    <h4 class="card-price">
+      900 ريال
+    </h4>
+  </div>
+  <div class="total-button">
+    <button class="btn-1 border-0">دفع مصاريف كل الطلبات</button>
+  </div>
+</div>
+<div class="p-2 px-lg-5 main-table">
+  <div class="pt-20 table-section">
+    <div class="table-responsive mt-4">
+      <table class="table table-bordered">
+        <thead class="table-header">
+          <tr>
+            <th scope="col">
+              <input type="checkbox" class="form-check">
+            </th>
+            <th scope="col">العدد</th>
+            <th scope="col">نقطة الانطلاق</th>
+            <th scope="col">نقطة التسليم</th>
+            <th scope="col">مصاريف شركة الشحن</th>
+            <th scope="col">(=) اجمالي مصاريف شركة الشحن</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">
+              <input type="checkbox" class="form-check">
+            </td>
+            <td>2</td>
+            <td>الرياض</td>
+            <td>جدة</td>
+            <td>80 ريال سعودي</td>
+            <td class="text-tredo-secondary-2">81.15 ريال سعودي</td>
+          </tr>
+          <tr>
+            <td scope="row">
+              <input type="checkbox" class="form-check">
+            </td>
+            <td>2</td>
+            <td>الرياض</td>
+            <td>جدة</td>
+            <td>80 ريال سعودي</td>
+            <td class="text-tredo-secondary-2">81.15 ريال سعودي</td>
+          </tr>
+          <tr>
+            <td scope="row">
+              <input type="checkbox" class="form-check">
+            </td>
+            <td>2</td>
+            <td>الرياض</td>
+            <td>جدة</td>
+            <td>80 ريال سعودي</td>
+            <td class="text-tredo-secondary-2">81.15 ريال سعودي</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <td colspan="5"></td>
+          <td rowspan="1" class="text-tredo-secondary-2 total-price">الاجمالي 900 ريال سعودي</td>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

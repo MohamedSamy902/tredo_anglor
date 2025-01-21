@@ -1,0 +1,34 @@
+.merchant-warehouse-form {
+  padding: 20px 0;
+  input,
+  select,
+  textarea {
+    border: 1px solid #e6e6ef;
+    background-color: #f2f2f7;
+    border-radius: 10px;
+  }
+
+  input,
+  select {
+    height: 48px;
+  }
+}
+
+::ng-deep {
+  .p-dialog .p-dialog-header,
+  .p-dialog .p-dialog-content {
+    direction: rtl;
+    .p-dialog-title {
+      color: #092D47;
+    }
+  }
+
+  .warehouse-location {
+    width: 100%;
+    height: 800px;
+    .match-parent {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+<div class="merchant-category-form">
+  <form [formGroup]="merchantCategoryForm">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row row-cols-1 row-cols-md-2">
+
+          <div class="col mb-4">
+            <label class="mb-2">إسم الفئة باللغة العربية</label>
+            <input [class.invalid]="merchantCategoryForm.get('nameAr')?.invalid && isSubmited" formControlName="nameAr"
+              class="form-control" type="text" />
+            <div class="error"
+              *ngIf="merchantCategoryForm.get('nameAr')?.invalid && (merchantCategoryForm.get('nameAr')?.dirty || isSubmited)">
+              يجب كتابة اسم الفئة باللغة العربية
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">إسم الفئة باللغة الإنجليزية</label>
+            <input [class.invalid]="merchantCategoryForm.get('nameEn')?.invalid && isSubmited" formControlName="nameEn"
+              class="form-control" type="text" />
+            <div class="error"
+              *ngIf="merchantCategoryForm.get('nameEn')?.invalid && (merchantCategoryForm.get('nameEn')?.dirty || isSubmited)">
+              يجب كتابة اسم الفئة باللغة الإنجليزية
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">Max Order Per Day </label>
+            <input [class.invalid]="merchantCategoryForm.get('MaxOrderPerDay')?.invalid && isSubmited"
+              formControlName="MaxOrderPerDay" class="form-control" type="number" />
+            <div class="error"
+              *ngIf="merchantCategoryForm.get('MaxOrderPerDay')?.invalid && (merchantCategoryForm.get('MaxOrderPerDay')?.dirty || isSubmited)">
+              يجب كتابة Max Order Per Day
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">Max Users</label>
+            <input [class.invalid]="merchantCategoryForm.get('MaxUsers')?.invalid && isSubmited"
+              formControlName="MaxUsers" class="form-control" type="number" />
+            <div class="error"
+              *ngIf="merchantCategoryForm.get('MaxUsers')?.invalid && (merchantCategoryForm.get('MaxUsers')?.dirty || isSubmited)">
+              يجب كتابة Max Users
+            </div>
+          </div>
+
+          <div class="col mb-4">
+            <label class="mb-2">
+              <b>Allow Credit</b>
+              (اختار من الاتي)
+            </label>
+            <select [class.invalid]="merchantCategoryForm.get('AllowCredit')?.invalid && isSubmited"
+              formControlName="AllowCredit" class="form-select" aria-label="Default select example">
+              <option [value]="true">نعم</option>
+              <option [value]="false">لا</option>
+            </select>
+            <div class="error"
+              *ngIf=" merchantCategoryForm.get('AllowCredit')?.invalid && (merchantCategoryForm.get('AllowCredit')?.dirty || isSubmited)">
+              يجب اختيار Allow Credit
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

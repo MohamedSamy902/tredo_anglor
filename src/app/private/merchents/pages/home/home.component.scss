@@ -1,0 +1,245 @@
+@import "../../../../../assets/scss/partials/colors";
+h2 {
+  font-size: 24px;
+}
+
+.description {
+  font-family: Tajawal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: $tredo-gray-2;
+}
+
+.card {
+  border-radius: 20px;
+  background-color: $white;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  height: 92px;
+  border: 0;
+  text-align: center;
+  img {
+    height: 24px;
+    width: 27px;
+    border-radius: 0px;
+  }
+  .card-title {
+    font-family: Tajawal;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: $tredo-gray;
+  }
+  .card-desc {
+    font-family: Tajawal;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    color: $tredo-primary;
+  }
+}
+
+@media (min-width: 1040px) {
+  .parent {
+    width: 50%;
+  }
+}
+
+.asd {
+  width: 20%;
+}
+
+.p {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 500px) {
+  .asd {
+    width: 100%;
+  }
+  .p {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+.select {
+  border: 1px solid $tredo-gray-3;
+  background-color: $tredo-gray-4;
+  border-radius: 10px;
+}
+
+.main-button {
+  background: $tredo-primary;
+  border-radius: 30px;
+  height: 56px;
+  min-width: 173px;
+  color: $white;
+  max-width: 100%;
+  border: $tredo-primary;
+  box-shadow: 0px 10px 20px $tredo-primary;
+  &:hover {
+    transition: all 0.2s ease-in;
+    background: $tredo-gray-2;
+  }
+  span {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.chartText {
+  padding: 5px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: $tredo-primary;
+  background: rgba(21, 175, 151, 0.08);
+  border-radius: 30px;
+  text-align: center;
+  padding: 16px 25px;
+  @media (max-width: 992px) {
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.chartTextred {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 5px;
+  color: $tredo-danger;
+  background: rgba(251, 27, 28, 0.08);
+  border-radius: 30px;
+  text-align: center;
+  padding: 16px 25px;
+  @media (max-width: 992px) {
+    font-weight: 500;
+    font-size: 18px;
+  }
+}
+
+.bor {
+  background: $white;
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 13px;
+  background: $white;
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 13px;
+}
+
+.bord {
+  background: $white;
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 13px;
+  background: $white;
+  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 13px;
+  width: 485px;
+}
+
+.R-postion {
+  position: relative;
+}
+
+.Abs-position {
+  position: absolute;
+}
+
+.GAP {
+  gap: 15px;
+}
+
+.OneWidth {
+  width: $Onewidth;
+}
+.modal-success{
+  .btn-1{
+    border: none;
+  }
+  background-color: white;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recta .recta-check {
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 15px;
+  transition: 0.3s all ease-in;
+}
+.recta .recta-div {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.recta-check.active {
+  background-color: #092d4717;
+  border-radius: 10px;
+  border: 2px solid #092D47!important;
+}
+.recta-check:hover {
+  background-color: #092d4717;
+  border-radius: 10px;
+  border: 2px solid #092D47!important;
+}
+.recta-div-inp {
+  padding: 0;
+}
+.modal-dialog {
+  width: 640px;
+  max-width: 100%;
+  .modal-content {
+    border-radius: 67px;
+    padding: 28px;
+    .modal-title {
+      font-family: Tajawal;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+  }
+}
+.modal-img-1 {
+  width: 225.36px;
+  height: 167.92px;
+  @media (max-width: 767px) {
+    width: 119px;
+    height: 119px;
+  }
+}
+.modal-img-2 {
+  width: 119px;
+  height: 119px;
+}
+.empty-box {
+  height: 373px;
+  width: 474px;
+  max-width: 100%;
+  max-height: 100%;
+}

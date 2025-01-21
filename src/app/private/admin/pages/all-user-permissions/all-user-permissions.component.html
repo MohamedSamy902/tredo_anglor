@@ -1,0 +1,76 @@
+
+
+  <div class="shipping-companies-component">
+  <!-- p-lg-5 p-2 -->
+  <div class="dash-header pt-lg-5 pt-2 container justify-content-between d-flex">
+    <div>
+      <p class="description">
+        <b class="text-black">{{"UserManagement" | translate}}</b>
+      </p>
+      <p class="desc">{{"ViewAllUserData" | translate}}</p>
+    </div>
+    <button class="btn-1 h-100" routerLink="/admin/assign-permissions">
+      <span>
+        {{"createUser" | translate}}
+      </span>
+    </button>
+  </div>
+  <div>
+    <div *ngIf="false" class="d-flex img-card justify-content-center align-items-center">
+      <div>
+        <img class="main-img" src="assets/imgs/rafiki-search.png" alt="">
+        <p class="mt-4 img-desc">{{"notCreatedAnyUsers" | translate}}</p>
+      </div>
+    </div>
+    <div *ngIf="true" class="container">
+      <div class="form mt-form mt-sm-2">
+        <img class="fa-search" width="21" height="21" src="assets/imgs/search.png" />
+        <input type="text" [(ngModel)]="searchValue" class="form-control form-input" placeholder="بحث المستخدم">
+      </div>
+      <div class="mt-4 table-responsive companies-table admin-table">
+        <table class="table">
+            <thead class="table-header">
+                <tr>
+                    <th class="text-center" scope="col">{{'Permission.Username'|translate}}</th>
+                    <th class="th-price text-center" scope="col">{{'Permission.Email'|translate}}</th>
+                    <th class="th-price text-center" scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of UsersArray">
+                    <td class="text-center">
+                        {{item.username}}
+                    </td>
+                    <td class="td-price text-center">
+                        {{item.email}}
+                    </td>
+                    <td class="text-start">
+                        <a class="edit ms-3 fa-lg" routerLink="/admin/assign-permissions/{{item.id}}">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a class="delete ms-3 fa-lg" style="color: #f80f0f;" (click)="alertConfirmation(item.id)">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <nav class="mt-4">
+        <ul style="direction: ltr;"
+            class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+            <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1)">
+                    < </a>
+            </li>
+            <ng-container *ngFor="let res of pages; let i = index">
+                <li [ngClass]="pageNumber === res + 1 ? 'active' : null" class="page-item"
+                    (click)="pagination('page', res + 1)"><a class="page-link">{{res + 1}}</a></li>
+            </ng-container>
+            <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1)">></a>
+            </li>
+        </ul>
+    </nav>
+    </div>
+  </div>
+</div>
+  

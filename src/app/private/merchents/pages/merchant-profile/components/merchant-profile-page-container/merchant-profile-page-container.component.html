@@ -1,0 +1,11 @@
+<div class="merchant-profile-page-container">
+
+  <div class="page-header">
+    <app-merchant-info-page-header></app-merchant-info-page-header>
+  </div>
+
+  <div class="merchant-info-form">
+    <app-merchant-info-form-container [merchantCategoriesData]="merchantCategoriesData" [MerchantData]="MerchantData"
+      (onSubmitMerchantInfoForm)="onSubmitMerchantInfoForm.emit($event)"></app-merchant-info-form-container>
+  </div>
+</div>

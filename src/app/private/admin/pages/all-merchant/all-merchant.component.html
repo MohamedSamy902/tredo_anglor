@@ -1,0 +1,95 @@
+<div class="shipping-companies-component">
+    <div class="dash-header pt-lg-5 pt-2 container justify-content-between d-flex">
+        <div>
+            <p class="description">
+                <b class="text-black">{{"Merchants" | translate}}</b>
+            </p>
+            <p class="desc">{{"headerMerchantPage" | translate}}</p>
+        </div>
+        <button class="btn-1 h-100" [routerLink]="'/admin/merchant-profile'">
+            <span>
+                {{"CreatMerchants" | translate}}
+            </span>
+        </button>
+    </div>
+    <div>
+        <div *ngIf="false" class="d-flex img-card justify-content-center align-items-center">
+            <div>
+                <img class="main-img" src="assets/imgs/rafiki-search.png" alt="">
+                <p class="mt-4 img-desc">{{"notCreatedAnyShipping" | translate}}</p>
+            </div>
+        </div>
+        <div *ngIf="true" class="container">
+            <div class="form mt-form mt-sm-2">
+                <img class="fa-search" width="21" height="21" src="assets/imgs/search.png" />
+                <input type="text" [(ngModel)]="searchValue" class="form-control form-input"
+                    placeholder="بحث باسم شركة الشحن">
+            </div>
+            <div class="mt-4 table-responsive companies-table admin-table">
+                <table class="table">
+                    <thead class="table-header">
+                        <tr>
+                            <th class="text-center" scope="col">{{"Image" | translate}}</th>
+                            <th class="text-center" scope="col">{{"MerchantName" | translate}}</th>
+                            <th class="th-price text-center" scope="col">{{"PhoneNumber" | translate}}</th>
+                            <th class="th-price text-center" scope="col">{{"status" | translate}}</th>
+                            <th class="th-price text-center" scope="col">{{"MerchantWalletBalance" | translate}}</th>
+                            <th class="th-price text-center" scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of MerchantsArray | searchfilter:searchValue:Merchants">
+                            <td class="text-center">
+                                <img [src]="item.pictureRow" style="max-height: 50px;"
+                                    class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
+                                    alt="">
+                            </td>
+                            <td class="text-center">
+                                {{item.nameAr}}
+                            </td>
+                            <td class="td-price text-center">
+                                {{item.phoneNumber}}
+                            </td>
+                            <td class="td-price text-center">
+                                <span *ngIf="item.status == 0" style="color: gray">
+                                    <i class="fa-solid fa-hourglass-start"></i>
+                                </span>
+                                <span *ngIf="item.status > 1" style="color: gray">
+                                    <i class="fa-regular fa-circle-xmark"></i>
+                                </span>
+                                <span *ngIf="item.status == 1" style="color: green">
+                                    <i class="fa-regular fa-circle-check"></i>
+                                </span>
+                            </td>
+                            <td class="td-price text-center">
+                                {{item.wallet?.balance}}
+                            </td>
+                            <td class="text-start">
+                                <a class="edit" routerLink="/admin/merchant-profile/{{item.id}}">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                                <a class="delete" (click)="delete(item.id)">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <nav class="mt-4">
+                <ul style="direction: ltr;"
+                    class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+                    <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1)">
+                            < </a>
+                    </li>
+                    <ng-container *ngFor="let res of pages; let i = index">
+                        <li [ngClass]="pageNumber === res + 1 ? 'active' : null" class="page-item"
+                            (click)="pagination('page', res + 1)"><a class="page-link">{{res + 1}}</a></li>
+                    </ng-container>
+                    <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1)">></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

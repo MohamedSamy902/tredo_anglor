@@ -1,0 +1,173 @@
+<div class="stepper-wrapper">
+  <div class="stepper-item" [class.active]="firstform" [class.completed]="secondform || thirdform" (click)="showForm()">
+    <div class="step-counter">1</div>
+    <div class="step-name">طلب شحن</div>
+  </div>
+  <div class="stepper-item" [class.active]="secondform" [class.completed]="thirdform" (click)="showForm2()">
+    <div class="step-counter">2</div>
+    <div class="step-name">اختيار شركة الشحن</div>
+  </div>
+  <!-- <div class="stepper-item" [class.active]="thirdform" (click)="showForm3()">
+    <div class="step-counter">3</div>
+    <div class="step-name">الدفع لشركة الشحن</div>
+  </div> -->
+</div>
+
+
+<div class="dash-header p-2 justify-content-between d-flex p-lg-5">
+  <div>
+    <p class="description">
+      <b class="text-black">طلب شحن</b>
+      <input type="button" id="loadFileXml" value="( رفع ملف اكسيل)" onclick="document.getElementById('file').click();"
+        class="up-file" />
+      <input type="file" style="display:none;" id="file" name="fileUpload" (change)="fileUpload($event)" />
+
+    </p>
+    <p class="desc"> برجاء تحميل الملف الخاص بنا ثم قم بتعبئته ثم رفعه مره ثانيه</p>
+  </div>
+
+  <div *ngIf="excelDate">
+    <div class="d-flex justify-content-center align-items-center cont">
+      <div class="parent ">
+        <div class="d-flex justify-content-between">
+          <p class="fileExelcolor">file.xls</p>
+          <p id="count" #p>{{counter}} <span>%</span></p>
+        </div>
+        <div class="child" #p>
+        </div>
+      </div>
+      &nbsp; &nbsp; &nbsp;
+      <div class="exc">
+        <img src="assets/imgs/icons/Microsoft excel.png" class="excel" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <button type="button" class="second-button" [disabled]="!excelDate||foundEmptyFile" (click)="postOfferListData()">
+ <i class="fas fa-search-location    "></i>      اختيار شركة الشحن
+    </button>
+  </div>
+</div>
+
+<!-- checkForEmptyValue(data) -->
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-start align-items-center">
+
+    <div class="select-warehouse">
+      <label for="merchantCategoryId" class="block">
+        المستودع
+        <small>(اختار من الاتي)</small>
+      </label>
+      <p-dropdown [options]="merchantWarehousesData" [(ngModel)]="selectedWarehouseId" optionLabel="nameTag"
+        [appendTo]="'body'" optionValue="id"></p-dropdown>
+    </div>
+
+    <div *ngIf="isempty" class="err">
+      <p> من فضلك قم بتصحيح او استكمال بيانات الطلبات</p>
+    </div>
+  </div>
+</div>
+<div class="form container-fluid p-lg-5">
+  <div class="row">
+    <div class=" horizontal-scroll">
+      <div class="alert alert-danger" role="alert" *ngIf="foundEmptyFile" >
+     <strong>   <i class="fas fa-ban  text-danger  "></i> ملف الاكسل فارغ برجاء تعبئة البيانات كاملة</strong>
+      </div>
+      <table class="table align-middle mb-0 bg-white my-table cell" id="myTable">
+        <thead class="bg-light">
+          <tr class="tr-color">
+            <th>وصف الشحنة</th>
+            <th>نوع الشحنة</th>
+            <th>من</th>
+            <th>الي</th>
+            <th>العنوان</th>
+            <th>اسم العميل</th>
+            <!-- <th>بريد المستقبل الالكتروني</th> -->
+            <th>رقم هاتف العميل</th>
+            <th>مبلغ التحصيل </th>
+            <th>الأبعاد</th>
+            <th>الوزن</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let data of excelDate">
+            <td class="black">
+              <input type="text" [(ngModel)]="data['وصف الشحنة']" class="inp inp-spec"
+                [ngClass]="{'invalid': !data['وصف الشحنة']}">
+            </td>
+            <td class="black">
+              <input type="text" [(ngModel)]="data['نوع الشحنة']" class="inp"
+                [ngClass]="{'invalid': !data['نوع الشحنة']}">
+            </td>
+            <td class="black">
+              <select [class.invalid]="!data['من']" [(ngModel)]="data['من']" class="form-select">
+                <ng-container *ngFor="let city of citiesData">
+                  <option [value]="city?.id">{{city?.nameAr}}</option>
+                </ng-container>
+              </select>
+            </td>
+            <td class="tow">
+              <select [class.invalid]="!data['الي']" [(ngModel)]="data['الي']" class="form-select">
+                <ng-container *ngFor="let city of citiesData">
+                  <option [value]="city?.id">{{city?.nameAr}}</option>
+                </ng-container>
+              </select>
+            </td>
+            <td class="black">
+              <input type="text" [(ngModel)]="data['العنوان']" [ngClass]="{'invalid': !data['العنوان']}" class="inp">
+            </td>
+            <td class="black">
+              <input type="text" [(ngModel)]="data['اسم المستقبل']" [ngClass]="{'invalid': !data['اسم المستقبل']}"
+                class="inp inp-spec">
+            </td>
+          <!--   <td>
+              <div class="black">
+                <input type="text" [(ngModel)]="data['بريد المستقبل الالكتروني']"
+                  [ngClass]="{'invalid': !data['بريد المستقبل الالكتروني']}" class="inp">
+              </div>
+            </td> -->
+            <td>
+              <div class="black">
+                <input type="text" [(ngModel)]="data['رقم هاتف المستقبل']"
+                  [ngClass]="{'invalid': !data['رقم هاتف المستقبل']}" class="inp">
+              </div>
+            </td>
+            <td class="black">
+              <div class="asd">
+                <input type="text" [(ngModel)]="data['مبلغ التحصيل من العميل']"
+                  [ngClass]="{'invalid': !data['مبلغ التحصيل من العميل']}" class="inp">
+              </div>
+            </td>
+            <td class="black">
+              <div class="asd">
+                <input type="text" [(ngModel)]="data['الأبعاد']" [ngClass]="{'invalid': !data['الأبعاد']}"
+                  class="inp ">
+              </div>
+            </td>
+            <td class="black">
+              <input type="text" [(ngModel)]="data['الوزن']" [ngClass]="{'invalid': !data['الوزن']}" class="inp ">
+            </td>
+            <td>
+
+              <div *ngIf="!checkForEmptyValue(data) then access else error"></div>
+              <ng-template #access>
+                <div class="correct">
+                  <img src="assets/imgs/icons/Vector.png" alt="" style="width: 12.73px; height: 8.91px;">
+                </div>
+              </ng-template>
+              <ng-template #error>
+                <div>
+                  <img src="assets/imgs/icons/x-circle.png" alt="" class="Error">
+                </div>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

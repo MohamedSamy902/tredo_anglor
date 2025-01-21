@@ -1,0 +1,496 @@
+<div class="home-component">
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="carousel-inner">
+      <div class="carousel-item ">
+        <img src="assets/imgs/slider.png" class=" d-block w-100" alt="...">
+        <div class="carousel-caption d-md-block">
+          <h1>
+            الذراع الرقمي
+            الذكي لكفاءة منظومة
+            عملــ
+            <span>
+              ـياتك
+            </span>
+            اللوجستية
+          </h1>
+          <a class="btn-5" href="/auth/login"> رفع الطلبات من خلال نموذج Excel</a>
+        </div>
+      </div>
+      <div class="carousel-item active">
+        <img src="assets/imgs/slider-2.png" class="d-block w-100" alt="...">
+        <div class="carousel-caption ">
+          <h1>
+            وجه
+            <span>
+              شحناتك
+            </span>
+            وين ما كنت ومع
+            أي ناقل كان , وفي كل وقت
+          </h1>
+          <a class="btn-5" href="/auth/login"> رفع الطلبات من خلال نموذج Excel</a>
+
+        </div>
+      </div>
+    </div>
+    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button> -->
+  </div>
+  <div class="form">
+    <div class="d-flex btns">
+      <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+        <button type="button" [ngClass]="{'active': selectedSwitch === item.name}" (click)="selectTab(item.name)"
+          class="btn-underline">
+          {{item.arName}}
+        </button>
+      </div>
+    </div>
+    <div *ngIf="selectedSwitch === 'Local shipping'">
+      <h5 class="py-4 fw-bold">
+        <span>
+          في
+          <span class="text-second">خطوة واحدة</span>
+          عمّد شحناتك...
+        </span>
+        <img src="assets/imgs/shipment-inside.svg" alt="">
+
+      </h5>
+      <form [formGroup]="shippingForm" (ngSubmit)="onSubmit()">
+        <div class="d-flex gap-3 mt-2">
+          <div class="col-6 col-lg-4 recta" *ngFor="let option of shippingOptions">
+            <label class="recta-check d-flex align-items-center h-100" [ngClass]="getOptionClass(option)">
+              <div class="recta-div">
+                <span class="recta-name">
+                  {{ option.arName }}
+                </span>
+              </div>
+              <input type="radio" name="shippingWay" [value]="option.value" [checked]="option.value === selectedOption"
+                (change)="onOptionChange($event, 'shippingWay')" class="d-none">
+            </label>
+          </div>
+        </div>
+        <div class="error" *ngIf="shippingForm.get('shippingWay')?.invalid && isSubmited">يجب الاختيار بين تاجر وفرد
+        </div>
+        <div class="row row-cols-1 row-cols-md-3">
+          <div class="mt-2 col">
+            <label class="mb-2">نوع الشحنة</label>
+            <select class="form-select" formControlName="type">
+              <option value="نوع الشحنة">نوع الشحنة</option>
+              <option value="2">طرد</option>
+              <option value="3">صندوق</option>
+            </select>
+          </div>
+          <div class="mt-2 col">
+            <label class="mb-2">نقطة الانطلاق</label>
+            <select class="form-select" formControlName="startPoint">
+              <option value="نقطة الانطلاق">نقطة الانطلاق</option>
+              <option value="1">الافلاج</option>
+              <option value="2">الحريق</option>
+              <option value="3">الخرج</option>
+              <option value="4">الدرعية</option>
+              <option value="5">الدوادمي</option>
+              <option value="6">الرياض</option>
+              <option value="7">الزلفي</option>
+              <option value="8">السليل</option>
+              <option value="9">الغاط</option>
+              <option value="10">القويعية</option>
+              <option value="11">المجمعة</option>
+              <option value="12">المزاحمية</option>
+              <option value="13">ثادق</option>
+              <option value="14">حريملاء</option>
+              <option value="15">حوطة بني تميم</option>
+              <option value="16">رماح</option>
+              <option value="17">شقراء</option>
+              <option value="18">ضرما</option>
+              <option value="19">عفيف</option>
+              <option value="20">مرات</option>
+              <option value="21">وادي الدواسر</option>
+              <option value="22">اضم</option>
+              <option value="23">الجموم</option>
+              <option value="24">الخرمة</option>
+              <option value="25">الطائف</option>
+              <option value="26">العرضيات</option>
+              <option value="27">القنفذة</option>
+              <option value="28">الكامل</option>
+              <option value="29">الليث</option>
+              <option value="30">المويه</option>
+              <option value="31">بحرة</option>
+              <option value="32">تربة</option>
+              <option value="33">جدة</option>
+              <option value="34">خليص</option>
+              <option value="35">رابغ</option>
+              <option value="36">رنية</option>
+              <option value="37">مكة المكرمة</option>
+              <option value="38">ميسان</option>
+              <option value="39">الحناكية</option>
+              <option value="40">العلا</option>
+              <option value="41">العيص</option>
+              <option value="42">المدينة المنورة</option>
+              <option value="43">المهد</option>
+              <option value="44">بدر</option>
+              <option value="45">خيبر</option>
+              <option value="46">ينبع البحر</option>
+              <option value="47">الاسياح</option>
+              <option value="48">البدائع</option>
+              <option value="49">البكيرية</option>
+              <option value="50">الرس</option>
+              <option value="51">الشماسية</option>
+              <option value="52">المذنب</option>
+              <option value="53">النبهانية</option>
+              <option value="54">القصيم</option>
+              <option value="55">رياض الخبراء</option>
+              <option value="56">ضرية</option>
+              <option value="57">عقلة الصقور</option>
+              <option value="58">بريدة</option>
+              <option value="59">عنيزة</option>
+              <option value="60">عيون الجواء</option>
+              <option value="61">الاحساء</option>
+              <option value="62">الجبيل</option>
+              <option value="63">الخبر</option>
+              <option value="64">الخفجي</option>
+              <option value="65">الدمام</option>
+              <option value="66">العديد</option>
+              <option value="67">القطيف</option>
+              <option value="68">بقيق</option>
+              <option value="69">حفر الباطن</option>
+              <option value="70">راس تنورة</option>
+              <option value="71">قرية العليا</option>
+              <option value="72">النعيرية</option>
+              <option value="73">احد رفيدة</option>
+              <option value="74">البرك</option>
+              <option value="75">المجاردة</option>
+              <option value="76">النماص</option>
+              <option value="77">بارق</option>
+              <option value="78">بلقرن</option>
+              <option value="79">بيشة</option>
+              <option value="80">ابها</option>
+              <option value="81">تثليث</option>
+              <option value="82">تنومة</option>
+              <option value="83">خميس مشيط</option>
+              <option value="84">رجال المع</option>
+              <option value="85">سراة عبيدة</option>
+              <option value="86">طريب</option>
+              <option value="87">ظهران الجنوب</option>
+              <option value="88">محايل</option>
+              <option value="89">البدع</option>
+              <option value="90">الوجه</option>
+              <option value="91">املج</option>
+              <option value="92">تبوك</option>
+              <option value="93">تيماء</option>
+              <option value="94">حقل</option>
+              <option value="95">ضبا</option>
+              <option value="96">السليمي</option>
+              <option value="97">الشملي</option>
+              <option value="98">موقق</option>
+              <option value="99">الشنان</option>
+              <option value="100">الغزالة</option>
+              <option value="101">بقعاء</option>
+              <option value="102">حائل</option>
+              <option value="103">سميراء</option>
+              <option value="104">العويقيلة</option>
+              <option value="105">رفحاء</option>
+              <option value="106">طريف</option>
+              <option value="107">عرعر</option>
+              <option value="108">ابو عريش</option>
+              <option value="109">احد المسارحة</option>
+              <option value="110">الحرث</option>
+              <option value="111">الدائر</option>
+              <option value="112">الدرب</option>
+              <option value="113">الريث</option>
+              <option value="114">الطوال</option>
+              <option value="115">العارضة</option>
+              <option value="116">العيدابي</option>
+              <option value="117">بيش</option>
+              <option value="118">جازان</option>
+              <option value="119">صامطة</option>
+              <option value="120">صبيا</option>
+              <option value="121">ضمد</option>
+              <option value="122">فرسان</option>
+              <option value="123">فيفاء</option>
+              <option value="124">الخرخير</option>
+              <option value="125">بدر الجنوب</option>
+              <option value="126">ثار</option>
+              <option value="127">حبونا</option>
+              <option value="128">خباش</option>
+              <option value="129">شرورة</option>
+              <option value="130">نجران</option>
+              <option value="131">يدمه</option>
+              <option value="132">الباحة</option>
+              <option value="133">الحجرة</option>
+              <option value="134">العقيق</option>
+              <option value="135">القري</option>
+              <option value="136">المخواة</option>
+              <option value="137">المندق</option>
+              <option value="138">بلجرشي</option>
+              <option value="139">بني حسن</option>
+              <option value="140">فرعة غامد الزناد</option>
+              <option value="141">قلوة</option>
+              <option value="142">القريات</option>
+              <option value="143">دومة الجندل</option>
+              <option value="144">سكاكا</option>
+              <option value="145">طبرجل</option>
+            </select>
+          </div>
+          <div class="mt-2 col">
+            <label class="mb-2">نقطة التسليم</label>
+            <select class="form-select" formControlName="endPoint">
+              <option value="نقطة التسليم">نقطة التسليم</option>
+              <option value="1">الافلاج</option>
+              <option value="2">الحريق</option>
+              <option value="3">الخرج</option>
+              <option value="4">الدرعية</option>
+              <option value="5">الدوادمي</option>
+              <option value="6">الرياض</option>
+              <option value="7">الزلفي</option>
+              <option value="8">السليل</option>
+              <option value="9">الغاط</option>
+              <option value="10">القويعية</option>
+              <option value="11">المجمعة</option>
+              <option value="12">المزاحمية</option>
+              <option value="13">ثادق</option>
+              <option value="14">حريملاء</option>
+              <option value="15">حوطة بني تميم</option>
+              <option value="16">رماح</option>
+              <option value="17">شقراء</option>
+              <option value="18">ضرما</option>
+              <option value="19">عفيف</option>
+              <option value="20">مرات</option>
+              <option value="21">وادي الدواسر</option>
+              <option value="22">اضم</option>
+              <option value="23">الجموم</option>
+              <option value="24">الخرمة</option>
+              <option value="25">الطائف</option>
+              <option value="26">العرضيات</option>
+              <option value="27">القنفذة</option>
+              <option value="28">الكامل</option>
+              <option value="29">الليث</option>
+              <option value="30">المويه</option>
+              <option value="31">بحرة</option>
+              <option value="32">تربة</option>
+              <option value="33">جدة</option>
+              <option value="34">خليص</option>
+              <option value="35">رابغ</option>
+              <option value="36">رنية</option>
+              <option value="37">مكة المكرمة</option>
+              <option value="38">ميسان</option>
+              <option value="39">الحناكية</option>
+              <option value="40">العلا</option>
+              <option value="41">العيص</option>
+              <option value="42">المدينة المنورة</option>
+              <option value="43">المهد</option>
+              <option value="44">بدر</option>
+              <option value="45">خيبر</option>
+              <option value="46">ينبع البحر</option>
+              <option value="47">الاسياح</option>
+              <option value="48">البدائع</option>
+              <option value="49">البكيرية</option>
+              <option value="50">الرس</option>
+              <option value="51">الشماسية</option>
+              <option value="52">المذنب</option>
+              <option value="53">النبهانية</option>
+              <option value="54">القصيم</option>
+              <option value="55">رياض الخبراء</option>
+              <option value="56">ضرية</option>
+              <option value="57">عقلة الصقور</option>
+              <option value="58">بريدة</option>
+              <option value="59">عنيزة</option>
+              <option value="60">عيون الجواء</option>
+              <option value="61">الاحساء</option>
+              <option value="62">الجبيل</option>
+              <option value="63">الخبر</option>
+              <option value="64">الخفجي</option>
+              <option value="65">الدمام</option>
+              <option value="66">العديد</option>
+              <option value="67">القطيف</option>
+              <option value="68">بقيق</option>
+              <option value="69">حفر الباطن</option>
+              <option value="70">راس تنورة</option>
+              <option value="71">قرية العليا</option>
+              <option value="72">النعيرية</option>
+              <option value="73">احد رفيدة</option>
+              <option value="74">البرك</option>
+              <option value="75">المجاردة</option>
+              <option value="76">النماص</option>
+              <option value="77">بارق</option>
+              <option value="78">بلقرن</option>
+              <option value="79">بيشة</option>
+              <option value="80">ابها</option>
+              <option value="81">تثليث</option>
+              <option value="82">تنومة</option>
+              <option value="83">خميس مشيط</option>
+              <option value="84">رجال المع</option>
+              <option value="85">سراة عبيدة</option>
+              <option value="86">طريب</option>
+              <option value="87">ظهران الجنوب</option>
+              <option value="88">محايل</option>
+              <option value="89">البدع</option>
+              <option value="90">الوجه</option>
+              <option value="91">املج</option>
+              <option value="92">تبوك</option>
+              <option value="93">تيماء</option>
+              <option value="94">حقل</option>
+              <option value="95">ضبا</option>
+              <option value="96">السليمي</option>
+              <option value="97">الشملي</option>
+              <option value="98">موقق</option>
+              <option value="99">الشنان</option>
+              <option value="100">الغزالة</option>
+              <option value="101">بقعاء</option>
+              <option value="102">حائل</option>
+              <option value="103">سميراء</option>
+              <option value="104">العويقيلة</option>
+              <option value="105">رفحاء</option>
+              <option value="106">طريف</option>
+              <option value="107">عرعر</option>
+              <option value="108">ابو عريش</option>
+              <option value="109">احد المسارحة</option>
+              <option value="110">الحرث</option>
+              <option value="111">الدائر</option>
+              <option value="112">الدرب</option>
+              <option value="113">الريث</option>
+              <option value="114">الطوال</option>
+              <option value="115">العارضة</option>
+              <option value="116">العيدابي</option>
+              <option value="117">بيش</option>
+              <option value="118">جازان</option>
+              <option value="119">صامطة</option>
+              <option value="120">صبيا</option>
+              <option value="121">ضمد</option>
+              <option value="122">فرسان</option>
+              <option value="123">فيفاء</option>
+              <option value="124">الخرخير</option>
+              <option value="125">بدر الجنوب</option>
+              <option value="126">ثار</option>
+              <option value="127">حبونا</option>
+              <option value="128">خباش</option>
+              <option value="129">شرورة</option>
+              <option value="130">نجران</option>
+              <option value="131">يدمه</option>
+              <option value="132">الباحة</option>
+              <option value="133">الحجرة</option>
+              <option value="134">العقيق</option>
+              <option value="135">القري</option>
+              <option value="136">المخواة</option>
+              <option value="137">المندق</option>
+              <option value="138">بلجرشي</option>
+              <option value="139">بني حسن</option>
+              <option value="140">فرعة غامد الزناد</option>
+              <option value="141">قلوة</option>
+              <option value="142">القريات</option>
+              <option value="143">دومة الجندل</option>
+              <option value="144">سكاكا</option>
+              <option value="145">طبرجل</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-2">
+          <label class="mb-2">العدد</label>
+          <input formControlName="count" [class.invalid]="shippingForm.get('count')?.invalid && isSubmited"
+            type="number" class="form-control" />
+          <div class="error" *ngIf="shippingForm.get('count')?.invalid && isSubmited">يجب تحديد رقم</div>
+        </div>
+        <button class="btn-2"><a href="auth/login" class="btn-7">إستعراض وشحن</a></button>
+        <!-- <a href="auth/login" class="btn-6">إستعراض وشحن</a> -->
+      </form>
+    </div>
+    <div *ngIf="selectedSwitch === 'International shipping'">
+      <h5 class="py-4 fw-bold">
+        <span>
+          قريبا
+          <span class="text-second">سيتوفر</span>
+          الشحن الدولي ...
+          <img src="assets/imgs/shipment-outside.svg" alt="">
+        </span>
+      </h5>
+
+    </div>
+  </div>
+</div>
+<!-- <section class="landing">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-8">
+        <h1 class="animate__animated animate__fadeInRight">
+          لوجســ<span>تيك</span> كما يجب أن يكون
+        </h1>
+        <a class="btn-5"> رفع الطلبات من خلال نموذج Excel</a>
+      </div>
+      <div class="col-lg-4">
+
+      </div>
+    </div>
+  </div>
+</section>
+<section class="landing">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-12">
+        <h1 class="animate__animated animate__fadeInRight">
+          <span>أقرب بكثير</span> الحلول صارت
+        </h1>
+        <p>
+          لأن ثورة التجارة الإلكترونية والتقنيات اللوجستية صارت تتطور كل يوم ، ولأن مواكبتها وتطويرها بشكل مباشر من قبل
+          المنشآت الغير متخصصة والمتوسطة والصغيرة عملية صعبة وشبه مستحيلة احياناً ، ظهرت pay ship وأصبح دورها مواكبة هذه
+          الحلول والأعمال عالمياً واستقطابها وتشغيلها لك ،للوصول معك الى افآق بعيده ..
+        </p>
+      </div>
+      <div class="col-lg-12 text-center">
+        <h1>
+          <span>
+            اساسيات
+          </span>
+          عملنا والقيم
+
+        </h1>
+
+      </div>
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-lg-12">
+            <h2>خيارات دفع آمنة وسهلة</h2>
+            <div class="price">
+              <div class="current-price text-white d-flex flex-column justify-content-center px-4">
+                <p>الرصيد الحالي</p>
+                <h2 class="fw-bold">7520 ريال</h2>
+              </div>
+              <div class="charge-price text-white d-flex align-items-center px-4">
+                <p class="mb-0 d-flex align-items-center gap-2 cursor-pointer">
+                  <span class="plus-icon">
+                    <img src="assets/imgs/plus.svg" alt="..">
+                  </span>
+                  <span>إيداع أموال</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="small-section p-4 animate__animated animate__zoomIn" animation-zoom="">
+              <div class="d-flex align-items-center gap-4">
+                <img src="assets/imgs/gnser.png" class="gnser-image" alt="...">
+                <h4 class="header">ربط ومزامنة</h4>
+              </div>
+              <div class="py-4 fw-bold">
+                إمكانية الربط والمزامنة مع جميع البرمجيات و الأنظمة الخاصة
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="card">
+          <h2 class="text-center">تحليل أداء العمليات</h2>
+          <img src="assets/imgs/mobile-iphone.svg" alt="" style="height: 50vh;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->

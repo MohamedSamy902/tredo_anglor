@@ -1,0 +1,369 @@
+<div class="stepper-wrapper">
+  <div class="stepper-item completed">
+    <div class="step-counter">1</div>
+    <div class="step-name">طلب شحن</div>
+  </div>
+  <div class="stepper-item active" [class.completed]="secondStep || thirdStep">
+    <div class="step-counter">2</div>
+    <div class="step-name">اختيار شركة الشحن</div>
+  </div>
+  <!-- <div class="stepper-item" [class.completed]="thirdStep">
+    <div class="step-counter">3</div>
+    <div class="step-name">الدفع لشركة الشحن</div>
+  </div> -->
+</div>
+
+<ng-container *ngIf="firstStep">
+    <div class=" w-75 m-auto d-flex ">
+      <div class="align-self-center">
+        <i class="fas fa-download text-primary fa-2x "></i>
+      </div>
+      <div class=" p-1" style="margin-inline-start: 2rem">
+        <h3 class="title"> اختيار شركة الشحن</h3>
+        <p class="description">يمكنك مراجعة كل التفاصيل الخاصه بكل عرض سعر</p>
+      </div>
+
+    </div>
+
+  <div class="d-flex justify-content-center">
+
+    <p-selectButton [options]="offersDTOListData?.vendorsOffers" [(ngModel)]="selectedCompany"
+    [disabled]="OrderHasSubmitedSuccessfully">
+      <ng-template let-company class="text-center">
+        <div class="company-card" (click)="onSelectCompany(company)">
+          <div class="company-logo">
+            <img [src]="company?.vendor?.pictureRow" *ngIf="company?.vendor?.pictureRow">
+            <span class="init" *ngIf="!company?.vendor?.pictureRow">{{company?.vendor?.nameAr[0] | uppercase}}</span>
+          </div>
+          <div class="company-data">
+            <div class="info">
+              <span class="name">{{company?.vendor?.nameAr}}</span>
+              <div class="amount">
+                {{company?.grandTotal}} ر.س.
+              </div>
+            </div>
+            <h5> <span class="badge ">  {{getcovragepercentage(company)}}
+             </span></h5>
+            <div class="actions">
+              <button pButton pRipple label="إختيار" class="p-button-success" [loading]="selectCompanyLoading"
+              [disabled]="OrderHasSubmitedSuccessfully || !company.isFullyCovared "
+                (click)="onSelectCompany(company);submitorder()"></button>
+              <p-button label="تفاصيل" styleClass="p-button-outlined p-button-info"
+              [disabled]="OrderHasSubmitedSuccessfully"   (click)="openSelectedCompanyInfo(company)"></p-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-selectButton>
+
+  </div>
+  <div class="tab-content" id="pills-tabContent" *ngIf="selectedCompanyOffers">
+    <div class="border mx-lg-4 mx-md-2 mx-1 choose-container mt-3">
+      <div class="p-20 table-section" *ngIf="selectedCompanyOffers">
+        <div class="header-title">
+          <h4 class="title d-inline">تفاصيل تكلفة كل طلب</h4>
+        </div>
+        <div class="table-responsive mt-4">
+          <table class="table">
+            <thead class="table-header">
+              <tr>
+                <th scope="col">نوع الشحنة</th>
+                <th scope="col">وصف الشحنة</th>
+                <th scope="col">عنوان الشحنة</th>
+                <th scope="col">نقطة الانطلاق</th>
+                <th scope="col">نقطة التسليم</th>
+                <th scope="col">قيمة الشحن</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedCompanyOffers">
+                <td>{{ item.shipmentTypeName }}</td>
+                <td>{{ item.shipmentdescription }}</td>
+                <td>{{ item.reciverAddress?.street }}</td>
+                <td>{{ item.cityNameArFrom }}</td>
+                <td>{{ item.cityNameArTo }}</td>
+                <td>{{ item.price.total }} ريال سعودي</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <td colspan="5"></td>
+              <td rowspan="1" class="text-tredo-secondary-2 total-price">
+                الاجمالي {{selectedCompany.grandTotal}} ريال سعودي
+              </td>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="secondStep">
+  <div class="dash-header p-2 p-lg-5 pb-lg-3">
+    <h3 class="title">اجراءات الدفع لشركة الشحن</h3>
+    <p class="description">قم باختيار وسيلة الدفع التي تريد الدفع بها</p>
+  </div>
+  <div class="row p-0 m-0 flex-column align-items-center">
+    <div class="total-card d-inline-block">
+      <div class="d-flex align-items-center">
+        <img width="35" height="35" src="assets/imgs/money-bag.png" alt="" />
+        <span class="card-desc">مصاريف شركة الطارق sad</span>
+      </div>
+      <h4 class="card-price">900 ريال</h4>
+    </div>
+    <div class="d-flex pay-ways mt-63 justify-content-center">
+      <!-- <div class="pay-select" *ngFor="let item of payWays">
+        <div class="d-flex gap-2 mb-3">
+          <input [id]="item.name" name="pay-way" type="radio" checked />
+          <label [for]="item.name">{{item.arName}}</label>
+        </div>
+        <label [for]="item.name" class="card border" [class.active]="item.name">
+          <img [width]="item.width" [height]="item.height" [src]="item.img" alt="">
+        </label>
+      </div> -->
+      <div class="pay-select">
+        <div class="d-flex gap-2 mb-3">
+          <label [class.active]="active1" for="mastercard">كارت الائتمان</label>
+        </div>
+        <label for="mastercard" (click)="case1()" [class.active]="active1" class="card border">
+          <img width="54" height="54" src="assets/imgs/mastercard.png" alt="" />
+        </label>
+      </div>
+      <div class="pay-select">
+        <div class="d-flex gap-2 mb-3">
+          <label [class.active]="active2" for="wallet">المحفظة</label>
+        </div>
+        <label for="wallet" (click)="case2()" [class.active]="active2" class="card border">
+          <img width="41px" height="37px" src="assets/imgs/wallet-2.png" alt="" />
+        </label>
+      </div>
+      <div class="pay-select">
+        <div class="d-flex gap-2 mb-3">
+          <label [class.active]="active3" for="tamara">تمارا</label>
+        </div>
+        <label for="tamara" (click)="case3()" [class.active]="active3" class="card border">
+          <img width="64" height="29" src="assets/imgs/tamara.png" alt="" />
+        </label>
+      </div>
+    </div>
+    <div class="pay-form visa-form" *ngIf="active1">
+      <div class="mysr-form-order"></div>
+    </div>
+    <div class="pay-form cash-form" *ngIf="active2">
+      <div class="cash-header d-flex align-items-center gap-2">
+        <img width="29" height="29" src="assets/imgs/wallet.png" alt="" />
+        <p class="cash-title m-0">رصيدك الحالي بمحفظتك هو</p>
+        <span class="real-cash">2000 ريال</span>
+      </div>
+      <form *ngIf="!submitWallet" [formGroup]="walletForm">
+        <div>
+          <label>المبلغ الذي ستقوم بدفعه</label>
+          <input formControlName="amount" [class.invalid]="
+              walletForm.get('amount')?.invalid && walletSubmitted
+            " class="form-control" type="number" />
+          <div *ngIf="walletForm.get('amount')?.invalid && walletSubmitted" class="error">
+            يرجى كتابة المبلغ المراد دفعه
+          </div>
+        </div>
+        <div class="mx-auto w-100 mt-5 visa-button d-flex justify-content-center">
+          <button class="btn-1 w-100 ">
+            تأكيد دفع
+          </button>
+        </div>
+      </form>
+      <div class="mysr-wallet"></div>
+    </div>
+    <div class="pay-form cash-form" *ngIf="active3">
+      <div class="cash-header d-flex align-items-center gap-2">
+        <img width="29" height="29" src="assets/imgs/wallet.png" alt="" />
+        <p class="cash-title m-0">رصيدك الحالي بمحفظتك هو</p>
+        <span class="real-cash">2000 ريال</span>
+      </div>
+      <form [formGroup]="tamaraForm">
+        <div>
+          <label>المبلغ الذي ستقوم بدفعه عن طريق تمارا</label>
+          <input [class.invalid]="
+              tamaraForm.get('amount')?.invalid && tamaraSubmitted
+            " formControlName="amount" class="form-control" type="number" />
+          <div *ngIf="tamaraForm.get('amount')?.invalid && tamaraSubmitted" class="error">
+            يرجى كتابة المبلغ المراد دفعه
+          </div>
+        </div>
+        <div class="mx-auto w-100 mt-5 visa-button d-flex justify-content-center">
+          <button class="btn-1 w-100" (click)="tamaraSubmit()">
+            تأكيد دفع 800 ريال
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="thirdStep">
+  <div class="dash-header p-2 p-lg-5 pb-lg-3">
+    <h3 class="title">اجراءات الدفع لشركة الشحن</h3>
+    <p class="description">قم باختيار وسيلة الدفع التي تريد الدفع بها</p>
+  </div>
+  <div class="d-flex done-section align-items-center flex-column">
+    <img width="87" height="87" src="assets/imgs/done.png" alt="" />
+    <h3 class="done-title">تمت عملية الدفع بنجاح</h3>
+    <div>
+      <button routerLink="/merchents/orders" class="btn-1">تتبع طلباتك</button>
+    </div>
+  </div>
+</ng-container>
+
+
+<ng-container *ngIf="openChargeWalletDialog">
+  <p-dialog header="إضافة رصيد للمحفظة" [(visible)]="openChargeWalletDialog" [draggable]="false" [resizable]="false"
+    [modal]="true" appendTo="body" [rtl]="true" (onHide)="openChargeWalletDialog = false" [style]="{width: '30vw'}">
+
+    <div class="d-flex" *ngIf="!paymentToken">
+      <input (keydown.enter)="chargeWallet()" [(ngModel)]="walletAmount" type="number"
+        placeholder="{{ 'Enter your amount' | translate }}" class="form-control py-2" />
+      <button class="btn-1 w-50 py-3" (click)="chargeWallet()">
+        {{ "Next" | translate }}
+      </button>
+    </div>
+    <div class="mysr-form-lay"></div>
+  </p-dialog>
+</ng-container>
+
+<ng-container *ngIf="openOrdersSubmitionResponseDialog">
+  <p-dialog header="بيان حالة الطلبات" [(visible)]="openOrdersSubmitionResponseDialog" [draggable]="false"
+    [resizable]="false" [modal]="true" [rtl]="true" (onHide)="openOrdersSubmitionResponseDialog = false"
+    [style]="{width: '80vw'}">
+
+    <div class="card">
+      <p-table #dt [value]="ordersSubmitionResponseData" [paginator]="false" [tableStyle]="{'min-width': '100%'}"
+        [rowHover]="true" dataKey="id" [showCurrentPageReport]="false">
+        <ng-template pTemplate="header">
+          <tr>
+            <!-- <th></th> -->
+            <th>وصف الشحنة</th>
+            <th>تم الحفظ؟</th>
+            <th>تم السحب من المحفظة؟</th>
+            <th>الإرسال لشركة الشحن؟</th>
+            <th>إرسال البوليصة للتاجر؟</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+          <tr>
+            <!-- <td>
+              <i *ngIf="order.errorCode == 0" class="pi pi-thumbs-up-fill p-text-success" style="font-size: 1.5rem"></i>
+              <i *ngIf="order.errorCode != 0" class="pi pi-thumbs-down-fill p-text-danger"
+                style="font-size: 1.5rem"></i>
+            </td> -->
+            <td>{{getOrderDescriptionByOrderRef(order?.orderRefrance)}}</td>
+            <td>
+              <i *ngIf="order.savedLocally" class="pi pi-thumbs-up-fill p-text-success" style="font-size: 1.5rem"></i>
+              <i *ngIf="!order.savedLocally" class="pi pi-thumbs-down-fill p-text-danger" style="font-size: 1.5rem"></i>
+            </td>
+            <td>
+              <i *ngIf="order.walletAction" class="pi pi-thumbs-up-fill p-text-success" style="font-size: 1.5rem"></i>
+              <i *ngIf="!order.walletAction" class="pi pi-thumbs-down-fill p-text-danger" style="font-size: 1.5rem"></i>
+            </td>
+            <td>
+              <i *ngIf="order.sentToVendor" class="pi pi-thumbs-up-fill p-text-success" style="font-size: 1.5rem"></i>
+              <i *ngIf="!order.sentToVendor" class="pi pi-thumbs-down-fill p-text-danger" style="font-size: 1.5rem"></i>
+            </td>
+            <td>
+              <i *ngIf="order.emailSentToMerchant" class="pi pi-thumbs-up-fill p-text-success"
+                style="font-size: 1.5rem"></i>
+              <i *ngIf="!order.emailSentToMerchant" class="pi pi-thumbs-down-fill p-text-danger"
+                style="font-size: 1.5rem"></i>
+            </td>
+            <td>
+              <button pButton pRipple label="تفاصيل الطلب" icon="pi pi-eye" class="p-button p-button-outlined"
+                [routerLink]="['/merchents/order-details', order?.orderId]" *ngIf=" order.orderId"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button type="button" pButton icon="pi pi-check" [label]="'الذهاب لصفحة الطلبات'" routerLink="/merchents/orders">
+      </button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+
+<ng-container *ngIf="openSelectedCompanyInfoDialog">
+  <p-dialog header="بيانات شركة {{selectedCompany?.vendor?.nameAr}}" [(visible)]="openSelectedCompanyInfoDialog"
+    [draggable]="false" [resizable]="false" [modal]="true" [rtl]="true" (onHide)="openSelectedCompanyInfoDialog = false"
+    [style]="{width: '30vw'}">
+
+    <div class="selected-company-info">
+
+      <div class="basic-info">
+        <div class="company-logo">
+          <img [src]="selectedCompany?.vendor?.pictureRow" *ngIf="selectedCompany?.vendor?.pictureRow">
+          <span class="init" *ngIf="!selectedCompany?.vendor?.pictureRow">{{selectedCompany?.vendor?.nameAr[0] |
+            uppercase}}</span>
+        </div>
+
+        <div class="name">
+          {{selectedCompany?.vendor?.nameAr}}
+        </div>
+      </div>
+
+      <div class="d-inline-block">
+        <h6 class="card-price p-2">
+          الإجمالي
+          {{selectedCompany?.grandTotal}} ريال
+          <span class="sub-title">
+            لعدد {{ selectedCompanyOffers.length }} شحنات
+          </span>
+        </h6>
+        <h6 class="card-price p-2"> الشروط و الاحكام
+          <a  target=”_blank”  [href]="selectedCompany?.vendor?.conditionsURL" style="text-decoration: none;">اضغط هنا</a>
+        </h6>
+        <h6 class="card-price p-2">وقت الالتقاط
+          {{selectedCompany?.picKTimeStart}} <i class="fa-regular fa-clock"></i>
+        </h6>
+        <p class="card-desc">
+          <span>رسوم الكيلو الزائد عن المسافه المحدده:</span>
+          <span> {{selectedCompany?.vendor?.ExtraKMDistanceCost || 0}} ر.س.</span>
+        </p>
+        <p class="card-desc">
+          <span>رسوم فشل التوصيل:</span>
+          <span> {{selectedCompany?.vendor?.failureShipFees || 0}} ر.س.</span>
+        </p>
+        <p class="card-desc">
+          <span>عدد أيام إعادة الشحن في حالة فشل التوصيل:</span>
+          <span> {{selectedCompany?.vendor?.failureShipReturnDuInDays}} يوم</span>
+        </p>
+        <p class="card-desc">
+          <span>عدد المحاولات:</span>
+          <span> {{selectedCompany?.vendor?.triesCount}}</span>
+        </p>
+      </div>
+    </div>
+  </p-dialog>
+</ng-container>
+
+<p-toast [position]="'bottom-right'"></p-toast>
+
+<app-loading [loadingLabel]="'جاري التعميد...'" *ngIf="selectCompanyLoading"></app-loading>
+<div class="modal-success" *ngIf="showSuccessMessage">
+  <div class="d-flex done-section align-items-center flex-column">
+    <img width="87" height="87" src="assets/imgs/done.png" alt="" />
+    <h3 class="done-title">تمت عملية الدفع بنجاح</h3>
+  </div>
+</div>
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between">
+        <h1 class="modal-title fs-5 fw-bold" id="paymentModalLabel">
+          إضافة رصيد
+        </h1>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
+  </div>
+</div>

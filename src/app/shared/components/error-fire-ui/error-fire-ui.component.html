@@ -1,0 +1,27 @@
+<div [ngClass]="{'activeh': $any(MSG |async)?.length >0}" class="notify">
+    <span  [ngClass]="{'failure': $any(MSG |async)?.length >0}"  id="notifyType" class="" >
+        {{MSG |async}}
+    </span></div>
+
+
+<div *ngIf="display" [ngClass]="{'showoverlay': (display) }"  id="overlay"  (click)="display = false">
+    <div id="text">
+        <div id="overlayheader">
+            <i class="fas fa-times-circle   ml-1 mr-1" style="font-size: x-large; line-height: 30px;"></i> {{'error'|translate}}
+        </div>
+
+    <div id="overlaybody">
+        <i class="fas fa-times-circle-o font-weight-light" style="font-size: 5em"></i>
+        <div class=" border border-danger mb-2 ml-3 mr-3" style="width: 2px;margin-inline-end: 1rem;
+        margin-inline-start: 1rem;"></div>
+        <div id="textcontainer" >
+             <p > {{'error'|translate}} #: {{ThisModel.ErrorID}}</p>
+             <p> {{'desc'|translate}}: {{ThisModel.ErrorDescription}}</p>
+             <small class="font-weight-light"> {{'Notice'|translate}}: {{ThisModel.ErrorNotice}}</small>
+        </div>
+     </div>
+    <div class="w-100 border-top border-secondary d-flex flex-row-reverse p-2 bg-white30 " >
+        <button  type="button"   class="btn btn-danger btn  " (onClick)="display = false">{{'Ok'|translate}}</button>
+    </div>
+    </div>
+  </div>

@@ -1,0 +1,55 @@
+
+<main class="login-component">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 reg-form-section">
+        <h1 class="fw-bold mb-4">
+          <span class="mx-2"> مرحبا بك في</span>
+          <span class="mx-2 text-second">Tredo</span>
+        </h1>
+        <div *ngIf="showError" class="alert alert-danger" role="alert">
+          {{errorMessage}}
+        </div>
+        <form [formGroup]="loginForm" class="d-flex flex-column gap-3 mb-3" autocomplete="off" novalidate
+          (ngSubmit)="loginUser(loginForm.value)">
+          <div class="line-group mb-2">
+            <label for="" class="mb-3 fs-6"> {{'Register.Username'|translate}}*</label>
+            <input type="text" id="Username" formControlName="Username" class="form-control py-2"
+              placeholder="  اسم المستخدم">
+            <em *ngIf="validateControl('Username') && hasError('Username', 'required')"> {{'Register.Username'|translate}}
+              صحيح</em>
+          </div>
+          <div class="line-group mb-2">
+            <label for="" class="mb-3 fs-6"> {{'Register.Password'|translate}}*</label>
+            <input type="password" id="Password" formControlName="Password" class="form-control py-2"
+              placeholder="كلمة المرور*">
+              <em *ngIf="validateControl('Username') && hasError('Username', 'required')">{{'Enter'|translate}} {{'Register.Username'|translate}}</em>
+          </div>
+          <div class="mb-4 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <input formControlName="remeberMe" type="checkbox" class="checkbox">
+              <label for=""> تذكرني</label>
+            </div>
+            <div>
+              <a type="button" class="text-second fontMedium text-decoration-none" data-bs-toggle="modal"
+                data-bs-target="#exampleModal" [routerLink]="'/auth/forgetpassword'">
+                {{'Register.ForgetPassword'|translate}}
+              </a>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn-1 w-100 py-3" [disabled]="!loginForm.valid" (click)="loginUser">
+            {{'Register.Login'|translate}}</button>
+
+        </form>
+        <div class="text-center fw-500 ">
+          <span> ليس لديك حساب؟ </span>
+          <a routerLink="/auth/registeruser" class="text-second text-decoration-none switch-link">التسجيل</a>
+        </div>
+      </div>
+      <div class="col-lg-6 reg-img d-none d-lg-grid align-items-center justify-content-center">
+        <img src="assets/imgs/amico.png" alt="">
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,231 @@
+<div class="dash-header p-2 justify-content-between d-flex p-lg-5">
+  <div>
+    <h2>
+      لوحة البيانات
+      <i class="fa-solid fa-chart-line"></i>
+    </h2>
+    <p class="description">تابع تقدمك وارقامك من خلال لوحة البيانات
+    </p>
+
+  </div>
+   <button class="main-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <img class="ms-2" src="assets/imgs/icons/plus.png" alt="">
+      <span>
+        انشاء شحنة
+      </span>
+    </button>
+</div>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let item of options; let i = index" class="mt-4 col-md-6 col-lg-4 recta">
+      <label [for]="item.EnName" class="recta-check d-flex align-items-center h-100" [class.active]="item.isSelected">
+        <div class="recta-div">
+          <span class="recta-name">
+            {{item.ArName}}
+          </span>
+        </div>
+      </label>
+      <input (change)="onChangeSearch($event, item.id)" [value]="item.ArName" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="item.isSelected" type="checkbox" name="radioSelceted" [id]="item.EnName" class="check d-none" />
+    </div>
+  </div>
+  <div class="row row-cols-xl-5 row-cols-lg-4 row-cols-sm-2 row-cols-1 row-cols-md-3 mt-5">
+    <div class="col mb-3">
+      <div class="card">
+        <div class="d-flex align-items-center">
+          <img class="ms-2" src="assets/imgs/icons/dash-1.png" alt="">
+          <p class="card-title">طلبات الملغيه</p>
+        </div>
+        <span class="card-desc">{{Statistics?.Canceled}} طلب</span>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card">
+        <div class="d-flex align-items-center">
+          <img class="ms-2" src="assets/imgs/icons/dash-2.png" alt="">
+          <p class="card-title">طلبات تحت الاجراء</p>
+        </div>
+        <span class="card-desc">{{Statistics?.Pending}} طلب</span>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card">
+        <div class="d-flex align-items-center">
+          <img class="ms-2" src="assets/imgs/icons/dash-3.png" alt="">
+          <p class="card-title">طلبات جاري توصيلها</p>
+        </div>
+        <span class="card-desc">{{Statistics?.OutforDelivery}} طلب</span>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card">
+        <div class="d-flex align-items-center">
+          <img class="ms-2" src="assets/imgs/icons/dash-4.png" alt="">
+          <p class="card-title">طلبات مكتملة</p>
+        </div>
+        <span class="card-desc">{{Statistics?.Submitted}} طلب</span>
+      </div>
+    </div>
+    <div class="col mb-3">
+      <div class="card">
+        <div class="d-flex align-items-center">
+          <img class="ms-2" src="assets/imgs/icons/dash-5.png" alt="">
+          <p class="card-title">طلبات متعثرة</p>
+        </div>
+        <span class="card-desc">0 طلب</span>
+      </div>
+    </div>
+  </div>
+  <br><br>
+   <!--
+  <div class="row row-cols-1 row-cols-sm-1 bor">
+    <div class="col R-postion">
+      <div class="text-center Abs-position">
+        <p class="chartText mb-5">طلبات جاري توصيلها</p>
+      </div>
+      <!-- 2 area --
+      <div class="mt-5">
+        <apx-chart [series]="series2" [xaxis]="Xxis2" [chart]="chart2" [legend]="legend" [yaxis]="yxis2"
+          [dataLabels]="datalable2"></apx-chart>
+      </div>
+    </div>
+
+  </div>
+  -->
+  <br><br>
+  <!--
+  <div class="row  d-flex GAP ">
+    <!--1 pie --
+    <div class="col bord">
+      <div class="d-flex justify-content-around">
+        <div>
+          <p class="chartText">طلبات تحت الاجراء</p>
+        </div>
+        <div class="col mb-4 d-flex justify-content-end">
+
+          <select class="form-select OneWidth" aria-label="Default select example">
+            <option value="1">شهريا </option>
+            <option value="2">سنويا</option>
+          </select>
+        </div>
+      </div>
+      <div id="chart" class="d-flex justify-content-center">
+        <!-- <apx-chart [series]="series" [chart]="chartDetails" [colors]="colors" [dataLabels]="datalable1"
+          [legend]="legend"></apx-chart> --
+        <apx-chart [series]="series6" [chart]="chart6" [legend]="legend" [yaxis]="yxis6" [dataLabels]="datalable6"
+          [xaxis]="Xxis6" [responsive]="responsive3"></apx-chart>
+      </div>
+    </div>
+    <!--3 bar --
+    <div class="col bord">
+      <div class="d-flex justify-content-around">
+        <div>
+          <p class="chartText">الطلبات المكتملة</p>
+        </div>
+        <div class="col mb-4 d-flex justify-content-end">
+
+          <select class="form-select OneWidth" aria-label="Default select example">
+            <option value="1">شهريا </option>
+            <option value="2">سنويا</option>
+          </select>
+        </div>
+      </div>
+      <div id="chart" class="d-flex justify-content-center">
+        <apx-chart [series]="series3" [xaxis]="Xxis3" [fill]="fill3" [responsive]="responsive3"
+          [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3" [title]="title3" [legend]="legend"
+          [yaxis]="yxis3"></apx-chart>
+      </div>
+    </div>
+
+  </div>
+ -->
+
+  <br><br>
+  <div class="row  d-flex GAP">
+    <!-- 4 area small --
+    <div class="col bord">
+      <div class="d-flex justify-content-around">
+        <div>
+          <p class="chartTextred">طلبات متعثرة</p>
+        </div>
+        <div class="col mb-4 d-flex justify-content-end">
+
+          <select class="form-select OneWidth" aria-label="Default select example">
+            <option value="1">شهريا </option>
+            <option value="2">سنويا</option>
+          </select>
+        </div>
+      </div>
+      <div id="chart" class="d-flex justify-content-center">
+        <apx-chart [series]="series5" [xaxis]="Xxis5" [fill]="fill5" [responsive]="responsive3"
+          [plotOptions]="plotOptions5" [chart]="chart5" [dataLabels]="datalable5" [legend]="legend"
+          [yaxis]="yxis5"></apx-chart>
+      </div>
+    </div>
+    <!-- 1 pie --
+    <div class="col bord">
+      <div class="d-flex justify-content-around">
+        <div>
+          <p class="chartTextred">طلبات غير مكتملة</p>
+        </div>
+        <div class="col mb-4 d-flex justify-content-end">
+
+          <select class="form-select OneWidth" aria-label="Default select example">
+            <option value="1">شهريا </option>
+            <option value="2">سنويا</option>
+          </select>
+        </div>
+      </div>
+      <div id="chart" class="d-flex justify-content-center">
+        <!-- <apx-chart [series]="series" [chart]="chartDetails" [dataLabels]="datalable1" [legend]="legend"></apx-chart>
+        <apx-chart [series]="series7" [chart]="chart7" [legend]="legend" [yaxis]="yxis7" [xaxis]="Xxis7"
+          [dataLabels]="datalable7" [responsive]="responsive3"></apx-chart>
+      </div>
+    </div>
+<!--  -->
+
+
+  </div>
+
+</div>
+
+<div class="modal-success" *ngIf="showSuccessMessage">
+  <div class="d-flex done-section align-items-center flex-column">
+    <img width="87" height="87" src="assets/imgs/done.png" alt="" />
+    <h3 class="done-title">تمت عملية الدفع بنجاح</h3>
+  </div>
+</div>
+<!-- <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart> -->
+
+
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog m-0 m-sm-auto modal-dialog-centered">
+                    <div class="modal-content">
+                      <h2 class="modal-title">اختار واحدة من هذه الطريقتين</h2>
+                      <div class="modal-body">
+                        <div class="row">
+                          <div class="col d-flex flex-column align-items-center">
+                            <img class="m-auto modal-img-1" width="150" src="assets/svg/signup.png" alt="">
+                            <button data-bs-dismiss="modal" routerLink="/merchents/manual-order"
+                              class="primary-button mt-3">
+                              <span>
+                                عمل الطلبات يدويا
+                              </span>
+                            </button>
+                          </div>
+                          <div class="col d-flex flex-column justify-content-between align-items-center">
+                            <img class="m-auto modal-img-1" width="150" src="assets/svg/excel.png" alt="">
+                            <button data-bs-dismiss="modal" routerLink="/merchents/excel-order"
+                              class="secondary-button bg-tredo-primary">
+                              <span>
+                                رفع الطلبات من ملف اكسيل
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>

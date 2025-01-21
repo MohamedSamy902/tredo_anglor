@@ -1,0 +1,62 @@
+<section class="orders-component">
+  <div class="dash-header p-2 justify-content-between d-lg-flex p-lg-5">
+    <div>
+      <h2>{{"Customers" | translate}}</h2>
+      <!-- <p class="description">{{"Track your requests through this page" | translate}}</p> -->
+    </div>
+    <div class="d-sm-flex gap-2 position-relative">
+
+      <button class="main-button" routerLink="/merchents/add-customer" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img class="ms-2" src="assets/imgs/icons/plus.png" alt="">
+        <span>
+          إضافة عميل
+        </span>
+      </button>
+    </div>
+  </div>
+
+
+  <div class="orders-list-content">
+    <div class="orders-list-filters">
+      <p-selectButton optionLabel="name"
+        optionValue="value" ></p-selectButton>
+    </div>
+
+
+  </div>
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Order</th>
+                <th>City</th>
+                <th>Phone</th>
+                <th>Address</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>{{ product.code }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>{{ product.city }}</td>
+                <td>{{ product.phone }}</td>
+                <td>{{ product.address }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    </div>
+  </div>
+</div>
+</section>

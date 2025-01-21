@@ -1,0 +1,242 @@
+@import "../../../../../assets/scss/partials/colors";
+@import "../../../../../assets/scss/abstracts/variables";
+
+body {
+    background-color: #f5f5f9 !important;
+}
+
+.shipping-companies-component {
+    background-color: #f5f5f9;
+
+    .description {
+        font-family: Tajawal;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: $tredo-gray-2;
+
+        @media (max-width: 992px) {
+            font-size: 18px;
+        }
+    }
+
+    .desc {
+        font-family: Tajawal;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: right;
+
+        @media (max-width: 992px) {
+            font-size: 16px;
+        }
+    }
+
+    .btn-1 {
+        padding: 15px 24px !important;
+        border: 1px solid $tredo-primary;
+
+        @media (max-width: 500px) {
+            padding: 5px !important;
+        }
+    }
+
+    .img-card {
+        height: 500px;
+
+        .main-img {
+            height: 221px;
+            width: 291px;
+            max-width: 100%;
+        }
+
+        .img-desc {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 22px;
+            color: #777777;
+        }
+    }
+
+    .admin-table {
+        thead {
+            background: #ececf3;
+
+            th {
+                font-size: 14px;
+                padding: 14px;
+                font-weight: 500;
+                line-height: 17px;
+                letter-spacing: 0em;
+                color: #777;
+
+                &.th-price {
+                    font-size: 16px;
+                }
+            }
+        }
+
+        tbody {
+            td {
+                padding: 31px;
+                text-align: right;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 31px;
+                color: #000;
+                background: #ffffff;
+                border-bottom: 1px solid #f2f2f7;
+
+                &.td-price {
+                    color: #0166c0;
+                }
+
+                .table-detalis-btn {
+                    padding: 4px 16px;
+                    height: 40px;
+                    background: #ffffff;
+                    border: 1px solid #e84f4b;
+                    border-radius: 10px;
+                    color: #e84f4b;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    .modal {
+        .inner-modal-table {
+            thead {
+                th {
+                    text-align: right !important;
+                }
+            }
+
+            td {
+                font-size: 16px;
+                text-align: right !important;
+                border-inline-width: 0;
+            }
+        }
+
+        .modal-companies {
+            width: 985px;
+            max-width: 100%;
+
+            .modal-content {
+                padding: 30px !important;
+                height: 819px;
+                width: 985px;
+                border-radius: 76px;
+
+                .modal-title {
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 29px;
+                    color: #000;
+                }
+
+                .close-modal-btn {
+                    border: none;
+                    background: transparent;
+                }
+            }
+        }
+    }
+
+    .page-link {
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(119, 119, 119, 0.6) !important;
+        text-align: center;
+        text-align: center;
+    }
+
+    .edit {
+        color: #0166C0;
+        width: 32px;
+        height: 32px;
+        padding-left: 36px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .delete {
+        color: #FB1B1C;
+        width: 32px;
+        height: 32px;
+        padding-left: 13px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .pagination-success .page-item.active .page-link,
+    a {
+        border: 1px solid rgba(119, 119, 119, 0.6);
+        color: #77777799;
+    }
+
+    .pagination-success .page-item .page-link {
+        background: transparent;
+    }
+
+    .pagination-success .page-item.active .page-link,
+    a.active {
+        background: #092D47;
+        color: #fff;
+        border: 1px solid #092D47 !important;
+    }
+
+    .pagination.pagination-rounded-flat .page-item .page-link,
+    a {
+        border: none;
+        border-radius: 50px;
+    }
+
+    .form {
+        position: relative;
+
+        .fa-search {
+            position: absolute;
+            color: #9ca3af;
+            top: 45%;
+            transform: translateY(-50%);
+            right: 10px;
+            left: 10px;
+        }
+
+        span {
+            position: absolute;
+            right: 17px;
+            top: 13px;
+            padding: 2px;
+            border-left: 1px solid #d1d5db;
+        }
+
+        .left-pan {
+            padding-left: 7px;
+
+            img {
+                padding-left: 10px;
+            }
+        }
+
+        .form-input {
+            height: 44px;
+            width: 250px;
+            border-radius: 10px;
+            text-indent: 20px;
+            background: #ececf4;
+            border: 1px solid #d2d2e4;
+            border-radius: 10px;
+            color: #777777;
+        }
+    }
+}

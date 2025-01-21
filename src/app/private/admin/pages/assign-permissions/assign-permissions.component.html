@@ -1,0 +1,89 @@
+
+  <div class="add-user-component">
+    <div class="dash-header pt-lg-3 pt-1 container justify-content-between d-flex">
+      <div>
+        <p class="description">
+          <b class="text-black"> {{"createUser" | translate}} </b>
+          <i class="fa-solid mx-2 fa-burst text-success"></i>
+        </p>
+        <p class="desc"> <i class="fas fa-pencil-alt   text-success "></i>
+          {{"AddAllUserData" | translate}}
+        </p>
+      </div>
+      <!-- <button class="btn-1 border-0 h-100" routerLink="/admin/user-list">
+        <i class="fas fa-list"></i>
+        <span>
+          قائمة المستخدمين
+        </span>
+      </button> -->
+    </div>
+    <div class="container">
+      <form  [formGroup]="assinPermissionForm" autocomplete="off" (ngSubmit)="alertConfirmation(assinPermissionForm.value)">
+        <div class="row form-container">
+          <h2 class="form-border-title">{{"userData" | translate}}</h2>
+          <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <label class="mb-2">{{'Permission.Username'|translate}}</label>
+            <input [class.invalid]="assinPermissionForm.get('Username')?.invalid && isSubmited"
+              formControlName="Username"  type="text" class="form-control" (keydown.space)="$event.preventDefault();"/>
+            <div class="error" *ngIf="validateControl('Username') && hasError('Username', 'required')">
+              {{'Enter'|translate}} {{'Permission.Username'|translate}}
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <label class="mb-2">{{'Permission.Email'|translate}}</label>
+            <input [class.invalid]="assinPermissionForm.get('Email')?.invalid && isSubmited"
+              formControlName="Email"  type="email" placeholder=""
+              class="form-control" />
+            <div class="error"  *ngIf="validateControl('Email') && hasError('Email', 'Email')">
+              {{'Enter'|translate}}{{'Permission.ValidEmail'|translate}} </div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <label class="mb-2">{{'Permission.Password'|translate}}</label>
+            <input [class.invalid]="assinPermissionForm.get('Password')?.invalid && isSubmited" formControlName="Password"
+              type="Password" placeholder="" class="form-control" autocomplete="off"/>
+            <div class="error" *ngIf="!assinPermissionForm.get('Password')?.valid && assinPermissionForm.get('Password')?.touched && validateControl('Password') && hasError('Password', 'required')">
+                {{'Enter'|translate}} {{'Permission.Password'|translate}}</div>
+                <div class="error" *ngIf="!assinPermissionForm.get('Password')?.valid &&(( assinPermissionForm.get('Password')?.touched && assinPermissionForm.get('Password')?.value.length>0 )|| isSubmited)">
+                    {{'Enter'|translate}} {{'Permission.ValidPassword'|translate}}</div>
+          </div>
+          <div class="col-12 col-md-6 col-lg-4 mb-2">
+            <label class="mb-2">{{'Permission.ConfirmPassword'|translate}}</label>
+            <input [class.invalid]="assinPermissionForm.get('ConfirmPassword')?.invalid && isSubmited" formControlName="ConfirmPassword"
+              type="password" placeholder="" class="form-control" autocomplete="off" />
+            <div class="error" *ngIf="validateControl('ConfirmPassword') && hasError('ConfirmPassword', 'required') && isSubmited">
+                {{'Enter'|translate}}{{'Permission.ConfirmPassword'|translate}}</div>
+                <div class="error" *ngIf="passwordMatchError && isSubmited">
+                    {{'Enter'|translate}}{{'Permission.ValidConfirmPassword'|translate}}</div>
+          </div>
+          <div class="mt-2"></div>
+          <!-- <div class="col-12 mb-2">
+            <textarea placeholder="أكتب هنا بعض المعلومات عن المستخدم" formControlName="Note" class="form-control"></textarea>
+          </div> -->
+          <div class="mt-2"></div>
+          <div *ngFor="let Permission of Permissions; let i = index" class="mt-4 col-md-6 col-lg-3 recta">
+            <label [for]="Permission.nameAr" class="recta-check d-flex align-items-center h-100" [class.active]="Permission.isSelected"  (click)="Permission.isSelected=!Permission.isSelected">
+              <div class="recta-div">
+                <span class="recta-name">
+                   <!-- <i class="fa-solid fa-user-plus"></i> -->
+                   <i class="fa-regular fa-address-card"></i>
+                  {{Permission.nameAr}}
+                </span>
+              </div>
+            </label>
+            <input  [value]="Permission.nameAr" [ngModelOptions]="{standalone: true}" [(ngModel)]="Permission.isSelected" type="checkbox" name="Permission" [id]="Permission.id" class="check d-none" />
+          </div>
+          <div class="d-flex py-2 mt-3 justify-content-between form-buttons">
+            <div class="d-flex gap-2">
+            </div>
+            <div class="d-flex gap-2">
+              <button class="btn btn-1" type="submit" [disabled]="!assinPermissionForm.valid"(click)="alertConfirmation(assinPermissionForm.value)">حفظ</button>
+              <button class="btn btn-1" type="button" routerLink="/admin/all-users">رجوع</button>
+
+            </div>
+            
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

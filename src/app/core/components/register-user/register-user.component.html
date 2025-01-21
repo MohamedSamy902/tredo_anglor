@@ -1,0 +1,60 @@
+
+<main class="register-component">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 reg-form-section">
+        <h1 class="fw-bold mb-4">
+          <span class="mx-2"> مرحبا بك في</span>
+          <span class="mx-2 text-second">Tredo</span>
+        </h1>
+
+        <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
+          <div class="line-group mb-2"  *ngIf="showError">
+            <em  class="alert alert-danger">{{'Register.'+errorMessage|translate}}</em>
+            <br>
+            <br>
+        </div>
+          <div class="line-group mb-2">
+            <label for="" class="mb-3 fs-6"> {{'Register.Username'|translate}}*</label>
+            <input type="text" id="Username" formControlName="Username" class="form-control py-2"
+              placeholder="الإسم بالكامل" (keydown.space)="$event.preventDefault();" />
+              <em  class="alert " style="color: red;" *ngIf="validateControl('Username') && hasError('Username', 'required')">{{'Enter'|translate}} {{'Register.Username'|translate}}</em>
+          </div>
+          <div class="line-group mb-2">
+            <label for="" class="mb-3 fs-6">{{'Register.Email'|translate}} *</label>
+            <input type="email" id="Email" formControlName="Email" class="form-control" />
+            <em   class="alert "style="color: red;" *ngIf="validateControl('Email') && hasError('Email', 'Email')">Please provide a valid email</em>
+            <em  class="alert "style="color: red;" *ngIf="validateControl('Email') && hasError('Email', 'required')">{{'Enter'|translate}} {{'Permission.Email'|translate}}</em>
+          </div>
+          <div class="line-group mb-2">
+            <label for="" class="mb-3 fs-6">{{'Register.Password'|translate}} *</label>
+            <input type="password" id="Password" formControlName="Password" class="form-control py-2"
+              placeholder="كلمة المرور*" />
+             <em  class="alert "style="color: red;" *ngIf="validateControl('Password') && hasError('Password', 'required')">{{'Enter'|translate}} {{'Permission.Password'|translate}}</em>
+                    <em class="alert " *ngIf="!registerForm.get('Password')?.valid && registerForm.get('Password')?.touched && registerForm.get('Password')?.value.length>0">
+                        {{'Enter'|translate}} {{'Permission.ValidPassword'|translate}}
+                  </em>
+          </div>
+          <label for="ConfirmPassword" class="col-form-label "> {{'Register.ConfirmPassword'|translate}}</label>
+          <input type="password" id="ConfirmPassword" formControlName="ConfirmPassword" class="form-control py-2"
+            placeholder="كلمة المرور*" />
+            <em   class="alert "style="color: red;" *ngIf="validateControl('ConfirmPassword') && hasError('ConfirmPassword', 'required')"> {{'Enter'|translate}}{{'Permission.ConfirmPassword'|translate}}</em>
+            <em  class="alert "style="color: red;" *ngIf="passwordMatchError"> {{'Enter'|translate}}{{'Permission.ValidConfirmPassword'|translate}}</em>
+          <br>
+          <button type="submit" class="btn-1 w-100 py-3" [disabled]="!registerForm.valid" (click)="registerUser">
+            التسجيل
+          </button>
+        </form>
+        <div class="text-center fw-500 pt-3">
+          <span> لديك حساب؟ </span>
+          <a routerLink="/auth/login" class="text-second text-decoration-none switch-link">{{'Register.Register'|translate}}  </a>
+        </div>
+      </div>
+      <div class="col-lg-6 reg-img d-none d-lg-grid align-items-center justify-content-center">
+        <img src="assets/imgs/rafiki.png" alt="">
+      </div>
+    </div>
+  </div>
+</main>
+<br>
+<br>

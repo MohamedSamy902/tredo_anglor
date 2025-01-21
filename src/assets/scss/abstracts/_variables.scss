@@ -1,0 +1,177 @@
+/* Rectangle 3 */
+
+.btn-1 {
+  padding: 10px 20px;
+  background: #092D47;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.5s;
+  border-bottom: 1px solid #092D47;
+}
+
+.btn-1:hover {
+  padding: 10px 20px;
+  background: #fff;
+  color: #092D47;
+  text-decoration: none;
+}
+
+.btn-2 {
+  padding: 10px 20px;
+  background: #e84f4b;
+  border-radius: 30px;
+  transition: all 0.5s;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #e84f4b;
+}
+
+.btn-2:hover {
+  padding: 10px 20px;
+  color: #777;
+  border-radius: 0px;
+  background: #fff;
+  text-decoration: none;
+  border: 1px solid #777;
+}
+
+.btn-3 {
+  padding: 10px 60px;
+  background: #e84f4b;
+  border-radius: 30px;
+  transition: all 0.5s;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #e84f4b;
+}
+
+.btn-3:hover {
+  color: #e84f4b;
+  border-radius: 0px;
+  background: #fff;
+}
+
+.btn-4 {
+  padding: 12px 19px;
+  border-radius: 30px;
+  transition: all 0.5s;
+  color: #e84f4b;
+  text-decoration: none;
+  border: 1px solid #777;
+  background: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  color: #777;
+  &:hover, &.active {
+    background-color: #e84f4b;
+    color: #fff;
+    border: 1px solid #e84f4b;
+  }
+}
+
+/*  excel order file */
+
+.one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.primary-button {
+  padding: 15px;
+  left: 1186px;
+  background: $tredo-primary;
+  border-radius: 30px;
+  border: 0;
+  span {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: $white;
+  }
+}
+.secondary-button {
+  padding: 15px;
+  left: 1186px;
+  background: $tredo-secondary;
+  border-radius: 30px;
+  border: 0;
+  span {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: $white;
+  }
+}
+
+.one h2 {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  color: $tredo-black;
+}
+
+.www {
+  gap: 20px;
+}
+
+.Arrow {
+  width: 107px;
+  height: 107px;
+}
+
+.excel {
+  width: 57.13px;
+  height: 53.56px;
+}
+
+/* end excel order file */
+
+/* start file excel  */
+
+.mg-bottom {
+  margin-bottom: 70px;
+}
+
+.cont {
+  margin-bottom: 40px;
+  padding-bottom: 21px;
+  border: 1px solid rgba(119, 119, 119, 0.2);
+  border-radius: 35px;
+  width: 520px;
+}
+
+.fileExelcolor {
+  color: $tredo-success;
+  text-transform: capitalize;
+}
+
+.err {
+  text-align: center;
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  text-transform: capitalize;
+  color: #ff5556;
+  display: flex;
+  justify-content: center;
+}
+
+.inp {
+  border: 0;
+  text-align: center;
+  width: 113px;
+  padding: 8px;
+}
+
+/* end file excel  */

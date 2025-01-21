@@ -1,0 +1,896 @@
+<div class="admin-home-component">
+  <div class="row mx-auto mt-4 container">
+    <div class="col-12 col-md-3 col-xl-2 d-flex align-items-center">
+      <h2 class="d-inline admin-title">التفاصيل المالية</h2>
+      <img class="me-lg-1 ms-lg-1 ms-xl-2 me-xl-2 ms-0 me-0 d-none d-lg-inline" width="50" height="50"
+        src="assets/imgs/Arrow-blue.png" alt="" />
+    </div>
+    <div class="col-12 col-md-9 col-xl-10">
+      <div class="m-w row p-2">
+        <div *ngFor="let item of menuListFinance" class="col-lg-4 col-12 col-sm-6 mb-lg-0 mb-4" role="presentation">
+          <div [ngClass]="{ active: selectedList === item.name }" class="admin-card">
+            <div class="d-flex">
+              <img class="g-img ms-1" width="24" height="24" src="assets/imgs/Dollar Coin-green.png" alt="" />
+              <img class="w-img ms-1" width="24" height="24" src="assets/imgs/DollarCoin-white.png" alt="" />
+              <p class="card-title d-flex align-items-center">
+                {{ item.arName }}
+              </p>
+            </div>
+            <div class="mt-2 d-flex justify-content-between">
+              <span class="card-price">{{ item.price }} ريال</span>
+              <button (click)="openMenuList(item.name)" class="admin-details-btn nav-link">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="mt-2" />
+  <div class="row">
+    <div *ngFor="let item of options; let i = index" class="mt-4 col-md-6 col-lg-4 recta">
+      <label [for]="item.EnName" class="recta-check d-flex align-items-center h-100" [class.active]="item.isSelected">
+        <div class="recta-div">
+          <span class="recta-name">
+            {{ item.ArName }}
+          </span>
+        </div>
+      </label>
+      <input (change)="onChangeSearch($event, item.id)" [value]="item.ArName" [ngModelOptions]="{ standalone: true }"
+        [(ngModel)]="item.isSelected" type="checkbox" name="radioSelceted" [id]="item.EnName" class="check d-none" />
+    </div>
+  </div>
+  <div class="row mx-auto mt-4 container">
+    <div class="col-12 col-md-3 col-xl-2 d-flex mt-admin">
+      <h2 class="d-inline admin-title d-flex mt-2">تفاصيل الشحنات</h2>
+      <img class="me-lg-1 ms-lg-1 ms-xl-2 me-xl-2 ms-0 me-0 d-none d-lg-inline" width="50" height="50"
+        src="assets/imgs/Arrow-blue.png" alt="" />
+    </div>
+    <div class="col-12 col-md-9 col-xl-10">
+      <div class="m-w row p-2">
+        <div *ngFor="let item of menuListShipments" class="col-lg-4 mb-4 col-12 col-sm-6" role="presentation">
+          <div [ngClass]="{ active: selectedList === item?.name }" class="admin-card">
+            <div class="d-flex">
+              <img class="ms-2" width="24" height="24" [src]="item?.icon" alt="" />
+              <p class="card-title d-flex align-items-center">
+                {{ item?.arName }}
+              </p>
+            </div>
+            <div class="mt-2 d-flex justify-content-between">
+              <span class="card-price">{{Statistics?.[item?.name] ? Statistics?.[item?.name] : 0}}
+                طلب</span>
+              <button (click)="openMenuListOrder(item.name)" class="admin-details-btn nav-link">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr class="mt-2" />
+  <div class="container-xl">
+    <div *ngIf="selectedList === 'merchants'">
+      <!-- <div class="p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>رصيد محافظ التجار</p>
+        </div>
+        <div class="form mt-3 mt-sm-0">
+          <img
+            class="fa-search"
+            width="21"
+            height="21"
+            src="assets/imgs/search.png"
+          />
+          <input
+            type="text"
+            class="form-control form-input"
+            placeholder="بحث باسم التاجر"
+          />
+        </div>
+      </div>
+      <div class="mt-4 table-responsive merchants-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th scope="col">اسم التاجر</th>
+              <th class="th-price" scope="col">رصيد المحفظة الحالي</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dropdownListReturnedMerchents">
+              <td>{{ currentLang === "ar" ? item?.nameAr : item?.nameEn }}</td>
+              <td class="td-price">{{ item?.wallet?.balance }} ريال سعودي</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <td colspan="1"></td>
+            <td rowspan="1" class="text-tredo-secondary-2 total-price">
+              <span class="total">الاجمالي</span>
+              <span class="total-price">900 ريال سعودي</span>
+            </td>
+          </tfoot>
+        </table>
+      </div> -->
+    </div>
+    <div *ngIf="selectedList === 'companies'">
+      <!-- <div class="p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>اجمالي معاملات  شركات الشحن</p>
+        </div>
+        <div class="form mt-3 mt-sm-0">
+          <img
+            class="fa-search"
+            width="21"
+            height="21"
+            src="assets/imgs/search.png"
+          />
+          <input
+            type="text"
+            class="form-control form-input"
+            placeholder="بحث باسم شركة الشحن"
+          />
+        </div>
+      </div>
+      <div class="mt-4 table-responsive companies-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="text-center" scope="col">اسم شركة الشحن</th>
+              <th class="th-price text-center" scope="col">اجمالي المعاملات</th>
+              <th class="th-price text-center" scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+              <td class="text-center">شركة الطارق</td>
+              <td class="td-price text-center">3000 ريال سعودي</td>
+              <td class="text-start">
+                <button
+                  type="button"
+                  class="table-detalis-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#staticBackdrop"
+                >
+                  تفاصيل
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <td colspan="1"></td>
+            <td
+              rowspan="1"
+              class="text-tredo-secondary-2 text-center total-price"
+            >
+              <span class="total">الاجمالي</span>
+              <span class="total-price">900 ريال سعودي</span>
+            </td>
+            <td></td>
+          </tfoot>
+        </table>
+      </div> -->
+    </div>
+    <div *ngIf="selectedList === 'tredo'">
+      <!-- <div class="p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>اجمالي دخل باي شيب</p>
+        </div>
+        <div class="form mt-3 mt-sm-0">
+          <img
+            class="fa-search"
+            width="21"
+            height="21"
+            src="assets/imgs/search.png"
+          />
+          <input
+            type="text"
+            class="form-control form-input"
+            placeholder="بحث باسم التاجر"
+          />
+        </div>
+      </div>
+      <div class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th scope="col">اسم التاجر</th>
+              <th scope="col">اسماء شركات الشحن المتعاقد معها التاجر</th>
+              <th scope="col">اجمالي دخل باي شيب من هذا التاجر</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+              <td>محمد بن راشد</td>
+              <td class="comps-td">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                  <div class="col mb-2" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+                    <div class="comp-name">
+                      <p>شركة الطارق</p>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="td-price">3000 ريال سعودي</td>
+              <td>
+                <button
+                  type="button"
+                  class="table-detalis-btn"
+                  data-bs-toggle="modal"
+                  data-bs-target="#TredoModal"
+                >
+                  تفاصيل
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <td colspan="2"></td>
+            <td rowspan="1" class="text-tredo-secondary-2 total-price">
+              <span class="total">الاجمالي</span>
+              <span class="total-price">18000 ريال سعودي</span>
+            </td>
+            <td></td>
+          </tfoot>
+        </table>
+      </div> -->
+    </div>
+    <div class="returned-section shipments-section" *ngIf="selectedList === 'returned'">
+      <div class="shipments-section-header p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>الشحنات المتعثرة</p>
+        </div>
+        <!-- <div class="d-md-flex gap-4">
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد التاجر'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedMerchents" [(ngModel)]="selectedItemsReturnedMerchents"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد شركة الشحن'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedCompanies" [(ngModel)]="selectedItemsReturnedCompanies"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-flex btns justify-content-center align-items-center">
+        <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+          <button [ngClass]="{ active: selectedSwitch === item.name }" (click)="selectTab(item.name)"
+            class="btn-underline">
+            {{ item.arName }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedSwitch === 'data'" class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="d-flex gap-2 align-items-center" scope="col">
+                اسم التاجر
+              </th>
+              <th scope="col">اسم شركة الشحن</th>
+              <th scope="col">نوع الشحنة</th>
+              <th scope="col">نقطة الانطلاق</th>
+              <th scope="col">نقطة الاستلام</th>
+              <th scope="col">السعر</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of orderDetails
+                  | homeFilter
+                    : selectedItemsReturnedCompanies
+                    : selectedItemsReturnedMerchents
+              ">
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.merchantsInfo.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="comp-name-blue">
+                      {{ item.vendor.nameAr }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.shippingType.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendFromCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendToCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.totalCost}}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map" *ngIf="selectedSwitch === 'maps'">
+        <div class="row d-flex GAP">
+          <!--3 bar -->
+          <div class="col bord mt-4">
+            <div id="chart" class="d-flex justify-content-center">
+              <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="incomplete-section shipments-section" *ngIf="selectedList === 'Canceled'">
+      <div class="shipments-section-header p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>الشحنات الغير مكتملة</p>
+        </div>
+        <!-- <div class="d-md-flex gap-2">
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد التاجر'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedMerchents" [(ngModel)]="selectedItemsReturnedMerchents"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد شركة الشحن'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedCompanies" [(ngModel)]="selectedItemsReturnedCompanies"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-flex btns justify-content-center align-items-center">
+        <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+          <button [ngClass]="{ active: selectedSwitch === item.name }" (click)="selectTab(item.name)"
+            class="btn-underline">
+            {{ item.arName }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedSwitch === 'data' && orderDetails" class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="d-flex gap-2 align-items-center" scope="col">
+                اسم التاجر
+              </th>
+              <th scope="col">اسم شركة الشحن</th>
+              <th scope="col">نوع الشحنة</th>
+              <th scope="col">نقطة الانطلاق</th>
+              <th scope="col">نقطة الاستلام</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of orderDetails
+                  | homeFilter
+                    : selectedItemsReturnedCompanies
+                    : selectedItemsReturnedMerchents
+              ">
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.merchantsInfo.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="comp-name-blue">
+                      {{ item.vendor.nameAr }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.shippingType.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendFromCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendToCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <a routerLink="/admin/order-details/{{ item.id }}"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map" *ngIf="selectedSwitch === 'maps'">
+        <div class="row d-flex GAP">
+          <!--3 bar -->
+          <div class="col bord mt-4">
+            <div id="chart" class="d-flex justify-content-center">
+              <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="inProgress-section shipments-section" *ngIf="selectedList === 'Pending'">
+      <div class="shipments-section-header p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>الشحنات تحت الاجراء</p>
+        </div>
+        <!-- <div class="d-md-flex gap-2">
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد التاجر'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedMerchents" [(ngModel)]="selectedItemsReturnedMerchents"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد شركة الشحن'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedCompanies" [(ngModel)]="selectedItemsReturnedCompanies"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-flex btns justify-content-center align-items-center">
+        <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+          <button [ngClass]="{ active: selectedSwitch === item.name }" (click)="selectTab(item.name)"
+            class="btn-underline">
+            {{ item.arName }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedSwitch === 'data' && orderDetails" class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="d-flex gap-2 align-items-center" scope="col">
+                اسم التاجر
+              </th>
+              <th scope="col">اسم شركة الشحن</th>
+              <th scope="col">نوع الشحنة</th>
+              <th scope="col">نقطة الانطلاق</th>
+              <th scope="col">نقطة الاستلام</th>
+              <th scope="col">السعر</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of orderDetails
+                  | homeFilter
+                    : selectedItemsReturnedCompanies
+                    : selectedItemsReturnedMerchents
+              ">
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.merchantsInfo.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="comp-name-blue">
+                      {{ item.vendor.nameAr }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.shippingType.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendFromCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendToCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.totalCost}}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <a routerLink="/admin/order-details/{{ item.id }}"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map" *ngIf="selectedSwitch === 'maps'">
+        <div class="row d-flex GAP">
+          <!--3 bar -->
+          <div class="col bord mt-4">
+            <div id="chart" class="d-flex justify-content-center">
+              <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="completed-section shipments-section" *ngIf="selectedList === 'Submitted'">
+      <div class="shipments-section-header p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>الشحنات المكتملة</p>
+        </div>
+        <!-- <div class="d-md-flex gap-2">
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد التاجر'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedMerchents" [(ngModel)]="selectedItemsReturnedMerchents"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد شركة الشحن'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedCompanies" [(ngModel)]="selectedItemsReturnedCompanies"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-flex btns justify-content-center align-items-center">
+        <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+          <button [ngClass]="{ active: selectedSwitch === item.name }" (click)="selectTab(item.name)"
+            class="btn-underline">
+            {{ item.arName }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedSwitch === 'data' && orderDetails" class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="d-flex gap-2 align-items-center" scope="col">
+                اسم التاجر
+              </th>
+              <th scope="col">اسم شركة الشحن</th>
+              <th scope="col">نوع الشحنة</th>
+              <th scope="col">نقطة الانطلاق</th>
+              <th scope="col">نقطة الاستلام</th>
+              <th scope="col">السعر</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of orderDetails
+                  | homeFilter
+                    : selectedItemsReturnedCompanies
+                    : selectedItemsReturnedMerchents
+              ">
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.merchantsInfo.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="comp-name-blue">
+                      {{ item.vendor.nameAr }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.shippingType.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendFromCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendToCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.totalCost}}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <a routerLink="/admin/order-details/{{ item.id }}"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map" *ngIf="selectedSwitch === 'maps'">
+        <div class="row d-flex GAP">
+          <!--3 bar -->
+          <div class="col bord mt-4">
+            <div id="chart" class="d-flex justify-content-center">
+              <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="beingDelivered-section shipments-section" *ngIf="selectedList === 'OutforDelivery'">
+      <div class="shipments-section-header p-2 d-sm-flex align-items-center gap-4">
+        <div class="inside-title">
+          <p>الشحنات الجاري توصيلها</p>
+        </div>
+        <!-- <div class="d-md-flex gap-2">
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد التاجر'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedMerchents" [(ngModel)]="selectedItemsReturnedMerchents"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+          <div class="select-box">
+            <ng-multiselect-dropdown [placeholder]="'قم بتحديد شركة الشحن'" [settings]="dropdownSettings"
+              [data]="dropdownListReturnedCompanies" [(ngModel)]="selectedItemsReturnedCompanies"
+              (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div> -->
+      </div>
+      <div class="d-flex btns justify-content-center align-items-center">
+        <div class="btn-underline-box" *ngFor="let item of menuSwitch">
+          <button [ngClass]="{ active: selectedSwitch === item.name }" (click)="selectTab(item.name)"
+            class="btn-underline">
+            {{ item.arName }}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="selectedSwitch === 'data' && orderDetails" class="mt-4 table-responsive tredo-table admin-table">
+        <table class="table">
+          <thead class="table-header">
+            <tr>
+              <th class="d-flex gap-2 align-items-center" scope="col">
+                اسم التاجر
+              </th>
+              <th scope="col">اسم شركة الشحن</th>
+              <th scope="col">نوع الشحنة</th>
+              <th scope="col">نقطة الانطلاق</th>
+              <th scope="col">نقطة الاستلام</th>
+              <th scope="col">السعر</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="
+                let item of orderDetails
+                  | homeFilter
+                    : selectedItemsReturnedCompanies
+                    : selectedItemsReturnedMerchents
+              ">
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.merchantsInfo.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="comp-name-blue">
+                      {{ item.vendor.nameAr }}
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.shippingType.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendFromCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.sendToCity.nameAr }}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    {{ item.totalCost}}
+                  </div>
+                </div>
+              </td>
+              <td class="mt-5 p-3">
+                <div class="d-flex align-items-center center-td">
+                  <div class="d-flex align-items-center gap-2">
+                    <a routerLink="/admin/order-details/{{ item.id }}"><i class="fa-solid fa-eye"></i></a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="map" *ngIf="selectedSwitch === 'maps'">
+        <div class="row d-flex GAP">
+          <!--3 bar -->
+          <div class="col bord mt-4">
+            <div id="chart" class="d-flex justify-content-center">
+              <apx-chart [series]="series3" [plotOptions]="plotOptions" [chart]="chart3" [dataLabels]="datalable3"
+                [legend]="legend" [xaxis]="Xxis3" [yaxis]="yxis3" [fill]="fill" [responsive]="responsive"></apx-chart>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- data-bs-backdrop="static" -->
+  <div class="modal companies-modal fade" data-bs-backdrop="static" id="staticBackdrop" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-companies modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-head d-flex">
+          <button class="close-modal-btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+            <img width="32" height="32" src="assets/imgs/Close.png" alt="" />
+          </button>
+          <h1 class="modal-title m-auto fs-5" id="staticBackdropLabel">
+            تفاصيل فواتير شركة الطارق
+          </h1>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive inner-modal-table admin-table">
+            <table class="table table-bordered">
+              <thead class="table-header">
+                <tr>
+                  <th scope="col">اسم التاجر</th>
+                  <th scope="col">عدد الطلبات</th>
+                  <th scope="col">التاريخ</th>
+                  <th scope="col">المبلغ المدفوع</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                  <td>محمد احمد علي</td>
+                  <td>25</td>
+                  <td>2/5/2022</td>
+                  <td class="td-price">3000 ريال سعودي</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal tredo-modal fade" data-bs-backdrop="static" id="TredoModal" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-companies modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-head d-flex">
+          <button class="close-modal-btn" type="button" data-bs-dismiss="modal" aria-label="Close">
+            <img width="32" height="32" src="assets/imgs/Close.png" alt="" />
+          </button>
+          <h1 class="modal-title m-auto fs-5" id="staticBackdropLabel">
+            تفاصيل فواتير التاجر محمد بن راشد
+          </h1>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive inner-modal-table admin-table">
+            <table class="table table-bordered">
+              <thead class="table-header">
+                <tr>
+                  <th scope="col">شركة الشحن</th>
+                  <th scope="col">عدد الطلبات</th>
+                  <th scope="col">التاريخ</th>
+                  <th scope="col">المبلغ المدفوع</th>
+                  <th scope="col">عمولة tredo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of [1, 2, 3, 4, 5, 6, 7]">
+                  <td>شركة الطارق</td>
+                  <td>350</td>
+                  <td>2/5/2022</td>
+                  <td class="td-price">3000 ريال سعودي</td>
+                  <td class="td-tredo-price">800 ريال سعودي</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

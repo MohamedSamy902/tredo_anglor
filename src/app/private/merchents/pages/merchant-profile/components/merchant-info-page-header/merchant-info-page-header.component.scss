@@ -1,0 +1,34 @@
+@import "src/assets/scss/partials/colors";
+@import "src/assets/scss/abstracts/variables";
+
+.merchant-info-page-header {
+  width: 100%;
+  padding: 20px 0;
+
+  .page-title {
+    font-family: Tajawal;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: $tredo-gray-2;
+
+    @media (max-width: 992px) {
+      font-size: 18px;
+    }
+  }
+
+  .desc {
+    font-family: Tajawal;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: right;
+
+    @media (max-width: 992px) {
+      font-size: 16px;
+    }
+  }
+}

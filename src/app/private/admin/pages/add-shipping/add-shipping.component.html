@@ -1,0 +1,49 @@
+<div class="add-city-component">
+    <div class="dash-header pt-lg-3 pt-1 container justify-content-between d-flex">
+        <div>
+            <p class="description">
+                <b class="text-black">{{"AddNewShipment" | translate}}</b>
+                <i class="fa-solid mx-2 fa-burst text-success"></i>
+            </p>
+            <p class="desc"> <i class="fas fa-pencil-alt text-success"></i>
+                {{"AddAllShipmentInformation" | translate}}
+            </p>
+        </div>
+        <button class="btn-1 border-0 h-100" routerLink="/admin/shippings">
+            <i class="fas fa-list"></i>
+            <span>
+                {{"shippingList" | translate}}
+            </span>
+        </button>
+    </div>
+    <div class="container">
+      <h2 class="form-border-title">{{"shippingData" | translate}}</h2>
+        <form [formGroup]="addShipping" (ngSubmit)="onSubmit()">
+            <div class="row form-container">
+                <div class="col-6">
+                    <label class="mb-2">{{"nameAr" | translate}}</label>
+                    <input [class.invalid]="addShipping.get('nameAr')?.invalid && isSubmited" formControlName="nameAr"
+                        type="text" placeholder="" class="form-control" />
+                    <div class="error" *ngIf="addShipping.get('nameAr')?.invalid && isSubmited">
+                        {{"Shipping.EnterNameAr" | translate}}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="mb-2">{{"nameEn" | translate}}</label>
+                    <input [class.invalid]="addShipping.get('nameEn')?.invalid && isSubmited" formControlName="nameEn"
+                        type="text" placeholder="" class="form-control" />
+                    <div class="error" *ngIf="addShipping.get('nameEn')?.invalid && isSubmited">
+                        {{"Shipping.EnterNameEn" | translate}}
+                    </div>
+                </div>
+                <div class="d-flex py-2 justify-content-between form-buttons">
+                    <div class="d-flex gap-2">
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-1" type="submit"> <i class="fas fa-save    "></i>{{"Save" | translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

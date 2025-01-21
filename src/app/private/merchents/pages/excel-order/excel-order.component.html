@@ -1,0 +1,84 @@
+<div class="dash-header p-2 justify-content-between d-flex p-lg-5">
+  <div class="parent">
+    <h2 class="cont2">طلب شحن <span class="gray">( رفع ملف اكسيل)</span></h2>
+
+    <p class="description">برجاء تحميل الملف الخاص بنا ثم قم بتعبئته ثم رفعه مره ثانيه</p>
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="row mg-bottom">
+    <div class="www d-flex justify-content-center">
+      <div class="one col">
+        <h2 class="text-center head">اولا قم بتحميل هذ الملف</h2>
+        <img src="assets/imgs/icons/Microsoft excel.png" alt="" class="excel">
+        <br>
+        <div>
+          <a class="btn secondary-button" href="assets/templates/merchantPreOrderTemplate.xlsx">
+            <img class="ms-2 download" src="assets/imgs/icons/Download.png" alt="">
+            <span>
+              تحميل الملف
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <div class="col d-flex justify-content-center align-items-center">
+        <img class="ms-2 Arrow" src="assets/imgs/icons/Arrow.png" alt="">
+      </div>
+
+      <div class="col one">
+        <h2 class="text-center head">ثانيا قم بملئ بيانات الملف الذي قمت بتحميله</h2>
+        <br>
+        <img src="assets/imgs/icons/Microsoft excel.png" alt="" class="excel">
+      </div>
+      <div class="col d-flex justify-content-center align-items-center">
+        <img class="ms-2 Arrow" src="assets/imgs/icons/Arrow.png" alt="">
+      </div>
+      <div class="col one">
+        <h2 class="text-center head">ثالثا قم برفع الملف الذي قمت بملئ بياناته</h2>
+        <img src="assets/imgs/icons/Microsoft excel.png" alt="" class="excel">
+        <br>
+        <button class="secondary-button" (click)="go()">
+
+          <img class="ms-2 upload" src="assets/imgs/icons/upload-cloud.png" alt="">
+          <span>
+            رفع الملف
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-chose m-0 m-sm-auto modal-dialog-centered">
+    <div class="modal-content">
+      <h2 class="modal-title">اختار واحدة من هذه الطريقتين</h2>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col d-flex flex-column align-items-center">
+            <img class="m-auto modal-img-1" width="225.36" width="200" src="assets/svg/signup.png" alt="">
+            <button routerLink="/merchents/manual-order" class="secondary-button mt-3 text-white"
+              data-bs-dismiss="modal">
+              <span>
+                عمل الطلبات يدويا
+              </span>
+            </button>
+          </div>
+          <div class="col d-flex flex-column justify-content-between align-items-center">
+            <img class="m-auto modal-img-2" width="150" src="assets/svg/excel.png" alt="">
+            <button data-bs-dismiss="modal" routerLink="/merchents/excel-order"
+              class="secondary-button bg-tredo-primary bmt-3 text-white">
+              <span>
+                رفع الطلبات من ملف اكسيل
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

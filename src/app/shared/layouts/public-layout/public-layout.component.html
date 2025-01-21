@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><img src="assets/imgs/logo/logo.png" alt="" /></a>
+    <!-- <select class="me-3" #locale [(ngModel)]="localLang" (change)="changeLocale(locale.value)">
+      <option value="ar">اللغة العربية</option>
+      <option value="en">English</option>
+    </select> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end p-0" id="navbarSupportedContent">
+      <ul class="navbar-nav navbar-nav p-0 d-flex align-items-center">
+
+        <div class="collapse navbar-collapse justify-content-end p-0" id="navbarSupportedContent">
+          <ul class="navbar-nav navbar-nav p-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" routerLink="/auth/registeruser">
+                <b>انضم الي Tredo الان</b> </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" routerLink="/auth/login">
+                <b>تسجيل الدخول </b> </a>
+            </li>
+          </ul>
+
+        </div>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+<section>
+  <div class="container-fluid pt-5 text-muted text-center">
+    <div class="row my-4">
+      <div class="col-lg-2"><a href="/auth/login">دخول الموظفين</a></div>
+      <div class="col-lg-2"><a href="/about">لماذا Tredo</a></div>
+      <div class="col-lg-2"><a href="/contact">تواصل معنا</a> </div>
+      <div class="col-lg-2"><a href="/vendor">لـشركات الشحن </a></div>
+      <div class="col-lg-2"><a href="/work">الاعمال</a> </div>
+      <div class="col-lg-2"><a href="/blog">المدونة</a> </div>
+      <div class="col-lg-6">
+        <p class=" pt-5 mb-0">
+          جميع حقوق الاستخدام محفوظة لـ Tredo 2025
+        </p>
+      </div>
+      <div class="col-lg-6 socile pt-5">
+        <a href="mailto:Hello@tredo.biz">
+          <img src="assets/imgs/2965306.png" alt="">
+        </a>
+        <a href="https://wa.me/544363719">
+          <img src="assets/imgs/1409948.png" alt="">
+        </a>
+        <a href="https://twitter.com/pay_ship_?s=11&t=klHfSLxAF-JoUQCwwx8SXw">
+          <img src="assets/imgs/1409937.png" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

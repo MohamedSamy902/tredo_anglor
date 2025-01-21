@@ -1,0 +1,74 @@
+<div class="admin-layout">
+  <header>
+    <nav class="navbar navbar-expand-lg ">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/admin"><img src="assets/imgs/logo/logo.png" alt=""></a>
+        <!-- <select class="me-3" #locale [(ngModel)]="localLang" (change)="changeLocale(locale.value)">
+        <option value="ar">اللغة العربية</option>
+        <option value="en">English</option>
+      </select> -->
+        <form class="d-flex align-items-center">
+          <div class="user-tab">
+            <i class="fa-solid fa-user-tie"></i>
+            <span> {{this.user}}</span>
+          </div>
+          <button class="btn-6" type="submit" (click)="logout()"><i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
+        </form>
+      </div>
+    </nav>
+  </header>
+  <div class="container-fluid">
+    <div class="row flex-nowrap col-sm-auto ">
+      <div class="col-auto col-md-3 col-xl-2  p-0 sticky-top">
+        <div class="d-flex flex-column bg-light text-white min-vh-100">
+          <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+            <li class="nav-item" [routerLinkActive]="'active'">
+              <a routerLink="/admin" class="nav-link align-middle px-0">
+                <i class="fa-light fa-grid-2"></i> <span class="ms-1 d-none d-sm-inline">لوحة التحكم</span>
+              </a>
+            </li>
+            <li [routerLinkActive]="'active'">
+              <a routerLink="/admin/shipping-companies" class="nav-link px-0 align-middle">
+                <i class="fa-light fa-truck-fast"></i> <span class="ms-1 d-none d-sm-inline">شركات الشحن</span></a>
+            </li>
+            <li [routerLinkActive]="'active'">
+              <a routerLink="/admin/all-merchant" class="nav-link px-0 align-middle">
+                <i class="fa-solid fa-people-group"></i> <span class="ms-1 d-none d-sm-inline"> التجار</span></a>
+            </li>
+            <li [routerLinkActive]="'active'">
+              <a routerLink="/admin/cities" class="nav-link px-0 align-middle">
+                <i class="fa-solid fa-city"></i> <span class="ms-1 d-none d-sm-inline"> المدن</span></a>
+            </li>
+            <li [routerLinkActive]="'active'">
+              <a routerLink="/admin/shippings" class="nav-link px-0 align-middle">
+                <i class="fa-solid fa-cart-flatbed"></i> <span class="ms-1 d-none d-sm-inline"> الشحنات</span></a>
+            </li>
+            <li [routerLinkActive]="'active'">
+              <a routerLink="/admin/all-users" class="nav-link px-0 align-middle">
+                <i class="fa-solid fa-wrench"></i> <span class="ms-1 d-none d-sm-inline"> قائمة المستخدمين</span></a>
+            </li>
+            <li>
+              <a routerLink="/admin/financial-reports" class="nav-link px-0 align-middle">
+                <i class="fas fa-money-bill-wave    "></i> <span class="ms-1 d-none d-sm-inline">تقارير مالية</span></a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
+      <div class="col py-3">
+        <router-outlet></router-outlet>
+        <section>
+          <div class="container pt-5">
+            <div class="row my-4">
+              <p class="text-muted text-center mb-0">
+                جميع الحقوق محفوظة لـ Tredo 2025
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+</div>

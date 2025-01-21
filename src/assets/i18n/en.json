@@ -1,0 +1,19 @@
+{
+  "dir": "ltr",
+  "hello": "Hello",
+  "Orders": "Orders",
+  "Customers": "Customers",
+  "Dashboard": "Dashboard",
+  "Operations analysis": "Operations analysis",
+  "Image": "Image",
+  "Company name": "CompanyName",
+  "ordersStatus": {
+    "1": "Pending",
+    "2": "Submitted",
+    "3": "Approved",
+    "4": "OutforDelivery",
+    "5": "Delivered",
+    "6": "Canceled",
+    "7": "Stumbled"
+  }
+}

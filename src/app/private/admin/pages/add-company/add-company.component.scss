@@ -1,0 +1,177 @@
+@import "../../../../../assets/scss/partials/colors";
+@import "../../../../../assets/scss/abstracts/variables";
+body {
+  background-color: #f5f5f9 !important;
+}
+.add-company-component {
+  background-color: #f5f5f9;
+  .dash-header {
+    margin-bottom: 20px;
+  }
+  .description {
+    font-family: Tajawal;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: $tredo-gray-2;
+    @media (max-width: 992px) {
+      font-size: 18px;
+    }
+  }
+  .desc {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: start;
+    @media (max-width: 992px) {
+      font-size: 16px;
+    }
+  }
+  .btn-1 {
+    padding: 15px 24px !important;
+    border: 1px solid $tredo-primary;
+    @media (max-width: 500px) {
+      padding: 5px !important;
+    }
+  }
+  .mt-form {
+    margin-top: 80px !important;
+    @media (max-width: 767px) {
+      margin-top: 40px !important;
+    }
+  }
+  form {
+    .form-container {
+      min-height: 280px;
+      margin-bottom: 30px;
+      background: #ffffff;
+      border-radius: 1rem;
+      padding: 20px;
+      .form-header {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 24px;
+      }
+      label {
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+        .time-span {
+          color: #777;
+        }
+      }
+      input,
+      select {
+        border: 1px solid #e6e6ef;
+        background-color: #F2F2F7;
+        border-radius: 10px;
+        height: 48px;
+      }
+      .not-valid {
+        .multiselect-dropdown {
+          border: 2px solid red !important;
+        }
+      }
+      .multiselect-dropdown {
+        border-radius: 10px;
+        .dropdown-multiselect__caret {
+          line-height: 25px !important;
+        }
+        background-color: #F2F2F7;
+        border: none !important;
+        .dropdown-btn {
+          display: inline-block;
+          padding: 6px 12px;
+          border: none;
+          height: 48px;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 30px !important;
+          text-align: left;
+          vertical-align: middle;
+          cursor: pointer;
+          background-image: none;
+          border-radius: 4px;
+          text-align: right !important;
+        }
+        .dropdown-list {
+          text-align: right;
+          li {
+            text-align: right !important;
+          }
+        }
+        .filter-textbox {
+          input {
+            text-indent: 10px;
+          }
+        }
+      }
+      .select-box-dropdown {
+        margin-top: 7px;
+        min-height: 109px;
+        background: #F2F2F7;
+        border-radius: 10px;
+        .selected {
+          background: #f0f8ff;
+          box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+          border-radius: 30px;
+          padding: 8px 11px !important;
+          width: fit-content;
+          height: fit-content;
+          font-family: Tajawal;
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 16px;
+          color: #0166c0;
+          .btn-close {
+            width: 7px;
+            height: 7px;
+            margin: auto 0;
+          }
+        }
+      }
+      .form-border-title {
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 22px;
+        color: #0166C0;
+      }
+      .form-border {
+        border-radius: 34px;
+        padding: 30px;
+        border: 1px solid #e2e2ee;
+      }
+    }
+    .form-buttons {
+      .btn-light {
+        padding: 12px 24px;
+        border-radius: 30px;
+        border: 1px solid #777;
+      }
+      .btn-danger {
+        background: #D60505 !important;
+        border-radius: 30px;
+        padding: 12px 24px;
+        border: none;
+        &:hover {
+          background: #f73c3c !important;
+        }
+      }
+      .btn-1 {
+        padding: 12px 34px !important;
+        border-radius: 30px !important;
+      }
+    }
+  }
+  .error {
+    color: red;
+    font-size: 16px;
+  }
+  .invalid {
+    border: 2px solid red !important;
+  }
+
+}

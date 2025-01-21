@@ -1,0 +1,449 @@
+@import "../../../../../assets/scss/partials/colors";
+@import "../../../../../assets/scss/abstracts/variables";
+
+/* Stepper */
+.stepper-wrapper {
+  font-family: Arial;
+  display: flex;
+  justify-content: space-between;
+  width: 552px;
+  max-width: 100%;
+  cursor: pointer;
+
+  .stepper-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+
+    color: $tredo-gray-2;
+  }
+
+  .text-bold {
+    font-weight: 600;
+  }
+}
+
+.stepper-item::before {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed #ccc;
+  width: 100%;
+  top: 20px;
+  left: 50%;
+  z-index: 2;
+}
+
+.stepper-item::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed #ccc;
+  width: 100%;
+  top: 20px;
+  left: -50%;
+  z-index: 2;
+}
+
+.stepper-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  margin-bottom: 6px;
+  font-size: 20px;
+  border: 1px solid rgba(119, 119, 119, 0.5);
+  color: $tredo-gray-2;
+  font-weight: bold;
+}
+
+.stepper-item.active {
+  color: $tredo-primary;
+}
+
+.stepper-item.active .step-counter {
+  border: 1px solid $tredo-primary;
+  color: $tredo-primary;
+  opacity: 1;
+}
+
+.stepper-item.completed .step-counter {
+  background: linear-gradient(215.09deg, #092D47 14.58%, #71e7d5 100.18%);
+  border: none;
+  color: #fff;
+  opacity: 1;
+  padding: 40px;
+}
+
+.stepper-item.completed {
+  color: $tredo-primary;
+}
+
+.stepper-item.completed::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed $tredo-primary;
+  width: 100%;
+  top: 20px;
+  left: -50%;
+  z-index: 3;
+}
+
+.stepper-item:first-child::before {
+  content: none;
+}
+
+.stepper-item:last-child::after {
+  content: none;
+}
+
+/* stepper ends */
+
+.description {
+  font-family: Tajawal;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: $tredo-gray-2;
+
+  @media (max-width: 992px) {
+    font-size: 18px;
+  }
+}
+
+.desc {
+  font-family: Tajawal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+}
+
+.main-button {
+  background: $tredo-primary;
+  border-radius: 30px;
+  height: 56px;
+  min-width: 173px;
+  color: #fff;
+  max-width: 100%;
+  border: $tredo-primary;
+  box-shadow: 0px 10px 20px $tredo-primary;
+
+  &:hover {
+    transition: all 0.2s ease-in;
+    background: $tredo-gray-2;
+  }
+
+  span {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.q-hover {
+  position: relative;
+
+  .q-box {
+    top: -92px;
+    position: absolute;
+    padding: 12px;
+    background-color: #fff;
+    height: 95px;
+    width: 250px;
+    border-radius: 16px;
+    border: 1px solid #dddddd;
+  }
+
+  &:hover .q-box {
+    display: block !important;
+  }
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.error {
+  color: red;
+  font-size: 16px;
+}
+
+.last-alert {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 13px 52px;
+}
+
+.alert-success {
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: #3dcc79;
+  background: #3dcc7914 !important;
+  border: none;
+}
+
+.form-img {
+  height: 391px;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+select,
+textarea {
+  border: 1px solid #e6e6ef;
+  background-color: #f2f2f7;
+  border-radius: 10px;
+}
+
+input,
+select {
+  height: 48px;
+}
+
+textarea {
+  height: 91px;
+}
+
+.form-check {
+  margin-top: 25px;
+
+  .form-check-input[type="checkbox"] {
+    height: 20px;
+    width: 20px;
+    margin-inline-start: 10px;
+  }
+}
+
+.address-btn button {
+  color: #25788e;
+  font-family: Tajawal;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+}
+
+.form-border {
+  border-radius: 34px;
+  padding: 30px;
+}
+
+.form-header {
+  font-family: Tajawal;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: $tredo-primary;
+  margin-bottom: 30px;
+}
+
+.form-desc {
+  font-family: Tajawal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+}
+
+.second-button {
+  background: $tredo-secondary;
+  border-radius: 30px;
+  height: 56px;
+  min-width: 173px;
+  color: #fff;
+  max-width: 100%;
+  border: $tredo-primary;
+  box-shadow: 0px 10px 20px $tredo-secondary;
+
+  &:hover {
+    transition: all 0.2s ease-in;
+    background: $tredo-gray-2;
+  }
+}
+
+.mt-fixed {
+  margin-top: 70px;
+}
+
+.modal-chose {
+  width: 640px;
+  max-width: 100%;
+
+  .modal-content {
+    border-radius: 67px;
+    padding: 28px;
+
+    .modal-title {
+      font-family: Tajawal;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+  }
+
+  .modal-img-1 {
+    width: 225.36px;
+    height: 167.92px;
+
+    @media (max-width: 767px) {
+      width: 119px;
+      height: 119px;
+    }
+  }
+
+  .modal-img-2 {
+    width: 119px;
+    height: 119px;
+  }
+
+  .empty-box {
+    height: 373px;
+    width: 474px;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  f .secondary-button {
+    background: $tredo-secondary;
+    height: 56px;
+    width: 243px;
+    left: 402px;
+    top: 291px;
+    border-radius: 30px;
+    border: $tredo-secondary;
+
+    @media (max-width: 767px) {
+      max-width: 180px;
+    }
+
+    @media (max-width: 500px) {
+      max-width: 120px;
+    }
+  }
+
+  .bg-tredo-primary {
+    border: $tredo-primary;
+    background: $tredo-primary;
+  }
+}
+
+.modal-form {
+  width: 920px;
+  max-width: 100%;
+
+  .modal-content {
+    border-radius: 67px;
+    padding: 28px;
+    height: 90%;
+
+    .modal-body {
+      direction: ltr;
+
+      .form-border {
+        direction: rtl;
+      }
+    }
+
+    .modal-title {
+      font-family: Tajawal;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      letter-spacing: 0em;
+      text-align: center;
+      color: $tredo-primary-2;
+    }
+  }
+
+  .form-header {
+    color: $tredo-primary-2;
+  }
+}
+
+.mt-80 {
+  margin-top: 80px;
+}
+
+.inner-lable {
+  font-family: Tajawal;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: $tredo-gray-2;
+}
+
+.inner-lable-span {
+  font-family: Tajawal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  margin-inline: 8px;
+}
+
+.border-tredo {
+  border: 1px solid #092D47;
+}
+
+.map-select {
+  position: relative;
+
+  .map-button {
+    height: 56px;
+    width: 269px;
+    max-width: 100%;
+    border-radius: 30px;
+    border: 1px solid #e84f4b;
+    color: #e84f4b;
+    background-color: #fff;
+
+    img {
+      margin-inline-end: 13px;
+    }
+  }
+
+  .map-modal {
+    position: absolute;
+    height: 294px;
+    width: 415px;
+    top: -277px;
+    border-radius: 35px;
+    padding: 10px;
+    right: 50px;
+
+    agm-map {
+      height: 100%;
+      width: 100%;
+      border-radius: 35px;
+    }
+  }
+}
+
+.fa-box {
+  font-size: 60px;
+}

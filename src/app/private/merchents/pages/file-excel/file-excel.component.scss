@@ -1,0 +1,478 @@
+@import "../../../../../assets/scss/partials/colors";
+@import "../../../../../assets/scss/abstracts/variables";
+
+/* Stepper */
+
+.stepper-wrapper {
+  font-family: Arial;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  height: 97px;
+  width: 552px;
+  margin: 23px auto;
+  max-width: 100%;
+  cursor: pointer;
+}
+
+.stepper-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+
+  color: $tredo-gray-2;
+}
+
+.stepper-item::before {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed #ccc;
+  width: 100%;
+  top: 20px;
+  left: 50%;
+  z-index: 2;
+}
+
+.stepper-item::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed #ccc;
+  width: 100%;
+  top: 20px;
+  left: -50%;
+  z-index: 2;
+}
+
+.stepper-item .step-counter {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: $white;
+  margin-bottom: 6px;
+  border: 1px solid $tredo-gray-2;
+  color: $tredo-gray-2;
+  opacity: 0.5;
+}
+
+.stepper-item.active {
+  color: $tredo-primary;
+}
+
+.stepper-item.active .step-counter {
+  border: 1px solid $tredo-primary;
+  color: $tredo-primary;
+  opacity: 1;
+}
+
+.stepper-item.completed .step-counter {
+  background: linear-gradient(215.09deg, #092D47 14.58%, #71e7d5 100.18%);
+  border: none;
+  color: $white;
+  opacity: 1;
+}
+
+.stepper-item.completed {
+  color: $tredo-primary;
+}
+
+.stepper-item.completed::after {
+  position: absolute;
+  content: "";
+  border-bottom: 2px dashed $tredo-primary;
+  width: 100%;
+  top: 20px;
+  left: -50%;
+  z-index: 3;
+}
+
+.stepper-item:first-child::before {
+  content: none;
+}
+
+.stepper-item:last-child::after {
+  content: none;
+}
+
+.tab-content {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.one {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.description {
+  font-family: Tajawal;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: $tredo-gray-2;
+
+  @media (max-width: 992px) {
+    font-size: 18px;
+  }
+}
+
+.desc {
+  font-family: Tajawal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+
+  @media (max-width: 992px) {
+    font-size: 16px;
+  }
+}
+
+button.second-button,
+button.second-button:active {
+  background: #e84f4b;
+  border-radius: 30px;
+  height: 56px;
+  min-width: 173px;
+  color: #fff;
+  max-width: 100%;
+  border: #092D47;
+  box-shadow: 0px 10px 20px #e84f4b;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+th {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  text-transform: capitalize;
+  color: $tredo-gray-2;
+}
+
+.black {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  text-transform: capitalize;
+  color: $tredo-black;
+}
+
+.tow {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: right;
+  text-transform: capitalize;
+  color: $tredo-primary-2;
+}
+
+.five {
+  background: rgba(61, 204, 121, 0.08);
+  border-radius: 30px;
+}
+
+.five p {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  text-transform: capitalize;
+  color: $tredo-success;
+  padding: 10px;
+}
+
+.asd {
+  background: rgba(1, 102, 192, 0.08);
+  border-radius: 30px;
+  text-align: center;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.asd p {
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: $tredo-secondary-2;
+  padding: 10px;
+  text-transform: capitalize;
+  /* blue */
+}
+
+.my-table {
+  min-width: rem-calc(640);
+  border: 1px solid $tredo-gray-4;
+}
+
+.horizontal-scroll {
+  overflow: hidden;
+  overflow-x: auto;
+  clear: both;
+  width: 100%;
+}
+
+.Left {
+  position: relative;
+}
+
+.Left::after {
+  content: "";
+  width: 330px;
+  height: 2px;
+  background: transparent;
+  border: 1px dashed gray;
+  position: absolute;
+  top: 54%;
+  right: 63px;
+}
+
+@media (max-width: 1200px) {
+  .Left::after {
+    content: "";
+    width: 257px;
+  }
+}
+
+@media (max-width: 992px) {
+  .Left::after {
+    content: "";
+    width: 201px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Left::after {
+    content: "";
+    width: 120px;
+  }
+}
+
+@media (max-width: 443px) {
+  .Left::after {
+    content: "";
+    width: 71px;
+  }
+}
+
+@media (max-width: 370px) {
+  .L2::after {
+    content: "";
+    width: 0;
+    background: transparent;
+    border: 0;
+  }
+}
+
+@media (max-width: 291px) {
+  .Left::after {
+    content: "";
+    width: 0;
+    background: transparent;
+    border: 0;
+  }
+}
+
+.green {
+  height: 10px;
+  position: absolute;
+  width: 150px;
+  left: 0;
+}
+
+.excel {
+  width: 57.13px;
+  height: 53.56px;
+}
+
+button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  border: none;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:active {
+  width: 58px;
+  height: 28px;
+}
+
+$background: #2c303a;
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: $background;
+}
+
+.parent {
+  position: relative;
+  direction: ltr;
+  width: 62%;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.child {
+  position: absolute;
+  width: 100%;
+  height: 10px;
+  background: $tredo-success;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+
+.parent .child {
+  width: 100%;
+  background-color: $tredo-success;
+  animation: progressAnimation 2s;
+  -webkit-animation: progressAnimation 2s;
+}
+
+@keyframes progressAnimation {
+  0% {
+    width: 5%;
+    background-color: $tredo-success;
+  }
+
+  100% {
+    width: 100%;
+    background-color: $tredo-success;
+  }
+}
+
+.exc {
+  margin-top: 50px;
+}
+
+@media (max-width: 555px) {
+  .cont {
+    width: 300px;
+    height: 100px;
+  }
+}
+
+table {
+  empty-cells: show;
+}
+
+td:empty {
+  cursor: default;
+  visibility: hidden;
+}
+
+.inp-spec {
+  border: 0;
+  text-align: center;
+  width: 205px;
+}
+
+.BGroun {
+  background: rgba(61, 204, 121, 0.08);
+  border-radius: 30px;
+  color: $tredo-success;
+}
+
+.err {
+  width: 50%;
+  p {
+    background: rgba(255, 85, 86, 0.08);
+    border-radius: 5px;
+    text-align: center;
+    padding: 16px;
+    width: 41%;
+  }
+}
+
+.up-file {
+  background: 0;
+  color: $tredo-gray;
+  border: 0;
+}
+
+.tr-color {
+  background: $tredo-gray-4;
+}
+
+.correct {
+  width: 28px;
+  height: 28px;
+  background: $tredo-success;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.Error {
+  width: 27.73px;
+  height: 29.91px;
+}
+
+.invalid {
+  border: 1px solid red;
+  border-radius: 4px;
+}
+
+.select-warehouse {
+  width: 50%;
+  padding-inline-start: 40px;
+  label {
+    display: block;
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+}
+
+::ng-deep {
+  .p-dropdown {
+    min-width: 200px;
+    background-color: #f2f2f7;
+    border-radius: 10px;
+  }
+}

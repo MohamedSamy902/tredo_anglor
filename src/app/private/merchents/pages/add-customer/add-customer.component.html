@@ -1,0 +1,117 @@
+
+
+<div class="dash-header p-2 justify-content-between d-flex p-lg-5">
+  <div>
+    <p class="description">
+      <b class="text-black">اضافة العميل </b>
+      (انشاء العميل يدويا)
+    </p>
+    <p class="desc">برجاء ملئ البيانات التاليه لتتمكن من انشاء عميل</p>
+  </div>
+
+</div>
+
+<div class="form container-fluid p-lg-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <form >
+
+        <div formGroupName="reciverAddress" class="border mt-5 form-border">
+          <h3 class="form-header">عنوان المستقبل:</h3>
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col mb-4">
+              <label class="mb-2">الاسم</label>
+              <input [class.invalid]="" formControlName="name"
+                class="form-control" type="text" />
+              <div class="error" *ngIf="">يجب كتابة اسم المستقبل</div>
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2">رقم الهاتف</label>
+              <input [class.invalid]="" formControlName="phone"
+                class="form-control" type="text" />
+              <div class="error" *ngIf="">يجب كتابة رقم هاتف</div>
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2">البريد الإلكتروني</label>
+              <input [class.invalid]="" formControlName="email"
+                class="form-control" type="email" />
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2">المدينة</label>
+              <select [class.invalid]="" formControlName="cityIdTo"
+                class="form-select" aria-label="Default select example">
+                <ng-container *ngFor="">
+                  <option [value]=""></option>
+                </ng-container>
+              </select>
+              <div class="error" *ngIf="">يجب اختيار المدينة</div>
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2">العنوان</label>
+              <input [class.invalid]="" formControlName="street"
+                class="form-control" type="text" />
+              <div class="error" *ngIf="">يجب كتابة اسم الشارع</div>
+            </div>
+          </div>
+          <h3 class="form-header">العنوان الوطني:</h3>
+          <div formGroupName="nationalAddress" class="row row-cols-1 row-cols-md-2">
+            <div class="col mb-4">
+              <label class="mb-2">بيانات العنوان الوطني</label>
+              <input [class.invalid]=""
+                formControlName="storeName1" class="form-control" type="text" />
+              <div class="error" *ngIf="">يجب كتابة بيانات العنوان الوطني</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="mt-5">
+          <h3 class="form-desc">وصف الشحنة</h3>
+          <textarea [class.invalid]=""
+            formControlName="shipmentdescription" class="form-control"></textarea>
+        </div>
+        <div class="last-alert alert alert-danger" >
+          <img  src="assets/imgs/alert-mark.png" alt="">
+          <span class="d-inline"></span>
+        </div> -->
+        <div class="mt-fixed d-sm-flex">
+          <button [disabled]="" type="button"
+            class="text-decoration-none second-button my-sm-0 mt-3 py-3 px-5">
+            اضافة العميل
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-lg-4 d-none d-lg-block">
+      <img src="assets/imgs/icons/customer.png" alt="" class="form-img">
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-chose m-0 m-sm-auto modal-dialog-centered">
+    <div class="modal-content">
+      <h2 class="modal-title">اختار واحدة من هذه الطريقتين</h2>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col d-flex flex-column align-items-center">
+            <img class="m-auto modal-img-1" width="225.36" width="200" src="assets/svg/signup.png" alt="">
+            <button routerLink="/merchents/manual-order" class="secondary-button mt-3 text-white"
+              data-bs-dismiss="modal">
+              <span>
+                عمل الطلبات يدويا
+              </span>
+            </button>
+          </div>
+          <div class="col d-flex flex-column justify-content-between align-items-center">
+            <img class="m-auto modal-img-2" width="150" src="assets/svg/excel.png" alt="">
+            <button data-bs-dismiss="modal" routerLink="/merchents/excel-order"
+              class="secondary-button bg-tredo-primary bmt-3 text-white">
+              <span>
+                رفع الطلبات من ملف اكسيل
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

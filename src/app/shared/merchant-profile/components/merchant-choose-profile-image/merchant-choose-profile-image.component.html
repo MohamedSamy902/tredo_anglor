@@ -1,0 +1,16 @@
+<div class="upload-merchant-image">
+  <div class="image-title">
+    <span>إختيار صورة الملف الشخصي</span>
+  </div>
+  <div class="col-md-4 text-center merchant-image">
+    <label for="vendor-img" class="merchantImageLabel">
+      <ng-container *ngIf="!imgSrc">
+        <img src="assets/imgs/icons/Upload.png" alt="" width="35px">
+        <p class="title">تحميل الصورة </p>
+      </ng-container>
+
+      <img [src]="imgSrc" alt="" class="profile-image" *ngIf="imgSrc">
+    </label>
+    <input #imgInput (change)="uploadFile(imgInput.files)" class="d-none" type="file" id="vendor-img" />
+  </div>
+</div>

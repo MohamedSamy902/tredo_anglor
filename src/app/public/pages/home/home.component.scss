@@ -1,0 +1,277 @@
+@import '../../../../assets/scss/partials/_colors';
+
+.home-component {
+  .carousel {
+    img {
+      height: 80vh;
+      position: relative;
+      width: auto;
+
+      @media (max-width: 992px) {
+        width: 100% !important;
+        position: static;
+        height: 50vh;
+      }
+    }
+  }
+
+  .form {
+    position: absolute;
+    top: 37%;
+    right: 3%;
+    z-index: 99999999;
+    transform: translate(-13%, -50%);
+    width: 480px;
+    max-width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 12px 104px 5px rgba(168, 173, 193, 0.25);
+    border-radius: 21px;
+    padding: 30px;
+
+    @media (max-width: 992px) {
+      width: 100% !important;
+      position: static !important;
+      transform: translate(0%, 0%);
+    }
+
+    .btns {
+      width: 100%;
+
+      .btn-underline-box {
+        width: 100%;
+
+        .btn-underline {
+          width: 100%;
+          background-color: #fff;
+          border: none;
+          color: #000;
+          font-family: Tajawal;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 22px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid #dfdfec;
+
+          &.active {
+            border-bottom: 1px solid #092D47;
+            color: #092D47;
+          }
+        }
+      }
+    }
+
+    h5 {
+      color: #212121;
+
+      span {
+        .text-second {
+          color: $tredo-primary;
+        }
+      }
+    }
+
+    .recta .recta-check {
+      width: 100%;
+      border: 1px solid #aaaaaa;
+      cursor: pointer;
+      border-radius: 10px;
+      justify-content: center;
+      padding: 0px;
+      transition: 0.3s all ease-in;
+    }
+
+    .recta .recta-div {
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .recta-check.active {
+      background-color: #092d4717;
+      border-radius: 10px;
+      border: 2px solid #092D47!important;
+    }
+
+    .recta-check:hover {
+      background-color: #092d4717;
+      border-radius: 10px;
+      border: 2px solid #092D47!important;
+    }
+
+    .recta-div-inp {
+      padding: 0;
+    }
+
+    .inp-add {
+      border: 2px solid #2b29633a !important;
+      border-radius: 10px !important;
+    }
+
+    .btn-2 {
+      border: 1px solid $tredo-primary-2;
+      margin-top: 20px;
+      width: 100%;
+
+      &:hover {
+        border: 1px solid $tredo-primary-2;
+        border-radius: 30px;
+      }
+    }
+
+    .error {
+      color: red;
+      font-size: 16px;
+    }
+
+    .invalid {
+      border: 1px solid red !important;
+    }
+  }
+}
+
+.landing h1 {
+  color: #2c2963;
+  font-weight: 900;
+  font-size: 5rem;
+  line-height: 144px;
+
+  span {
+    color: #092D47;
+  }
+}
+
+.landing p {
+  font-weight: 900;
+  font-size: 1.2rem;
+}
+
+.carousel-caption {
+  width: 50%;
+  position: absolute;
+  right: 50% !important;
+  bottom: 11.25rem !important;
+  left: 15%;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+}
+
+
+.carousel-item h1 {
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 3.5rem;
+  padding-bottom: 60px;
+
+  span {
+    color: #092D47;
+  }
+}
+
+@media (max-width: 995px) {
+  .carousel-caption {
+    width: 100%;
+    position: absolute;
+    right: 0% !important;
+    bottom: 11.25rem !important;
+    left: 15%;
+    top: 20%;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .carousel-item h1 {
+    color: #ffffff;
+    font-weight: 900;
+    font-size: 2.5rem !important;
+    padding-bottom: 40px;
+
+    span {
+      color: #092D47;
+    }
+  }
+
+  .btn-5 {
+    border: none;
+    padding: 15px 20px;
+    background: #fff;
+    border-radius: 30px;
+    color: #181818;
+    text-decoration: none;
+    font-size: 16px;
+
+  }
+}
+
+.btn-5 {
+  border: none;
+  padding: 15px 20px;
+  background: #fff;
+  border-radius: 30px;
+  color: #181818;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.5s;
+  height: 48px;
+  font-weight: 700;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #00000031;
+}
+
+.btn-5:hover {
+  padding: 10px 20px;
+  background: #2c2963;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+}
+
+.small-section {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0px 16px 50px rgb(19 158 150 / 16%);
+  border-radius: 20px;
+}
+
+.header {
+  font-weight: 600;
+  font-size: 2.4rem;
+}
+
+.gnser-image {
+  width: 50px;
+}
+
+.price {
+  height: 180px;
+  width: 70%;
+  margin-right: auto;
+  border-radius: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.price .current-price {
+  background-color: #2c2963;
+  flex: 0.65;
+}
+
+.price .charge-price {
+  background-color: #092D47;
+  flex: 0.35;
+}
+
+.btn-7 {
+
+  color: #fff;
+}
+
+.btn-7:hover {
+  color: #e84f4b;
+}

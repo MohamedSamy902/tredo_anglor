@@ -1,0 +1,132 @@
+/* -----------Why Page------------ */
+.landing-why {
+  height: 40vh;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+}
+
+.landing-why::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2c296373;
+}
+
+.landing-why h4 {
+  position: relative;
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 100px;
+  color: white;
+  z-index: 10;
+}
+
+@media (max-width: 992px) {
+  .landing-why {
+    height: calc(80vh - 90px);
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-why {
+    display: grid;
+    place-items: center;
+  }
+
+  .landing-why h4 {
+    font-size: 70px;
+    line-height: 80px;
+  }
+}
+
+@media (max-width: 476px) {
+  .landing-why {
+    padding: 0 !important;
+  }
+
+  .landing-why h4 {
+    font-size: 45px;
+    line-height: 50px;
+  }
+}
+
+/* Start Blog */
+.blog {
+  background-image: linear-gradient(to bottom, #092D47 0%, #092D47 70%, #f6f6f6 70%, #f6f6f6);
+}
+
+.blog .arrow-down {
+  top: 80%;
+}
+
+.blog .post {
+  background-color: #ffffff;
+  border-radius: 12px;
+}
+
+.blog .post .text-muted {
+  color: #7d7d7f !important;
+}
+
+.blog .post .image {
+  height: 190px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.blog .blog-body {
+  margin-top: 180px;
+}
+
+.blog .blog-body .buttons img {
+  width: 20px;
+}
+
+.blog .blog-body .buttons .btn {
+  border-radius: 8px;
+}
+
+.blog .blog-body .buttons .btn:hover {
+  box-shadow: 0px 8px 40px -8px #15af987c;
+}
+
+.blog .blog-body .buttons .btn-success {
+  background-color: #092D47 !important;
+  border: 1px solid #092D47;
+}
+
+.blog .blog-body .buttons .border-success {
+  border-color: #092D47 !important;
+}
+
+@media (max-width: 992px) {
+  .blog .blog-body {
+    padding-top: 150px;
+  }
+}
+
+@media (min-width: 992px) {
+  .blog .blog-body .buttons {
+    margin-top: 190px;
+  }
+}
+
+@media (max-width: 992px) {
+  .blog {
+    padding-top: 2rem !important;
+  }
+
+  .blog .blog-body {
+    margin-top: 0 !important;
+  }
+}
+
+/* End Blog */

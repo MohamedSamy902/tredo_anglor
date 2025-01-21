@@ -1,0 +1,449 @@
+@import "../../../../../assets/scss/partials/colors";
+
+.admin-home-component {
+  .m-w {
+    max-width: 1000px;
+    margin-inline: auto;
+  }
+
+  .recta .recta-check {
+    width: 100%;
+    border: 1px solid #aaaaaa;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 15px;
+    transition: 0.3s all ease-in;
+  }
+  .recta .recta-div {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .recta-check.active {
+    background-color: #092d4717;
+    border-radius: 10px;
+    border: 2px solid #092D47!important;
+  }
+  .recta-check:hover {
+    background-color: #092d4717;
+    border-radius: 10px;
+    border: 2px solid #092D47!important;
+  }
+  .recta-div-inp {
+    padding: 0;
+  }
+
+  .admin-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 26px;
+
+    @media (max-width: 1376px) {
+      font-size: 16px;
+    }
+  }
+
+  .admin-card {
+    border-radius: 15px;
+    max-width: 262px;
+    min-height: 100%;
+
+    @media (max-width: 767px) {
+      max-width: 100%;
+    }
+
+    background: #ffffff;
+    padding: 23px 22px 8px 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+
+    .w-img {
+      display: none;
+    }
+
+    &.active,
+    &:hover {
+      transition: 0.4s all ease-in-out;
+      background: #092D47;
+      box-shadow: 0px 10px 20px rgba(21, 175, 151, 0.15),
+        inset -4px -4px 8px rgba(0, 0, 0, 0.12);
+
+      .card-title {
+        color: #fff;
+      }
+
+      .card-price {
+        color: #fff;
+      }
+
+      .g-img {
+        display: none;
+      }
+
+      .w-img {
+        display: block;
+      }
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 19px;
+      color: #777777;
+    }
+
+    .card-price {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 29px;
+      color: #092D47;
+    }
+
+    .admin-details-btn {
+      border-radius: 10px;
+      background: #fff;
+      color: #092D47;
+      padding: 8px 12px;
+      border: 1px solid #092D47;
+    }
+  }
+
+  .mt-admin {
+    margin-top: 30px;
+  }
+
+  .inside-title {
+    min-height: 56px;
+    border-radius: 30px;
+    padding: 16px 25px 16px 25px;
+    background: rgba(21, 175, 151, 0.08);
+    margin-left: 80px;
+
+    p {
+      font-style: normal;
+      margin: auto;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      color: #092D47;
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+
+
+
+  .form {
+    position: relative;
+
+    .fa-search {
+      position: absolute;
+      color: #9ca3af;
+      top: 45%;
+      transform: translateY(-50%);
+      right: 10px;
+      left: 10px;
+    }
+
+    span {
+      position: absolute;
+      right: 17px;
+      top: 13px;
+      padding: 2px;
+      border-left: 1px solid #d1d5db;
+    }
+
+    .left-pan {
+      padding-left: 7px;
+
+      img {
+        padding-left: 10px;
+      }
+    }
+
+    .form-input {
+      height: 44px;
+      width: 250px;
+      border-radius: 10px;
+      text-indent: 20px;
+      background: #ececf4;
+      border: 1px solid #d2d2e4;
+      color: #777777;
+    }
+  }
+
+  .admin-table {
+    thead {
+      background: #ececf3;
+
+      th {
+        font-size: 14px;
+        padding: 14px;
+        font-weight: 500;
+        line-height: 17px;
+        letter-spacing: 0em;
+        color: #777;
+
+        &.th-price {
+          font-size: 16px;
+        }
+      }
+    }
+
+    tbody {
+      td {
+        padding: 31px;
+        text-align: right;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 31px;
+        color: #000;
+        background: #ffffff;
+        border-bottom: 1px solid #f2f2f7;
+
+        &.td-price {
+          color: #0166c0;
+        }
+
+        .table-detalis-btn {
+          padding: 4px 16px;
+          height: 40px;
+          background: #ffffff;
+          border: 1px solid #e84f4b;
+          border-radius: 10px;
+          color: #e84f4b;
+          margin: auto;
+        }
+      }
+    }
+
+    tfoot {
+      background: #ececf3;
+
+      .total {
+        margin-inline-start: -55px;
+        color: #888;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17px;
+      }
+
+      .total-price {
+        font-size: 16px;
+        font-weight: 800;
+        line-height: 19px;
+        color: #000;
+        text-align: right;
+      }
+
+      td {
+        padding: 14px;
+        background: #ececf3;
+        text-align: center;
+      }
+    }
+  }
+
+  .merchants-table {
+    tbody {
+      td {
+        width: 50%;
+      }
+    }
+  }
+
+  .companies-table {
+    tbody {
+      td {
+        width: 33%;
+      }
+    }
+  }
+
+  .modal {
+    .inner-modal-table {
+      thead {
+        th {
+          text-align: right !important;
+        }
+      }
+
+      td {
+        font-size: 16px;
+        text-align: right !important;
+        border-inline-width: 0;
+      }
+    }
+
+    .modal-companies {
+      width: 985px;
+      max-width: 100%;
+
+      .modal-content {
+        padding: 30px !important;
+        height: 819px;
+        width: 985px;
+        border-radius: 76px;
+
+        .modal-title {
+          font-size: 24px;
+          font-weight: 700;
+          line-height: 29px;
+          color: #000;
+        }
+
+        .close-modal-btn {
+          border: none;
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  .tredo-table {
+    .comps-td {
+      width: 400px;
+
+      .comp-name {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 8px 10px;
+        width: 92px;
+        max-width: 100%;
+        height: 29px;
+        max-height: 100%;
+        border-radius: 30px;
+        background: #f1fdfb;
+
+        p {
+          font-size: 13px;
+          font-weight: 500;
+          line-height: 16px;
+          color: #092D47;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  .tredo-modal {
+    tbody {
+      td {
+        font-size: 16px;
+
+        &.td-tredo-price {
+          color: #092D47;
+        }
+      }
+    }
+  }
+
+  .shipments-section {
+    .shipments-section-header {
+      @media (max-width: 767px) {
+        .select-box {
+          margin-top: 10px;
+        }
+      }
+
+      .multiselect-dropdown {
+        width: 250px !important;
+        max-width: 100%;
+        background: #ececf4;
+        border: 1px solid #cdcdcd;
+        border-radius: 5px;
+        height: 50px;
+
+        .dropdown-btn {
+          display: inline-block;
+          border: none !important;
+          width: 100%;
+          margin-bottom: 0;
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1.1;
+          text-align: left;
+          vertical-align: middle;
+          cursor: pointer;
+          background: #ECECF4;
+        }
+
+        .dropdown-list {
+          text-align: right;
+
+          li {
+            text-align: right !important;
+          }
+        }
+      }
+    }
+
+    .btns {
+      .btn-underline-box {
+        .btn-underline {
+          background-color: #fff;
+          border: none;
+          color: #000;
+          font-family: Tajawal;
+          font-size: 18px;
+          font-weight: 500;
+          line-height: 22px;
+          padding-bottom: 12px;
+          border-bottom: 1px solid #dfdfec;
+
+          &.active {
+            border-bottom: 1px solid #092D47;
+            color: #092D47;
+          }
+        }
+      }
+    }
+
+    .check-box {
+      height: 20px;
+      width: 20px;
+      border-radius: 5px;
+      accent-color: #888;
+    }
+
+    .center-td {
+      padding: 31px 0;
+    }
+
+    input[type="checkbox"]:focus {
+      outline: max(2px, 0.15em) solid currentColor;
+      outline-offset: max(2px, 0.15em);
+    }
+
+    .comp-name-blue {
+      color: #0166c0;
+      background: #f0f8ff;
+      border-radius: 30px;
+      width: 92px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .map {
+      .bord {
+        background: $white;
+        box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+        border-radius: 30px;
+        padding: 13px;
+        background: $white;
+        box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.08);
+        border-radius: 30px;
+        padding: 13px;
+        width: 485px;
+      }
+
+      .GAP {
+        gap: 15px;
+      }
+    }
+  }
+}

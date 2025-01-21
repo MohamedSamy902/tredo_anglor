@@ -1,0 +1,60 @@
+@import url("https://rawcdn.githack.com/hung1001/font-awesome-pro-v6/44659d9/css/all.min.css");
+
+.admin-layout {
+  header {
+    height: 64px;
+    border-bottom: 1px solid #bdbdbd;
+    background-color: white;
+  }
+}
+
+.nav-link img {
+  width: 30px;
+  padding-left: 5px;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  padding: 10px;
+}
+
+li i,
+li svg {
+  color: #092D47;
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+li.active {
+
+  background-color: #092D47;
+  width: 100%;
+
+  span,
+  i,svg {
+    color: white;
+    padding: 0 10px;
+    font-size: 17px;
+  }
+  padding: 10px 4px
+}
+
+.nav-link span {
+  font-size: 17px;
+  font-weight: 700;
+  color: #092D47;
+}
+
+.user-tab {
+  margin-left: 20px;
+
+  img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 0 9px;
+  }
+}

@@ -1,0 +1,91 @@
+@import "../../../../assets/scss/partials/colors";
+
+.login-component {
+  .modal-dialog {
+    width: 800px;
+    max-width: 100%;
+  }
+
+  .btn-1 {
+    border: none;
+    border-radius: 4px;
+    padding: 7px 12px;
+
+    &:hover {
+      opacity: 0.93;
+      background: $tredo-primary;
+      color: #fff;
+    }
+  }
+
+  .text-second {
+    color: $tredo-primary;
+    transition: 0.3s;
+  }
+
+  .reg-form-section {
+    .checkbox {
+      accent-color: $tredo-primary;
+      width: 20px;
+      height: 20px;
+    }
+
+    h1 {
+      transition: 0.3s;
+      font-size: 3rem;
+
+      span:first-child {
+        color: #282828;
+      }
+
+      @media (max-width: 767px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    form .button-login {
+      background-color: #2c2963;
+      color: white;
+      border-radius: 8px;
+      transition: all ease-in-out 0.3s;
+
+      &:hover {
+        opacity: 0.93;
+      }
+    }
+
+    .switch-link {
+      &:hover {
+        color: #2c2963;
+      }
+    }
+  }
+
+  height: calc(100vh - 140px);
+  display: grid;
+  place-items: center;
+
+  .reg-img {
+    img {
+      width: 476px;
+      height: 452px;
+    }
+  }
+
+  .error {
+    color: red;
+    font-size: 16px;
+  }
+
+  .invalid {
+    border: 2px solid red !important;
+  }
+
+  .btn-2 {
+    margin-top: 40px;
+
+    &:hover {
+      border-radius: 30px;
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<div class="row w-100" style="height: 80%;">
+  <div class="col-3">
+
+    <div class="card flex justify-content-center">
+      <p-listbox [options]="reports" [(ngModel)]="rep" optionLabel="name" (onChange)="ViewControl()"></p-listbox>
+    </div>
+
+    <p-card header="محرك التصفية">
+      <div class="w-100 ">
+          <label class="mb-1">{{"MerchantName" | translate}}</label>
+        <select class="form-select" [(ngModel)]="merchantid" name="merchantid" [disabled]="disablemerchantlookup">
+        <option *ngFor="let res of Merchants" [value]="res.id">{{res.nameAr}}</option>
+        <option [value]="0" >الكل</option>
+      </select>
+    <label class="mb-1">{{"VendorName" | translate}}</label>
+  <select class="form-select" [(ngModel)]="vendorid" name="vendorid" [disabled]="disablevendorlookup">
+  <option *ngFor="let res of vendors" [value]="res.id">{{res.nameAr}}</option>
+  <option [value]="0" >الكل</option>
+</select>
+
+<div class="form-group">
+  <label class="mb-1">{{"From" | translate}}</label>
+  <input type="date" class="form-control  form-control-sm " name="Ctrl_DateFrom"
+      [ngModel]="DateFrom | date:'yyyy-MM-dd'" [disabled]="disablefromlookup"
+      (ngModelChange)="DateFrom = $event;ChangeDate($event)" [value]="DateFrom | date:'yyyy-MM-dd'"
+         #LRDateFrom="ngModel" required />
+</div>
+<div class="form-group">
+  <label class="mb-1">{{"To" | translate}}</label>
+  <input type="date" class="form-control  form-control-sm " name="Ctrl_DateTo"
+  [ngModel]="DateTo | date:'yyyy-MM-dd'" [min]="DateFrom" [disabled]="disabletolookup"
+  (ngModelChange)="DateTo = $event" [value]="DateTo | date:'yyyy-MM-dd'"
+     #LRDateTo="ngModel" required />
+</div>
+</div>
+<button type="button" name="" id="" class="btn btn-block btn-primary btn-sm  w-100 mt-1" [disabled]="onLoad()" (click)="SubmitReportView()">
+  {{'Query'|translate}} <i class="fas fa-search    "></i></button>
+</p-card>
+  </div>
+  <div class="col-9">
+    <div class="w-100 p-2 bg-dark text-white   text-center" *ngIf="rep == reports[0]">
+      <h2>{{rep.name}}</h2>
+    </div>
+
+    <div class="w-100 p-2 bg-dark text-white  text-center" *ngIf="rep == reports[1]">
+      <h2>{{rep.name}}</h2>
+    </div>
+
+    <div class="w-100 p-2 bg-dark text-white  text-center" *ngIf="rep == reports[2]">
+      <h2>{{rep.name}}</h2>
+    </div>
+
+    <div class="w-100 p-2 bg-dark text-white  text-center" *ngIf="rep == reports[3]">
+      <h2>{{rep.name}}</h2>
+    </div>
+
+    <div class="w-100 p-2 bg-dark text-white  text-center" *ngIf="rep == reports[4]">
+      <h2>{{rep.name}}</h2>
+    </div>
+
+    <div class="w-100 p-2 bg-dark text-white  text-center" *ngIf="rep == reports[5]">
+      <h2>{{rep.name}}</h2>
+    </div>
+    <div class="d-flex flex-grow-1 h-100">
+      <iframe [src]="srcUrl|safe: 'resourceUrl'" (load)="onLoad()" height="100%" width="100%"></iframe>
+
+    </div>
+  </div>

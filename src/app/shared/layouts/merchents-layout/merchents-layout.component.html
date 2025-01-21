@@ -1,0 +1,110 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/merchents"><img src="assets/imgs/logo/logo.png" alt="" /></a>
+    <!-- <select class="me-3" #locale [(ngModel)]="localLang" (change)="changeLocale(locale.value)">
+      <option value="ar">اللغة العربية</option>
+      <option value="en">English</option>
+    </select> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-center p-0" id="navbarSupportedContent">
+      <ul class="navbar-nav navbar-nav p-0 d-flex align-items-center">
+        <div class="collapse navbar-collapse justify-content-center p-0" id="navbarSupportedContent">
+          <ul class="navbar-nav navbar-nav p-0">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" routerLink="/merchents">{{ "Dashboard" | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/merchents/customers">{{
+                "Customers" | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLinkActive="active" routerLink="/merchents/orders">{{
+                "Orders" | translate }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" routerLink="/merchents/transaction-history">
+                المعاملات المالية
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <div class="wallet-wrapper">
+                <img src="../../../../assets/imgs/wallet.png" alt="" />
+                <div class="credit-wrapper">
+                  <span class="credit">{{ "Credit" | translate }}</span>
+                  <span class="amount">{{merchant?.wallet?.balance || 0}} {{ "SAR" | translate }}</span>
+                </div>
+                <button data-bs-toggle="modal" data-bs-target="#paymentModal">
+                  {{ "Pay" | translate }}
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <form class="d-flex">
+          <a class="user-tab-a" routerLink="/merchents/profile">
+            <div class="user-tab">
+              <img *ngIf="!merchant?.pictureRow" src="assets/imgs/test-3.png" alt="" />
+              <img *ngIf="merchant?.pictureRow" [src]="merchant?.pictureRow" alt="" />
+              <span *ngIf="locale === 'en'">{{ merchant?.nameEn }}</span>
+              <span *ngIf="locale === 'ar'">{{ merchant?.nameAr }}</span>
+            </div>
+          </a>
+          <button class="btn-2" type="submit" (click)="logout()">
+          <i class="fas fa-sign-out-alt    "></i>  تسجل خروج
+           </button>
+        </form>
+      </ul>
+    </div>
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-between">
+            <h1 class="modal-title fs-5 fw-bold" id="paymentModalLabel">
+              إضافة رصيد
+            </h1>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex" *ngIf="!paymentToken">
+              <input (keydown.enter)="chargeWallet()" [(ngModel)]="amount" type="number" required [min]="5" [max]="5000"
+                placeholder="{{ 'Enter your amount' | translate }}" class="form-control py-2" />
+              <button class="btn-1 w-50 py-3" [disabled]="!amount" (click)="chargeWallet()">
+                {{ "Next" | translate }}
+              </button>
+            </div>
+            <div class="mysr-form"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<a href="https://wa.me/544363719" style="z-index: 999;  position: absolute;
+left: 1%;
+bottom: 5%"><i class="fa-brands fa-whatsapp" style="  font-size: 40px;
+  color: white;
+  background-color: #092D47;
+  padding: 10px;
+  border-radius: 50px;"></i></a>
+  <a href="/merchents/support" style="z-index: 999;  position: absolute;
+  left: 1%;
+  bottom: 14%"><i class="fa-solid fa-headset" style="  font-size: 40px;
+    color: white;
+    background-color: #e84f4b;
+    padding: 10px;
+    border-radius: 50px;"></i></a>
+<router-outlet></router-outlet>
+<section>
+  <div class="container pt-5">
+    <div class="row my-4">
+      <p class="text-muted text-center mb-0">
+        جميع الحقوق محفوظة لـ Tredo 2025
+      </p>
+    </div>
+  </div>
+</section>

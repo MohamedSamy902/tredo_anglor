@@ -1,0 +1,763 @@
+<div class="add-company-component">
+  <div class="dash-header pt-lg-3 pt-1 container justify-content-between d-flex">
+    <div>
+      <p class="description">
+        <b class="text-black">{{'CreatwShipCompany'|translate}} <i class="fa-solid fa-burst text-success"></i></b>
+      </p>
+      <p class="desc" *ngIf="isNewOperation"> <i class="fas fa-pencil-alt   text-success "></i>
+        {{'CreatwShipCompanydesc'|translate}}</p>
+    </div>
+    <button class="btn-1 h-100" routerLink="/admin/shipping-companies">
+      <i class="fas fa-list    "></i>
+      <span>
+        {{'ShipCompanies'|translate}}
+      </span>
+    </button>
+  </div>
+  <div class="container">
+    <form [formGroup]="shipForm" (ngSubmit)="onSubmit()">
+      <div class="row form-container">
+        <h2 class="form-border-title"> {{'MainSection'|translate}}</h2>
+        <div class="col-md-4 text-center">
+          <label for="vendor-img"><img [src]="imgSrc" style="max-height: 200px; padding: 10px;"
+              class="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt=""
+              id="mg"></label>
+          <input #imgInput (change)="onImageChange(imgInput.files)" class="d-none" type="file" id="vendor-img" />
+          <div class="error" *ngIf="shipForm.get('pictureRow')?.invalid && isSubmited">
+            {{'Enter'|translate}} {{'Image'|translate}}
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label class="mb-2"> {{'nameAr'|translate}}</label>
+              <input [class.invalid]="shipForm.get('pCode')?.invalid && isSubmited" formControlName="pCode"
+                type="hidden" placeholder="" class="form-control" />
+
+              <input [class.invalid]="shipForm.get('nameAr')?.invalid && isSubmited" formControlName="nameAr"
+                type="text" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('nameAr')?.invalid && isSubmited">
+                {{'Enter'|translate}} {{'nameAr'|translate}}
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="mb-2"> {{'nameEn'|translate}} </label>
+              <input [class.invalid]="shipForm.get('nameEn')?.invalid && isSubmited" formControlName="nameEn"
+                type="text" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('nameEn')?.invalid && isSubmited">
+                {{'Enter'|translate}} {{'nameEn'|translate}}
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="mb-2">{{'OfficialName'|translate}}</label>
+              <input [class.invalid]="shipForm.get('officialName')?.invalid && isSubmited"
+                formControlName="officialName" type="text" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('officialName')?.invalid && isSubmited">
+                {{'Enter'|translate}} {{'OfficialName'|translate}}
+              </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="mb-2">{{'CommercialName'|translate}}</label>
+              <input [class.invalid]="shipForm.get('commercialName')?.invalid && isSubmited"
+                formControlName="commercialName" type="text" placeholder="" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('commercialName')?.invalid && isSubmited"> {{'Enter'|translate}}
+                {{'CommercialName'|translate}} </div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="mb-2">{{'ComFileNo'|translate}}</label>
+              <input [class.invalid]="shipForm.get('comFileNo')?.invalid && isSubmited" formControlName="comFileNo"
+                type="text" placeholder="" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('comFileNo')?.invalid && isSubmited">{{'Enter'|translate}}
+                {{'ComFileNo'|translate}}</div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <label class="mb-2">{{'TaxFileNo'|translate}}</label>
+              <input [class.invalid]="shipForm.get('taxFileNo')?.invalid && isSubmited" formControlName="taxFileNo"
+                type="text" placeholder="" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('taxFileNo')?.invalid && isSubmited">{{'Enter'|translate}}
+                {{'TaxFileNo'|translate}}</div>
+            </div>
+            <div class="col-12 mb-2">
+              <label class="mb-2">{{'ConditionsURL'|translate}}</label>
+              <input [class.invalid]="shipForm.get('conditionsURL')?.invalid && isSubmited" formControlName="conditionsURL"
+                type="text" placeholder="" class="form-control" />
+              <div class="error" *ngIf="shipForm.get('conditionsURL')?.invalid && isSubmited">{{'Enter'|translate}}
+                {{'conditionsURL'|translate}}</div>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+              type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">
+              {{'DescSection'|translate}} <i class="fas fa-list-ul    "></i></button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+              type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+              {{'ContractInfo'|translate}} <i class="fas fa-signature    "></i></button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+              type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
+              {{'GeoCovrage'|translate}} <i class="fas fa-map-marked    "></i></button>
+          </li>
+          <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false" >
+              {{''|translate}}</button>
+          </li> -->
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+            tabindex="0">
+            <!-- Contract Info -->
+            <div class="row form-container">
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'mobile'|translate}}</label>
+                <input [class.invalid]="shipForm.get('mobileNumber')?.invalid && isSubmited"
+                  formControlName="mobileNumber" type="text" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('mobileNumber')?.invalid && isSubmited"> {{'Enter'|translate}}
+                  {{'MobileNumber'|translate}} </div>
+              </div>
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'homePhone'|translate}}</label>
+                <input [class.invalid]="shipForm.get('phoneNumber')?.invalid && isSubmited"
+                  formControlName="phoneNumber" type="text" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('phoneNumber')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'PhoneNumber'|translate}}
+                </div>
+              </div>
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'email'|translate}}</label>
+                <input [class.invalid]="shipForm.get('email')?.invalid && isSubmited" formControlName="email"
+                  type="email" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('email')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'email'|translate}}
+                </div>
+                <div class="error" *ngIf="shipForm.get('email')?.errors?.['email']">
+                  {{'EmailAddressIsInvalid'| translate}}
+                </div>
+              </div>
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'BankName'|translate}}</label>
+                <input [class.invalid]="shipForm.get('bankName')?.invalid && isSubmited" formControlName="bankName"
+                  type="text" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('bankName')?.invalid && isSubmited"> {{'Enter'|translate}}
+                  {{'BankName'|translate}} </div>
+              </div>
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'IBAN'|translate}}</label>
+                <input [class.invalid]="shipForm.get('iban')?.invalid && isSubmited" formControlName="iban" type="text"
+                  class="form-control" />
+                <div class="error" *ngIf="shipForm.get('iban')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'IBAN'|translate}}
+                </div>
+              </div>
+              <div class="col-4 mb-2">
+                <label class="mb-2">{{'ServiceCode'|translate}}</label>
+                <input [class.invalid]="shipForm.get('serviceCode')?.invalid && isSubmited"
+                  formControlName="serviceCode" type="text" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('serviceCode')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ServiceCode'|translate}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+            <div class="row form-container">
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'CODActive'|translate}}</label>
+                <select class="form-select" [class.invalid]="shipForm.get('codActive')?.invalid && isSubmited"
+                  formControlName="codActive">
+                  <option [value]="true">{{'true' | translate}}</option>
+                  <option [value]="false">{{'false' | translate}}</option>
+                </select>
+                <div class="error" *ngIf="shipForm.get('codActive')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'CODActive'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'CODCommission'|translate}}</label>
+                <input [class.invalid]="shipForm.get('codCommission')?.invalid && isSubmited"
+                  formControlName="codCommission" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('codCommission')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'CODCommission'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'ContractStartDate'|translate}}</label>
+                <input [class.invalid]="shipForm.get('contractStartDate')?.invalid && isSubmited"
+                  formControlName="contractStartDate" type="date" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('contractStartDate')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ContractStartDate'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'ContractEndDate'|translate}}</label>
+                <input [class.invalid]="shipForm.get('contractEndDate')?.invalid && isSubmited"
+                  formControlName="contractEndDate" type="date" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('contractEndDate')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ContractEndDate'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'CODTransDuDays'|translate}}</label>
+                <input [class.invalid]="shipForm.get('codTransDuDays')?.invalid && isSubmited"
+                  formControlName="codTransDuDays" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('codTransDuDays')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'CODTransDuDays'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'TriesCount'|translate}}</label>
+                <input [class.invalid]="shipForm.get('triesCount')?.invalid && isSubmited" formControlName="triesCount"
+                  type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('triesCount')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'TriesCount'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'ExtraKMDistanceCost'|translate}}</label>
+                <input [class.invalid]="shipForm.get('extraKMDistanceCost')?.invalid && isSubmited"
+                  formControlName="extraKMDistanceCost" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('extraKMDistanceCost')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ExtraKMDistanceCost'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'ExtraKMWeightCost'|translate}}</label>
+                <input [class.invalid]="shipForm.get('extraKMWeightCost')?.invalid && isSubmited"
+                  formControlName="extraKMWeightCost" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('extraKMWeightCost')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ExtraKMWeightCost'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'MaxCompensationValue'|translate}}</label>
+                <input [class.invalid]="shipForm.get('maxCompensationValue')?.invalid && isSubmited"
+                  formControlName="maxCompensationValue" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('maxCompensationValue')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'MaxCompensationValue'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'PickUpFees'|translate}}</label>
+                <input [class.invalid]="shipForm.get('pickUpFees')?.invalid && isSubmited" formControlName="pickUpFees"
+                  type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('pickUpFees')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'PickUpFees'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'ReturnFees'|translate}}</label>
+                <input [class.invalid]="shipForm.get('returnFees')?.invalid && isSubmited" formControlName="returnFees"
+                  type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('returnFees')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'ReturnFees'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'FailureShipFees'|translate}}</label>
+                <input [class.invalid]="shipForm.get('failureShipFees')?.invalid && isSubmited"
+                  formControlName="failureShipFees" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('failureShipFees')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'FailureShipFees'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'FailureShipReturnDuInDays'|translate}}</label>
+                <input [class.invalid]="shipForm.get('failureShipReturnDuInDays')?.invalid && isSubmited"
+                  formControlName="failureShipReturnDuInDays" type="number" placeholder="" class="form-control" />
+                <div class="error" *ngIf="shipForm.get('failureShipReturnDuInDays')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'FailureShipReturnDuInDays'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'IsLinked'|translate}}</label>
+                <select class="form-select" [class.invalid]="shipForm.get('isLinked')?.invalid && isSubmited"
+                  formControlName="isLinked">
+                  <option value="true">true</option>
+                  <option value="false">false</option>
+                </select>
+                <div class="error" *ngIf="shipForm.get('IsLinked')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'IsLinked'|translate}} </div>
+              </div>
+              <div class="col-lg-4 col-md-6 mb-2">
+                <label class="mb-2">{{'IsAvTracking'|translate}}</label>
+                <select class="form-select" [class.invalid]="shipForm.get('isAvTracking')?.invalid && isSubmited"
+                  formControlName="isAvTracking">
+                  <option value="true">{{'true' | translate}}</option>
+                  <option value="false">{{'false' | translate}}</option>
+                </select>
+                <div class="error" *ngIf="shipForm.get('isAvTracking')?.invalid && isSubmited">
+                  {{'Enter'|translate}} {{'IsAvTracking'|translate}} </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+
+            <ng-container>
+              <div class="row form-container">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="list-group">
+                      <button type="button" id="pills-com-tab-{{i}}" data-bs-toggle="pill"
+                        [attr.data-bs-target]="'#' + 'pills-com-'+i" type="button" role="tab"
+                        [attr.aria-controls]="'pills-com-'+i" aria-selected="false" [class.active]="!i"
+                        class="list-group-item list-group-item-action"
+                        *ngFor="let item of ['Zone1', 'Zone2', 'Zone3', 'Zone4']; let i = index" (click)="insertValueZone(item)">
+                        {{item | translate}}
+                      </button>
+                    </div>
+                  </div>
+                  <div class="tab-content col-md-9" id="pills-tabContent">
+                    <div class="tab-pane fade active show" id="pills-com-0" role="tabpanel"
+                      aria-labelledby="pills-com-tab0">
+                      <div class="row form-container">
+                        <div class="col-12">
+                          <div class="row">
+                            <h2 class="form-header mb-4">{{"PleaseFillFollowingData" | translate}}:</h2>
+                            <ng-container [formGroup]="vendorZoneGeoOne">
+                              <button class="btn btn-primary" style="width: 20%;" type="button" (click)="displayCity = true;"> <i class="fa-solid fa-plus"></i> اختيار
+                                مدينة </button>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">{{'cities' | translate}}</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let res of citiesZoneOne | slice:from:to; let i = index">
+                                    <th>{{res.name}}</th>
+                                    <td>
+                                      <a class="delete mx-1" (click)="deleteCity(res.cityId, 'citiesZoneOne')">
+                                        <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <nav class="mt-4">
+                                <ul style="direction: ltr;"
+                                  class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+                                  <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1, 'citiesZoneOne')">
+                                      < </a>
+                                  </li>
+                                  <ng-container>
+                                    <li class="page-item"><a class="page-link">{{pageNumber}}</a></li>
+                                  </ng-container>
+                                  <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1, 'citiesZoneOne')">></a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </ng-container>
+                            <button class="btn btn-primary" type="button" (click)="display = true;">اضافة نوع شحنه
+                              جديده </button>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{{'shippingType' | translate}}</th>
+                                  <th scope="col">{{'CompanyDeliveryCost' | translate}}</th>
+                                  <th scope="col">{{'vatValue'|translate}}</th>
+                                  <th scope="col">{{'commissionValue'|translate}}</th>
+                                  <th scope="col">{{'total'|translate}}</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let res of ShippingZoneOne; let i = index">
+                                  <th>{{res?.shippingType?.nameAr}}</th>
+                                  <td>{{res?.price}}</td>
+                                  <td>{{res?.vatValue}}</td>
+                                  <td>{{res?.commissionValue}}</td>
+                                  <td>{{res?.total}}</td>
+                                  <td>
+                                    <a class="delete mx-1" (click)="delete(i)">
+                                      <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                    </a>
+                                    <a class="edit mx-1" (click)="edit(i)">
+                                      <i class="fa-regular fa-pen-to-square" style="color: #3d53e1;"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="form-border" [formGroup]="rangeOne">
+                              <h2 class="form-border-title">
+                                {{"receiptDates" | translate}}
+                              </h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"fromHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="startRecivingTime" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"toHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="endRecivingTime" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-com-1" role="tabpanel" aria-labelledby="pills-com-tab1">
+                      <div class="row form-container">
+                        <div class="col-12">
+                          <div class="row">
+                            <h2 class="form-header mb-4">{{"PleaseFillFollowingData" | translate}}:</h2>
+                            <ng-container [formGroup]="vendorZoneGeoTwo">
+                              <button class="btn btn-primary" style="width: 20%;" type="button" (click)="displayCity = true;">اختيار
+                                مدينة</button>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">{{'cities' | translate}}</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let res of citiesZoneTwo; let i = index">
+                                    <th>{{res.name}}</th>
+                                    <td>
+                                      <a class="delete mx-1" (click)="deleteCity(cityId, 'citiesZoneTwo')">
+                                        <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <nav class="mt-4">
+                                <ul style="direction: ltr;"
+                                  class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+                                  <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1, 'citiesZoneTwo')">
+                                      < </a>
+                                  </li>
+                                  <ng-container>
+                                    <li class="page-item"><a class="page-link">{{pageNumber}}</a></li>
+                                  </ng-container>
+                                  <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1, 'citiesZoneTwo')">></a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </ng-container>
+                            <button class="btn btn-primary" type="button" (click)="display = true;">اضافة نوع شحنه
+                              جديده</button>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{{'shippingType' | translate}}</th>
+                                  <th scope="col">{{'CompanyDeliveryCost' | translate}}</th>
+                                  <th scope="col">{{'vatValue'|translate}}</th>
+                                  <th scope="col">{{'commissionValue'|translate}}</th>
+                                  <th scope="col">{{'total'|translate}}</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let res of ShippingZoneTwo; let i = index">
+                                  <th>{{res?.shippingTypeId}}</th>
+                                  <td>{{res?.price}}</td>
+                                  <td>{{res?.vatValue}}</td>
+                                  <td>{{res?.commissionValue}}</td>
+                                  <td>{{res?.total}}</td>
+                                  <td>
+                                    <a class="delete mx-1" (click)="delete(i)">
+                                      <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="form-border" [formGroup]="rangeTwo">
+                              <h2 class="form-border-title">
+                                {{"receiptDates" | translate}}
+                              </h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"fromHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="startRecivingTime" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"toHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="endRecivingTime" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-com-2" role="tabpanel" aria-labelledby="pills-com-tab2">
+                      <div class="row form-container">
+                        <div class="col-12">
+                          <div class="row">
+                            <h2 class="form-header mb-4">برجاء ملئ البيانات الاتية:</h2>
+                            <ng-container [formGroup]="vendorZoneGeoThree">
+                              <button class="btn btn-primary" style="width: 20%;" type="button" (click)="displayCity = true;">اختيار
+                                مدينة</button>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">{{'cities' | translate}}</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let res of citiesZoneThree; let i = index">
+                                    <th>{{res.name}}</th>
+                                    <td>
+                                      <a class="delete mx-1" (click)="deleteCity(cityId, 'citiesZoneThree')">
+                                        <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <nav class="mt-4">
+                                <ul style="direction: ltr;"
+                                  class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+                                  <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1, 'citiesZoneThree')">
+                                      < </a>
+                                  </li>
+                                  <ng-container>
+                                    <li class="page-item"><a class="page-link">{{pageNumber}}</a></li>
+                                  </ng-container>
+                                  <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1, 'citiesZoneThree')">></a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </ng-container>
+                            <button class="btn btn-primary" type="button" (click)="display = true;">اضافة تسعير
+                              جديده</button>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{{'shippingType' | translate}}</th>
+                                  <th scope="col">{{'CompanyDeliveryCost' | translate}}</th>
+                                  <th scope="col">{{'vatValue'|translate}}</th>
+                                  <th scope="col">{{'commissionValue'|translate}}</th>
+                                  <th scope="col">{{'total'|translate}}</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let res of ShippingZoneThree; let i = index">
+                                  <th>{{res?.shippingTypeId}}</th>
+                                  <td>{{res?.price}}</td>
+                                  <td>{{res?.vatValue}}</td>
+                                  <td>{{res?.commissionValue}}</td>
+                                  <td>{{res?.total}}</td>
+                                  <td>
+                                    <a class="delete mx-1" (click)="delete(i)">
+                                      <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="form-border" [formGroup]="rangeThree">
+                              <h2 class="form-border-title">
+                                {{"receiptDates" | translate}}
+                              </h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"fromHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="startRecivingTime" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"toHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="endRecivingTime" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-com-3" role="tabpanel" aria-labelledby="pills-com-tab3">
+                      <div class="row form-container">
+                        <div class="col-12">
+                          <div class="row">
+                            <h2 class="form-header mb-4">برجاء ملئ البيانات الاتية:</h2>
+                            <ng-container [formGroup]="vendorZoneGeoFour">
+                              <button class="btn btn-primary" style="width: 20%;" type="button" (click)="displayCity = true;">اختيار
+                                مدينة</button>
+                              <table class="table">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">{{'cities' | translate}}</th>
+                                    <th scope="col"></th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let res of citiesZoneFour; let i = index">
+                                    <th>{{res.name}}</th>
+                                    <td>
+                                      <a class="delete mx-1" (click)="deleteCity(cityId, 'citiesZoneFour')">
+                                        <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <nav class="mt-4">
+                                <ul style="direction: ltr;"
+                                  class="pagination gap-2 d-flex justify-content-start flex-wrap pagination-rounded-flat pagination-success">
+                                  <li class="page-item"><a class="page-link" (click)="pagination('decrease', pageNumber - 1, 'citiesZoneFour')">
+                                      < </a>
+                                  </li>
+                                  <ng-container>
+                                    <li class="page-item"><a class="page-link">{{pageNumber}}</a></li>
+                                  </ng-container>
+                                  <li class="page-item"><a class="page-link" (click)="pagination('increase', pageNumber + 1, 'citiesZoneFour')">></a>
+                                  </li>
+                                </ul>
+                              </nav>
+                            </ng-container>
+                            <button class="btn btn-primary" type="button" (click)="display = true;">اضافة تسعير</button>
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th scope="col">{{'shippingType' | translate}}</th>
+                                  <th scope="col">{{'CompanyDeliveryCost' | translate}}</th>
+                                  <th scope="col">{{'vatValue'|translate}}</th>
+                                  <th scope="col">{{'commissionValue'|translate}}</th>
+                                  <th scope="col">{{'total'|translate}}</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let res of ShippingZoneFour; let i = index">
+                                  <th>{{res?.shippingTypeId}}</th>
+                                  <td>{{res?.price}}</td>
+                                  <td>{{res?.vatValue}}</td>
+                                  <td>{{res?.commissionValue}}</td>
+                                  <td>{{res?.total}}</td>
+                                  <td>
+                                    <a class="delete mx-1" (click)="delete(i)">
+                                      <i class="fa-solid fa-trash" style="color: #df0a0a;"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <div class="form-border" [formGroup]="rangeFour">
+                              <h2 class="form-border-title">
+                                {{"receiptDates" | translate}}
+                              </h2>
+                              <div class="row">
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"fromHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="startRecivingTime" class="form-control" />
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                  <label class="mb-2">
+                                    {{"toHour" | translate}}
+                                    <span class="time-span">({{"workHours" | translate}})</span>
+                                  </label>
+                                  <input type="time" formControlName="endRecivingTime" class="form-control" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="d-flex py-5 justify-content-between form-buttons">
+        <div class="d-flex gap-2">
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-1" type="submit">{{"Save" | translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<p-dialog header="اضافة نوع شحنه جديده" [(visible)]="display">
+  <form #shippingForm="ngForm">
+    <div class="row">
+      <input type="hidden"   [(ngModel)]="model.id" name="id" #id="ngModel"
+      >
+      <div class="col-6">
+        <label class="mb-2">{{'shippingType' | translate}}</label>
+        <select class="form-control" [(ngModel)]="model.shippingTypeId" name="shippingTypeId" #shippingTypeId="ngModel"
+          required
+          [ngClass]="{'has-danger': shippingTypeId.invalid && (shippingTypeId.dirty || shippingTypeId.touched)}">
+          <option *ngFor="let res of dropdownListShipping" [value]="res.id">{{res.nameAr}}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-4">
+        <label class="mb-2">{{'CompanyDeliveryCost' | translate}}</label>
+        <input type="number" (change)="calculate()" [(ngModel)]="model.price" name="price" #price="ngModel"
+          placeholder="ريال" class="form-control" required>
+      </div>
+      <div class="col-md-6 mb-4">
+        <label class="mb-2">{{'vatValue'|translate}}</label>
+        <input type="number" (change)="calculate()" [(ngModel)]="model.vatValue" name="vatValue" #vatValue="ngModel"
+          placeholder="ريال" class="form-control" required />
+      </div>
+      <div class="col-md-6 mb-4">
+        <label class="mb-2">{{'commissionValue'|translate}}</label>
+        <input type="number" (change)="calculate()" [(ngModel)]="model.commissionValue" name="commissionValue"
+          #commissionValue="ngModel" placeholder="ريال" class="form-control" required />
+      </div>
+      <div class="col-md-6 mb-4">
+        <label class="mb-2">{{"total" | translate}}</label>
+        <input type="number" [(ngModel)]="model.total" name="total" #total="ngModel" placeholder="ريال"
+          class="form-control" required />
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary ml-2 mr-2" [disabled]="!(shippingForm.form.value.price && shippingForm.form.value.vatValue && shippingForm.form.value.shippingTypeId &&
+      shippingForm.form.value.commissionValue && shippingForm.form.value.total)" (click)="addingShipping()">{{"Save" |
+      translate}}</button>
+    <button type="button" (click)="display=false" class="btn btn-danger">{{"Cancel" | translate}}</button>
+  </form>
+</p-dialog>
+
+<p-dialog header="اضافة مدينة جديده" [(visible)]="displayCity">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <input type="checkbox" name="" id="" (change)="selectAllCity($event)">
+          اختيار الكل
+        </th>
+        <th scope="col">{{'cities' | translate}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let res of dropdownListRegions; let i = index">
+        <th>
+          <input type="checkbox" [checked]="checkNames(res.nameAr)"
+            (change)="selectCity(res.nameAr, res.id, $event)">
+        </th>
+        <td>{{res?.nameAr}}</td>
+      </tr>
+    </tbody>
+  </table>
+</p-dialog>

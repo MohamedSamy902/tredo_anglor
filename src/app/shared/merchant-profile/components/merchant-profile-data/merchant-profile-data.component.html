@@ -1,0 +1,548 @@
+<!-- <div class="merchant-profile-page container-fluid p-2 px-5">
+  <app-merchant-profile-page-container [MerchantData]="Merchant" [merchantCategoriesData]="merchantCategoriesData"
+    (onSubmitMerchantInfoForm)="postMerchantInfoData($event)"></app-merchant-profile-page-container>
+</div> -->
+
+<div class="merchant-profile-page">
+
+  <div class="container-fluid">
+
+    <div class="merchant-info-page-header">
+      <h3 class="page-title">
+        <span class="text-black">الصفحة الشخصية للتاجر</span>
+        (عرض وتعديل بيانات التاجر)
+      </h3>
+      <p class="desc">برجاء ملئ البيانات التاليه لتتمكن من تعديل بيانات التاجر</p>
+    </div>
+
+    <div class="merchant-info-form-container">
+      <form [formGroup]="merchantInfoForm">
+
+        <div class="form-sction">
+          <div class="section-label">
+            <h4 class="title">
+              البيانات الشخصية
+            </h4>
+          </div>
+
+          <div class="form-section-content">
+            <div class="form">
+              <div class="row row-cols-1 row-cols-md-2">
+                <div class="col mb-4" *ngIf="isAdminMode">
+                  <div class="field">
+                    <label for="username" class="block">اسم المستخدم</label>
+                    <input id="username" type="text" formControlName="userName" pInputText />
+                    <small class="p-error block"
+                      *ngIf="merchantInfoForm.get('userName')?.invalid && (merchantInfoForm.get('userName')?.dirty || isSubmited)">
+                      برجاء ادخال اسم المستخدم
+                    </small>
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="email" class="block"> البريد الإلكتروني</label>
+                  <input formControlName="email" pInputText type="email" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('email')?.invalid && (merchantInfoForm.get('email')?.dirty || isSubmited)">
+                    برجاء ادخال البريد الإلكتروني
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="nameAr" class="block">إسم التاجر ع</label>
+                  <input formControlName="nameAr" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('nameAr')?.invalid && (merchantInfoForm.get('nameAr')?.dirty || isSubmited)">
+                    يجب كتابة اسم التاجر باللغة العربية
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="nameEn" class="block">إسم التاجر En</label>
+                  <input formControlName="nameEn" pInputText type="text" />
+                  <div class="p-error block"
+                    *ngIf="merchantInfoForm.get('nameEn')?.invalid && (merchantInfoForm.get('nameEn')?.dirty || isSubmited)">
+                    يجب كتابة اسم التاجر باللغة الإنجليزية
+                  </div>
+                </div>
+
+                <!--  <div class="col mb-4">
+                  <label for="officialName" class="block">الإسم الرسمي</label>
+                  <input formControlName="officialName" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('officialName')?.invalid && (merchantInfoForm.get('officialName')?.dirty || isSubmited)">
+                    يجب كتابةالإسم الرسمي
+                  </small>
+                </div> -->
+
+                <!--   <div class="col mb-4">
+                  <label for="phoneNumber" class="block">رقم الهاتف</label>
+                  <input formControlName="phoneNumber" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('phoneNumber')?.invalid && (merchantInfoForm.get('phoneNumber')?.dirty || isSubmited)">
+                    يجب كتابة رقم هاتف
+                  </small>
+                </div> -->
+
+                <div class="col mb-4">
+                  <label for="mobileNumber" class="block">رقم الموبايل</label>
+                  <input formControlName="mobileNumber" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('mobileNumber')?.invalid && (merchantInfoForm.get('mobileNumber')?.dirty || isSubmited)">
+                    يجب كتابة رقم موبايل
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="serviceCode" class="block">رمز الخدمة</label>
+                  <input [class.invalid]="merchantInfoForm.get('serviceCode')?.invalid && isSubmited" readonly
+                    formControlName="serviceCode" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('serviceCode')?.invalid && (merchantInfoForm.get('serviceCode')?.dirty || isSubmited)">
+                    يجب كتابة رمز الخدمة
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="image">
+              <app-merchant-choose-profile-image [imgSrc]="merchantInfo?.pictureRow"
+                (onChooseMerchantImage)="onChooseMerchantImage($event)"></app-merchant-choose-profile-image>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-sction">
+          <div class="section-label">
+            <h4 class="title">
+              بيانات الملف التجاري
+            </h4>
+          </div>
+
+          <div class="form-section-content">
+            <div class="form">
+              <div class="row row-cols-1 row-cols-md-2">
+                <div class="col mb-4">
+                  <label for="nameComercial" class="block">إسم المتجر</label>
+                  <input formControlName="nameComercial" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('nameComercial')?.invalid && (merchantInfoForm.get('nameComercial')?.dirty || isSubmited)">
+                    يجب كتابةإسم التجارة
+                  </small>
+                </div>
+
+                <!-- <div class="col mb-4">
+                  <label for="commercialName" class="block">الإسم التجاري</label>
+                  <input formControlName="commercialName" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('commercialName')?.invalid && (merchantInfoForm.get('commercialName')?.dirty || isSubmited)">
+                    يجب كتابةالإسم التجاري
+                  </small>
+                </div> -->
+
+                <div class="col mb-4">
+                  <label for="comFileNo" class="block"> رقم السجل التجاري</label>
+                  <input [class.invalid]="merchantInfoForm.get('comFileNo')?.invalid && isSubmited"
+                    formControlName="comFileNo" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('comFileNo')?.invalid && (merchantInfoForm.get('comFileNo')?.dirty || isSubmited)">
+                    يجب كتابة رقم الملف التجاري
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="taxFileNo" class="block"> رقم السجل الضريبي</label>
+                  <input [class.invalid]="merchantInfoForm.get('taxFileNo')?.invalid && isSubmited"
+                    formControlName="taxFileNo" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('taxFileNo')?.invalid && (merchantInfoForm.get('taxFileNo')?.dirty || isSubmited)">
+                    يجب كتابة رقم ملف الضرائب
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="iBAN" class="block"> حساب بنكي IBAN</label>
+                  <input [class.invalid]="merchantInfoForm.get('iban')?.invalid && isSubmited" formControlName="iban"
+                    pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('iban')?.invalid && (merchantInfoForm.get('iban')?.dirty || isSubmited)">
+                    يجب كتابة رقم IBAN
+                  </small>
+                </div>
+
+                <div class="col mb-4"  *ngIf="isAdminMode">
+                  <label for="status" class="block">
+                    حالة التاجر
+                    <small>(اختار من الاتي)</small>
+                  </label>
+                  <p-dropdown [options]="merchantStatusList" formControlName="status" optionLabel="name"
+                    optionValue="value" [readonly]="userInfo['userRoles'][0] != 'Admin'"></p-dropdown>
+                  <small class="p-error block"
+                    *ngIf=" merchantInfoForm.get('status')?.invalid && (merchantInfoForm.get('status')?.dirty || isSubmited)">
+                    يجب اختيار حالة التاجر
+                  </small>
+                </div>
+
+                <div class="col mb-4" *ngIf="userInfo['userRoles'][0] === 'Admin'">
+                  <label for="filesCount" class="block">عدد المرفقات</label>
+                  <input [class.invalid]="merchantInfoForm.get('filesCount')?.invalid && isSubmited"
+                    formControlName="filesCount" pInputText type="number" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('filesCount')?.invalid && (merchantInfoForm.get('filesCount')?.dirty || isSubmited)">
+                    يجب كتابة عدد الملفات
+                  </small>
+                </div>
+
+                <div class="col mb-4">
+                  <label for="bankName" class="block"> إسم البنك</label>
+                  <input [class.invalid]="merchantInfoForm.get('bankName')?.invalid && isSubmited"
+                    formControlName="bankName" pInputText type="text" />
+                  <small class="p-error block"
+                    *ngIf="merchantInfoForm.get('bankName')?.invalid && (merchantInfoForm.get('bankName')?.dirty || isSubmited)">
+                    يجب كتابة إسم البنك
+                  </small>
+                </div>
+
+                <div class="col mb-4" *ngIf="isAdminMode">
+                  <label for="merchantCategoryId" class="block">
+                    فئة التاجر
+                    <small>(اختار من الاتي)</small>
+                  </label>
+                  <p-dropdown [options]="merchantCategoriesData" formControlName="merchantCategoryId"
+                    optionLabel="nameAr" optionValue="id"></p-dropdown>
+                  <small class="p-error block"
+                    *ngIf=" merchantInfoForm.get('merchantCategoryId')?.invalid && (merchantInfoForm.get('merchantCategoryId')?.dirty || isSubmited)">
+                    يجب اختيار Allow Credit
+                  </small>
+                </div>
+              </div>
+            </div>
+            <div class="image">
+              <img src="assets/imgs/data-merchant-profile.png" class="cover" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-sction">
+          <div class="section-label">
+            <h4 class="title">
+              بيانات المستوع
+            </h4>
+          </div>
+
+          <div class="form-section-content">
+            <div class="merchant-warehouse form">
+
+              <div class="card">
+                <p-table #dt [value]="merchantWarehousesData" [paginator]="false" [tableStyle]="{'min-width': '100%'}"
+                  [rowHover]="true" dataKey="id" [showCurrentPageReport]="false">
+                  <ng-template pTemplate="caption">
+                    <h5 class="m-0">المستودعات</h5>
+                    <button pButton pRipple label="إنشاء مستودع جديد" icon="pi pi-plus" class="p-button-success mr-2"
+                      (click)="showWarehouseDialog()"></button>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>إسم المستودع</th>
+                      <th>العنوان</th>
+                      <th>حالة المستودع</th>
+                      <th>ملاحظات</th>
+                      <th></th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-warehouse>
+                    <tr>
+                      <td>{{warehouse.nameTag}}</td>
+                      <td>{{warehouse.street}}</td>
+                      <td>{{warehouse.isWorking ? 'يعمل' : 'لا يعمل'}}</td>
+                      <td>{{warehouse.notes || 'لا يوجد ملاحظات'}}</td>
+                      <td>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-outlined p-button-success"
+                          (click)="editWarehouse(warehouse)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-outlined p-button-danger"
+                          (click)="deleteWarehouse(warehouse)"></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td [attr.colspan]="6" class="emptyMessage">
+                        لا يوجد مستودعات!
+                        <br>
+                        <button pButton pRipple label="إنشاء مستودع جديد" icon="pi pi-plus"
+                          class="p-button-outlined mr-2" (click)="showWarehouseDialog()"></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+
+            <div class="image">
+              <img src="assets/imgs/cuate.png" class="cover" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-sction">
+          <div class="section-label">
+            <h4 class="title">
+              بيانات إشتراكات المنصات
+            </h4>
+          </div>
+
+          <div class="form-section-content">
+            <div class="merchant-warehouse form">
+
+              <div class="card">
+                <p-table #dt [value]="merchantPlatformsData" [paginator]="false" [tableStyle]="{'min-width': '100%'}"
+                  [rowHover]="true" dataKey="id"   [showCurrentPageReport]="false">
+                  <ng-template pTemplate="caption">
+                    <h5 class="m-0">إشتراكات المنصات</h5>
+                    <button pButton pRipple label="إنشاء إشتراك منصة جديد" icon="pi pi-plus"
+                      class="p-button-success mr-2" (click)="showAddPlatformDialog()"></button>
+                  </ng-template>
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th>كود التاجر</th>
+                      <th>إسم المنصة</th>
+                    </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-platform>
+                    <tr>
+                      <td>{{platform.merchantCode}}</td>
+                      <td>{{platform?.platformsInfo?.nameAr || ''}}</td>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td [attr.colspan]="1" class="emptyMessage">
+                        لا يوجد إشتراك بمنصات!
+                        <br>
+                        <button pButton pRipple label="إنشاء إشتراك منصة جديد" icon="pi pi-plus"
+                          class="p-button-outlined mr-2" (click)="showAddPlatformDialog()"></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </div>
+
+            <div class="image">
+              <img src="assets/imgs/data-merchant-profile.png" class="cover" alt="" />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="merchant-info-ations">
+        <button [disabled]="!(merchantInfoForm.valid)" (click)="postMerchantInfoData()" type="button"
+          class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check2"
+            viewBox="0 0 16 16">
+            <path
+              d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
+          </svg>
+          حفظ بيانات التاجر
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- merchant warehouse dialog -->
+
+<ng-container>
+  <p-dialog header="إضافة مستودع جديد" [(visible)]="openAddWarehouseDialog" [draggable]="false" [resizable]="false"
+    [modal]="true" appendTo="body" [rtl]="true" (onHide)="openAddWarehouseDialog = false" [style]="{width: '80vw'}">
+
+    <div class="merchant-warehouse-form">
+      <form [formGroup]="merchantWarehouseForm">
+        <div class="row">
+          <div class="col-6">
+            <div class="row mt-4 mb-4">
+              <div class="row row-cols-1 row-cols-md-2">
+
+                <div class="col mb-4">
+                  <label class="mb-2">إسم المستودع</label>
+                  <input formControlName="nameTag" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('nameTag')?.errors?.['required'] && merchantWarehouseForm.get('nameTag')?.touched">
+                    رجاء ادخال إسم المستودع
+                  </div>
+                </div>
+
+                <!--   <div class="col mb-4">
+                  <label class="mb-2">الرمز البريدي</label>
+                  <input formControlName="postalCode" class="form-control" type="number" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('postalCode')?.errors?.['required'] && merchantWarehouseForm.get('postalCode')?.touched">
+                    رجاء ادخال الرمز البريدي
+                  </div>
+                </div> -->
+
+                <div class="col mb-4">
+                  <label class="mb-2">المدينة</label>
+                  <select [class.invalid]="merchantWarehouseForm.get('provinceId')?.invalid && isSubmited"
+                  formControlName="provinceId" class="form-select" aria-label="Default select example">
+                  <ng-container *ngFor="let city of citiesData">
+                    <option [value]="city?.id">{{city?.nameAr}}</option>
+                  </ng-container>
+                </select>
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('provinceId')?.errors?.['required'] && merchantWarehouseForm.get('provinceId')?.touched">
+                    رجاء ادخال اسم المدينة
+                  </div>
+                </div>
+
+                <!--                 <div class="col mb-4">
+                  <label class="mb-2">اسم المنطقة</label>
+                  <input formControlName="districtID" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('districtID')?.errors?.['required'] && merchantWarehouseForm.get('districtID')?.touched">
+                    رجاء ادخال اسم المنطقة
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label class="mb-2">عنوان مختصر</label>
+                  <input formControlName="shortcutAddress" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('shortcutAddress')?.errors?.['required'] && merchantWarehouseForm.get('shortcutAddress')?.touched">
+                    رجاء ادخال عنوان مختصر
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label class="mb-2">رقم المبني</label>
+                  <input formControlName="buildingNumber" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('buildingNumber')?.errors?.['required'] && merchantWarehouseForm.get('buildingNumber')?.touched">
+                    رجاء ادخال رقم المبني
+                  </div>
+                </div>-->
+
+                <div class="col mb-4">
+                  <label class="mb-2">اسم الحي</label>
+                  <input formControlName="street" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('street')?.errors?.['required'] && merchantWarehouseForm.get('street')?.touched">
+                    رجاء ادخال اسم الحي
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label class="mb-2">رقم جوال امين المستودع
+                  </label>
+                  <input formControlName="additionalNumber" class="form-control" type="number" maxlength="10" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('additionalNumber')?.errors?.['required'] && merchantWarehouseForm.get('additionalNumber')?.touched">
+                    رجاء ادخال رقم جوال امين المستودع
+                  </div>
+                </div>
+
+                <!--   <div class="col mb-4">
+                  <label class="mb-2">رقم الوحدة</label>
+                  <input formControlName="unitNumber" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('unitNumber')?.errors?.['required'] && merchantWarehouseForm.get('unitNumber')?.touched">
+                    رجاء ادخال رقم الوحدة
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label class="mb-2">رقم الدور</label>
+                  <input formControlName="unitfloor" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantWarehouseForm.get('unitfloor')?.errors?.['required'] && merchantWarehouseForm.get('unitfloor')?.touched">
+                    رجاء ادخال رقم الدور
+                  </div>
+                </div> -->
+
+                <div class="col mb-4">
+                  <label class="mb-2" for="cod" style="display: block;">
+                    حالة المستودع
+                  </label>
+                  <p-toggleButton [onLabel]="'يعمل'" [offLabel]="'لا يعمل'" [onIcon]="'pi pi-check'"
+                    offIcon="pi pi-times" formControlName="isWorking"></p-toggleButton>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="col-6 warehouse-location">
+            <label class="mb-2">الموقع</label>
+            <div class="map" id="warehouseMap" class="match-parent"></div>
+
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button type="button" pButton icon="pi pi-check" [label]="'حفظ بيانات المستودع'"
+        [disabled]="!merchantWarehouseForm.valid" [loading]="createwarehouseLoading" (click)="postMerchantWarehouse()">
+      </button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+
+<!-- merchant Platform dialog -->
+
+<ng-container>
+  <p-dialog header="إضافة إشتراك منصة جديد" [(visible)]="openAddPlatformDialog" [draggable]="false" [resizable]="false"
+    [modal]="true" appendTo="body" [rtl]="true" (onHide)="openAddPlatformDialog = false; merchantPlatformForm.reset()"
+    [style]="{width: '50vw'}">
+
+    <div class="merchant-warehouse-form">
+      <form [formGroup]="merchantPlatformForm">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row mt-4 mb-4">
+              <div class="row row-cols-1 row-cols-md-2">
+                <div class="col-md-12">
+                  <div class="platforms">
+                    <label>برجاء إختيار المنصة</label>
+                    <p-selectButton [options]="platformsData" formControlName="platformsInfoId" optionLabel="nameAr"
+                      optionValue="id" [required]="true"> </p-selectButton>
+                  </div>
+                </div>
+                <div class="col mb-4">
+                  <label class="mb-2">كود التاجر بالمنصة</label>
+                  <input formControlName="merchantCode" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantPlatformForm.get('merchantCode')?.errors?.['required'] && merchantPlatformForm.get('merchantCode')?.touched">
+                    رجاء ادخال كود التاجر بالمنصة
+                  </div>
+                </div>
+
+                <div class="col mb-4">
+                  <label class="mb-2">Merchant Token</label>
+                  <input formControlName="merchantToken" class="form-control" type="text" />
+                  <div class="error"
+                    *ngIf="merchantPlatformForm.get('merchantToken')?.errors?.['required'] && merchantPlatformForm.get('merchantToken')?.touched">
+                    رجاء ادخال Merchant Token
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <button type="button" pButton icon="pi pi-check" [label]="'حفظ بيانات المنصة'"
+        [disabled]="!merchantPlatformForm.valid" [loading]="createwarehouseLoading"
+        (click)="postMerchantPlatformData()">
+      </button>
+    </ng-template>
+  </p-dialog>
+</ng-container>
+
+<p-toast [position]="'bottom-right'"></p-toast>
+
+<p-confirmDialog header="تأكيد الحذف" icon="pi pi-exclamation-triangle" acceptLabel="نعم"
+  rejectLabel="لا"></p-confirmDialog>

@@ -1,0 +1,144 @@
+<section class="orders-component">
+  <div class="dash-header p-2 justify-content-between d-lg-flex p-lg-5">
+    <div>
+      <h2>{{"Orders" | translate}}</h2>
+      <!-- <p class="description">{{"Track your requests through this page" | translate}}</p> -->
+    </div>
+    <div class="d-sm-flex gap-2 position-relative">
+      <div class="d-flex" *ngIf="inCompelteBtn && checked">
+        <div class="step-arrow d-flex">
+          <p class="step-p">الخطوة التالية</p>
+          <img class="ms-1 arrow-img" width="57" height="57" src="assets/imgs/Arrow-2.png" alt="">
+        </div>
+        <div class="choose-btn-div w-210">
+          <button routerLink="/merchents/choose-company" [class.choose-btn]="inCompelteBtn && checked">
+            اختيار شركة الشحن
+          </button>
+        </div>
+      </div>
+      <div class="position-relative" *ngIf="inCompelteBtn && !checked">
+        <div class="choose-btn-div">
+          <button routerLink="/merchents/choose-company" [class.choose-btn]="inCompelteBtn && !checked" disabled>
+            اختيار شركة الشحن
+          </button>
+          <div class="alert-details mt-2 align-items-start d-flex gap-1">
+            <img width="20" src="assets/imgs/Help-alert.png" alt="">
+            <p>لاختيار شركة الشحن يجب تحديد الطلب الذي تريد شحنه أولا</p>
+          </div>
+        </div>
+      </div>
+      <button class="main-button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <img class="ms-2" src="assets/imgs/icons/plus.png" alt="">
+        <span>
+          انشاء شحنة
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="choose-alert" *ngIf="inCompelteBtn && !checked">
+    يجب تحديد الطلبات اولا للتمكن من اختيار شركة الشحن
+  </div>
+  <div class="container" *ngIf="false">
+    <div class="empty d-flex justify-content-center">
+      <img class="m-auto empty-box" src="assets/svg/empty-box.png" alt="">
+    </div>
+  </div>
+
+  <div class="orders-list-content">
+    <div class="orders-list-filters">
+      <p-selectButton [options]="ordersListFilters" [(ngModel)]="selectedOrderType" optionLabel="name"
+        optionValue="value" (onChange)="filterOrdersDataByStatus($event.value)"></p-selectButton>
+    </div>
+
+    <div class="card">
+      <p-table #dt [value]="filteredOrdersData" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25,50]"
+        [tableStyle]="{'min-width': '100%'}" [rowHover]="true" dataKey="id" [loading]="ordersDataLoading"
+        [showCurrentPageReport]="false"
+        [globalFilterFields]="['id', 'vendor.nameAr', 'description', 'sendFromCity.nameAr']"
+        >
+        <ng-template pTemplate="caption">
+          <div class="flex">
+              <span class="p-input-icon-left ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="بحث" />
+              </span>
+          </div>
+      </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th>رقم الطلب</th>
+            <th>شركة الشحن</th>
+            <th>نوع الشحنة</th>
+            <th>وصف الشحنة</th>
+            <th>نقطة الانطلاق</th>
+            <th>نقطة التسليم</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order>
+          <tr style="height: 50px;">
+            <td>{{order?.id}}</td>
+            <td>{{order?.['vendor']?.['nameAr']}}</td>
+            <td>{{order?.shippingType.nameAr}}</td>
+            <td>{{order?.description}}</td>
+            <td>{{order?.sendFromCity.nameAr}}</td>
+            <td>{{order?.sendToCity.nameAr}}</td>
+            <td>
+              <button pButton pRipple label="تفاصيل الطلب" icon="pi pi-eye"
+                class="p-button p-button-outlined order-details"
+                [routerLink]="['/merchents/order-details', order?.id]"></button>
+            </td>
+            <td>
+              <button pButton pRipple label="الغاء الطلب" icon="pi pi-trash"
+              (click)="delete(order?.id)" [disabled]=" order?.operationalStatus!==2"   class="p-button-raised p-button-danger order-details"
+                ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td [attr.colspan]="7" class="emptyMessage" style="text-align: center;">
+              <i class="pi pi-inbox my-2" style="font-size: 1.5rem"></i><br>
+              لا يوجد طلبات!
+              <br>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog m-0 m-sm-auto modal-dialog-centered">
+      <div class="modal-content">
+        <h2 class="modal-title">اختار واحدة من هذه الطريقتين</h2>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col d-flex flex-column align-items-center">
+              <img class="m-auto modal-img-1" width="225.36" width="200" src="assets/svg/signup.png" alt="">
+              <button data-bs-dismiss="modal" routerLink="/merchents/manual-order"
+                class="secondary-button mt-3 text-white">
+                <span>
+                  عمل الطلبات يدويا
+                </span>
+              </button>
+            </div>
+            <div class="col d-flex flex-column justify-content-between align-items-center">
+              <img class="m-auto modal-img-1" width="150" src="assets/svg/excel.png" alt="">
+              <button data-bs-dismiss="modal" routerLink="/merchents/excel-order"
+                class="secondary-button bg-tredo-primary bmt-3 text-white">
+                <span>
+                  رفع الطلبات من ملف اكسيل
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,203 @@
+@import "../../../../../assets/scss/partials/colors";
+@import "../../../../../assets/scss/abstracts/variables";
+h2 {
+  font-size: 24px;
+  width: 307px;
+  height: 29px;
+  font-family: "Tajawal";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: right;
+  color: $tredo-black;
+}
+
+h2 span {
+  color: #767676;
+}
+
+.description {
+  font-family: Tajawal;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: right;
+  color: $tredo-gray;
+}
+
+.secondary-button {
+  display: flex;
+  background: $tredo-secondary;
+  height: 56px;
+  width: 243px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  border: $tredo-secondary;
+  text-decoration: none;
+  @media (max-width: 767px) {
+    max-width: 180px;
+  }
+}
+
+.bg-tredo-primary {
+  border: $tredo-primary;
+  background: $tredo-primary;
+}
+
+.main-button {
+  background: $tredo-primary;
+  border-radius: 30px;
+  height: 56px;
+  width: 173px;
+  color: #fff;
+  border: $tredo-primary;
+  box-shadow: 0px 10px 20px $tredo-primary;
+  &:hover {
+    transition: all 0.2s ease-in;
+    background: $tredo-gray-2;
+  }
+  span {
+    font-family: "Tajawal";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+.modal-dialog {
+  width: 640px;
+  max-width: 100%;
+  .modal-content {
+    border-radius: 67px;
+    padding: 28px;
+    .modal-title {
+      font-family: Tajawal;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+  }
+}
+
+.modal-img-1 {
+  width: 225.36px;
+  height: 167.92px;
+  @media (max-width: 767px) {
+    width: 119px;
+    height: 119px;
+  }
+}
+
+.modal-img-2 {
+  width: 119px;
+  height: 119px;
+}
+
+.empty-box {
+  height: 373px;
+  width: 474px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.download {
+  width: 23.91px;
+  height: 24px;
+}
+
+.upload {
+  width: 32px;
+  height: 32px;
+}
+
+.gray {
+  color: $tredo-gray;
+}
+
+@media (min-width: 1087px) and (max-width: 1115px) {
+  .one {
+    width: 220px;
+  }
+  .Arrow {
+    width: 85px;
+    height: 85px;
+  }
+  .one h2 {
+    font-size: 14px;
+    width: 280px;
+  }
+  .secondary-button {
+    width: 150px;
+    height: 43px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1086px) {
+  .one {
+    width: 250px;
+  }
+  .Arrow {
+    width: 75px;
+    height: 68px;
+  }
+  .one h2 {
+    font-size: 11px;
+    width: 212px;
+  }
+  .secondary-button {
+    width: 145px;
+    height: 43px;
+  }
+}
+
+@media (min-width: 776px) and (max-width: 992px) {
+  .www {
+    gap: 0;
+  }
+  .one {
+    width: 250px;
+  }
+  .Arrow {
+    width: 75px;
+    height: 68px;
+  }
+  .one h2 {
+    font-size: 11px;
+    width: 200px;
+  }
+  .secondary-button {
+    width: 145px;
+    height: 43px;
+  }
+}
+
+@media (max-width: 775px) {
+  .www {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .Arrow {
+    transform: rotate(-90deg);
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 490px) {
+  .img {
+    width: 12px;
+    height: 12px;
+  }
+  .cont2 {
+    font-size: 16px;
+  }
+  .parent {
+    width: 280px;
+  }
+}

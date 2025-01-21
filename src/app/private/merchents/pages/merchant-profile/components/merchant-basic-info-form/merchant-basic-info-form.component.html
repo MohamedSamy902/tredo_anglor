@@ -1,0 +1,202 @@
+<div class="merchant-basic-info-form">
+  <form [formGroup]="merchantBasicInfoForm">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="row row-cols-1 row-cols-md-2">
+
+            <div class="col mb-4">
+              <label class="mb-2"> اسم  </label>
+              <input [readOnly]="userInfo['userRoles'][0] !== 'Admin'" formControlName="userName" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('userName')?.invalid && (merchantBasicInfoForm.get('userName')?.dirty || isSubmited)">
+                رجاء ادخال اسم المستخدم
+              </div>
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2">البريد الالكتروني</label>
+              <input [readOnly]="userInfo['userRoles'][0] !== 'Admin'" formControlName="email" class="form-control" type="email" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('email')?.invalid && (merchantBasicInfoForm.get('email')?.dirty || isSubmited)">
+                رجاء ادخال بريد
+              </div>
+            </div>
+            <div class="col mb-4">
+              <label class="mb-2"> باللغة العربية</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('nameAr')?.invalid && isSubmited"
+                formControlName="nameAr" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('nameAr')?.invalid && (merchantBasicInfoForm.get('nameAr')?.dirty || isSubmited)">
+                يجب كتابة اسم التاجر باللغة العربية
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">إسم التاجر باللغة الإنجليزية</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('nameEn')?.invalid && isSubmited"
+                formControlName="nameEn" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('nameEn')?.invalid && (merchantBasicInfoForm.get('nameEn')?.dirty || isSubmited)">
+                يجب كتابة اسم التاجر باللغة الإنجليزية
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">إسم التجارة</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('nameComercial')?.invalid && isSubmited"
+                formControlName="nameComercial" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('nameComercial')?.invalid && (merchantBasicInfoForm.get('nameComercial')?.dirty || isSubmited)">
+                يجب كتابةإسم التجارة
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">الإسم التجاري</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('commercialName')?.invalid && isSubmited"
+                formControlName="commercialName" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('commercialName')?.invalid && (merchantBasicInfoForm.get('commercialName')?.dirty || isSubmited)">
+                يجب كتابةالإسم التجاري
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">الإسم الرسمي</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('officialName')?.invalid && isSubmited"
+                formControlName="officialName" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('officialName')?.invalid && (merchantBasicInfoForm.get('officialName')?.dirty || isSubmited)">
+                يجب كتابةالإسم الرسمي
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">رقم الهاتف</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('phoneNumber')?.invalid && isSubmited"
+                formControlName="phoneNumber" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('phoneNumber')?.invalid && (merchantBasicInfoForm.get('phoneNumber')?.dirty || isSubmited)">
+                يجب كتابة رقم هاتف
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">رقم الموبايل</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('mobileNumber')?.invalid && isSubmited"
+                formControlName="mobileNumber" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('mobileNumber')?.invalid && (merchantBasicInfoForm.get('mobileNumber')?.dirty || isSubmited)">
+                يجب كتابة رقم موبايل
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">رمز الخدمة</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('serviceCode')?.invalid && isSubmited"
+                formControlName="serviceCode" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('serviceCode')?.invalid && (merchantBasicInfoForm.get('serviceCode')?.dirty || isSubmited)">
+                يجب كتابة رمز الخدمة
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">عدد الملفات</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('filesCount')?.invalid && isSubmited"
+                formControlName="filesCount" class="form-control" type="number" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('filesCount')?.invalid && (merchantBasicInfoForm.get('filesCount')?.dirty || isSubmited)">
+                يجب كتابة عدد الملفات
+              </div>
+            </div>
+
+            <input [class.invalid]="merchantBasicInfoForm.get('pCode')?.invalid && isSubmited" formControlName="pCode"
+              class="form-control" type="hidden" />
+
+            <div class="col mb-4">
+              <label class="mb-2"> رقم الملف التجاري</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('comFileNo')?.invalid && isSubmited"
+                formControlName="comFileNo" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('comFileNo')?.invalid && (merchantBasicInfoForm.get('comFileNo')?.dirty || isSubmited)">
+                يجب كتابة رقم الملف التجاري
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2"> رقم ملف الضرائب</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('taxFileNo')?.invalid && isSubmited"
+                formControlName="taxFileNo" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('taxFileNo')?.invalid && (merchantBasicInfoForm.get('taxFileNo')?.dirty || isSubmited)">
+                يجب كتابة رقم ملف الضرائب
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2"> إسم البنك</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('bankName')?.invalid && isSubmited"
+                formControlName="bankName" class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('bankName')?.invalid && (merchantBasicInfoForm.get('bankName')?.dirty || isSubmited)">
+                يجب كتابة إسم البنك
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2"> رقم IBAN</label>
+              <input [class.invalid]="merchantBasicInfoForm.get('iBAN')?.invalid && isSubmited" formControlName="iBAN"
+                class="form-control" type="text" />
+              <div class="error"
+                *ngIf="merchantBasicInfoForm.get('iBAN')?.invalid && (merchantBasicInfoForm.get('iBAN')?.dirty || isSubmited)">
+                يجب كتابة رقم IBAN
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">
+                <b>حالة التاجر</b>
+                (اختار من الاتي)
+              </label>
+              <select [class.invalid]="merchantBasicInfoForm.get('status')?.invalid && isSubmited"
+                formControlName="status" class="form-select" aria-label="Default select example">
+                <option [value]="0">Pending</option>
+                <option [value]="1">Approved</option>
+                <option [value]="2">TotalPaused</option>
+                <option [value]="3">PartialPasused</option>
+                <option [value]="100">Suspended</option>
+              </select>
+              <div class="error"
+                *ngIf=" merchantBasicInfoForm.get('status')?.invalid && (merchantBasicInfoForm.get('status')?.dirty || isSubmited)">
+                يجب اختيار حالة التاجر
+              </div>
+            </div>
+
+            <div class="col mb-4">
+              <label class="mb-2">
+                <b>Merchant CAtegory</b>
+                (اختار من الاتي)
+              </label>
+              <select [class.invalid]="merchantBasicInfoForm.get('merchantCategoryId')?.invalid && isSubmited"
+                formControlName="merchantCategoryId" class="form-select" aria-label="Default select example">
+                <ng-container *ngFor="let category of merchantCategoriesData">
+                  <option [value]="category?.id">{{category?.nameAr}}</option>
+                </ng-container>
+              </select>
+              <div class="error"
+                *ngIf=" merchantBasicInfoForm.get('merchantCategoryId')?.invalid && (merchantBasicInfoForm.get('merchantCategoryId')?.dirty || isSubmited)">
+                يجب اختيار Allow Credit
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <app-merchant-choose-profile-image [imgSrc]="MerchantData?.pictureRow || 'assets/imgs/upload-img.png'"
+          (onChooseMerchantImage)="onChooseMerchantImage($event)"></app-merchant-choose-profile-image>
+      </div>
+    </div>
+  </form>
+</div>

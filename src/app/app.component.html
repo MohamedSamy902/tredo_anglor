@@ -1,0 +1,9 @@
+
+<!-- <app-loader></app-loader> -->
+<body id="bodyId" [class.ltr]="en" [dir]="dir">
+  <router-outlet></router-outlet>
+ <!-- <ngx-spinner bdColor = "#092D47"   type = "square-jelly-box" [fullScreen] = "true"><p style="color: white" > <span class="loader"></span> </p></ngx-spinner>   -->
+ <ngx-spinner bdColor="rgba(0,0,0,0.32)" size="large" color="#8652d5" type="ball-clip-rotate-multiple"
+ [fullScreen]="false"> <span class="loader"></span>
+</ngx-spinner>
+</body>

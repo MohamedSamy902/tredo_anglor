@@ -1,0 +1,70 @@
+<div class="add-city-component">
+  <div class="dash-header pt-lg-3 pt-1 container justify-content-between d-flex">
+    <div>
+      <p class="description">
+        <b class="text-black">{{"AddNewCity" | translate}}</b>
+        <i class="fa-solid mx-2 fa-burst text-success"></i>
+      </p>
+      <p class="desc"> <i class="fas fa-pencil-alt   text-success "></i>
+        {{"AddAllCityInformation" | translate}}
+      </p>
+    </div>
+    <button class="btn-1 border-0 h-100" routerLink="/admin/cities">
+      <i class="fas fa-list"></i>
+      <span>
+        {{"ListOfCities" | translate}}
+      </span>
+    </button>
+  </div>
+  <div class="container">
+    <h2 class="form-border-title">{{"CityData" | translate}}</h2>
+    <form [formGroup]="addCity" (ngSubmit)="onSubmit()">
+      <div class="row form-container">
+        <div class="col-6">
+          <label class="mb-2">{{"nameAr" | translate}}</label>
+          <input [class.invalid]="addCity.get('nameAr')?.invalid && isSubmited" formControlName="nameAr" type="text"
+            placeholder="" class="form-control" />
+          <div class="error" *ngIf="addCity.get('nameAr')?.invalid && isSubmited">
+            {{"City.EnterNameAr" | translate}}
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="mb-2">{{"nameEn" | translate}}</label>
+          <input [class.invalid]="addCity.get('nameEn')?.invalid && isSubmited" formControlName="nameEn" type="text"
+            placeholder="" class="form-control" />
+          <div class="error" *ngIf="addCity.get('nameEn')?.invalid && isSubmited">
+            {{"City.EnterNameEn" | translate}}
+          </div>
+        </div>
+        <div class="row w-100 p-2">
+
+        </div>
+        <div class="col-6">
+          <label class="mb-2">{{"Geocode" | translate}}</label>
+          <input [class.invalid]="addCity.get('geofanceCode')?.invalid && isSubmited" formControlName="geofanceCode"
+            type="text" placeholder="" class="form-control" />
+          <div class="error" *ngIf="addCity.get('geofanceCode')?.invalid && isSubmited">
+            {{"City.EnterGeocode" | translate}}
+          </div>
+        </div>
+        <div class="col-6">
+          <label class="mb-2">{{"areaCode" | translate}}</label>
+          <select class="form-select" [class.invalid]="addCity.get('regionId')?.invalid && isSubmited"
+            formControlName="regionId">
+            <option *ngFor="let res of Regions" [value]="res.id">{{res.nameAr}}</option>
+          </select>
+          <div class="error" *ngIf="addCity.get('regionId')?.invalid && isSubmited">
+            {{"City.areaCode" | translate}}
+          </div>
+        </div>
+        <div class="d-flex py-2 justify-content-between form-buttons">
+          <div class="d-flex gap-2">
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn btn-1" type="submit"><i class="fas fa-save    "></i> {{"Save" | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

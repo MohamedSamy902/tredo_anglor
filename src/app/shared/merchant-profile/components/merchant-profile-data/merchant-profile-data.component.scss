@@ -1,0 +1,270 @@
+@import "src/assets/scss/partials/colors";
+@import "src/assets/scss/abstracts/variables";
+
+:host {
+  .merchant-profile-page {
+    padding: 20px 30px;
+    .merchant-info-page-header {
+      width: 100%;
+      padding: 20px 0;
+
+      .page-title {
+        font-family: Tajawal;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 29px;
+        letter-spacing: 0em;
+        text-align: right;
+        color: $tredo-gray-2;
+
+        @media (max-width: 992px) {
+          font-size: 18px;
+        }
+      }
+
+      .desc {
+        font-family: Tajawal;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: right;
+
+        @media (max-width: 992px) {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .merchant-info-form-container {
+      .form-sction {
+        width: 100%;
+        padding: 40px 35px;
+        border: 1px solid #e0e0e0;
+        border-radius: 30px;
+        margin-bottom: 25px;
+
+        .section-label {
+          width: 100%;
+          .title {
+            color: #092D47;
+            font-weight: 700;
+            font-size: 22px;
+            margin-bottom: 30px;
+          }
+        }
+
+        .form-section-content {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+
+          .form {
+            width: 65%;
+            input,
+            select {
+              height: 48px;
+            }
+
+            ::ng-deep {
+              .p-inputtext,
+              .p-dropdown {
+                width: 100%;
+                background-color: #f2f2f7;
+                border-radius: 10px;
+              }
+            }
+
+            label.block,
+            small.p-error {
+              width: 100%;
+              display: block;
+              margin: 5px 0;
+            }
+            label {
+              color: #000;
+              font-size: 14px;
+              font-weight: 500;
+              margin-bottom: 8px;
+            }
+          }
+
+          .image {
+            width: 30%;
+            img.cover {
+              width: 80%;
+              display: block;
+              margin: auto;
+            }
+          }
+        }
+      }
+    }
+
+    .merchant-info-ations button {
+      width: 244px;
+      height: 64px;
+      background: #092D47;
+      border-radius: 30px;
+      border-color: #092D47;
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+}
+
+.merchant-warehouse-form {
+  padding: 20px 0;
+  input,
+  select,
+  textarea {
+    border: 1px solid #e6e6ef;
+    background-color: #f2f2f7;
+    border-radius: 10px;
+  }
+
+  input,
+  select {
+    height: 48px;
+  }
+}
+
+::ng-deep {
+  .p-dialog .p-dialog-header,
+  .p-dialog .p-dialog-content {
+    direction: rtl;
+    .p-dialog-title {
+      color: #092D47;
+    }
+  }
+
+  .warehouse-location {
+    // width: auto;
+    // height: 100%;
+    .match-parent {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .p-dialog {
+    background: #fff;
+    .p-dialog .p-dialog-footer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 10px 15px;
+      ::ng-deep.p-button {
+        width: 180px;
+        height: 40px;
+        background: #092D47;
+        border-color: #092D47;
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      border-radius: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-thumb {
+      background: #092D47;
+      border-radius: 5px;
+    }
+
+    .p-togglebutton {
+      height: 40px;
+      width: 150px;
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+      .p-button-label {
+        margin-inline-end: 10px;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .p-datatable {
+    .p-datatable-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .p-button {
+        height: 45px;
+        .p-button-label {
+          margin-inline-start: 10px;
+        }
+      }
+    }
+
+    th,
+    td {
+      text-align: right !important;
+
+      .p-button-outlined {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+      }
+    }
+
+    .emptyMessage {
+      text-align: center !important;
+      .p-button {
+        width: auto;
+        height: 45px;
+        margin-top: 10px;
+        .p-button-label {
+          margin-inline-start: 10px;
+        }
+      }
+    }
+
+    .p-paginator {
+      direction: ltr;
+    }
+  }
+}
+
+.platforms {
+  margin-bottom: 20px;
+
+  label {
+    margin-bottom: 8px;
+  }
+
+  ::ng-deep {
+    .p-selectbutton .p-button {
+      width: 198px;
+      max-width: 100%;
+      margin-bottom: 8px;
+      height: 100%;
+      min-height: 56px;
+      max-height: 100% !important;
+      margin-inline-end: 12px;
+      background: #ffffff;
+      border: 1px solid #eaeaea !important;
+      border-radius: 15px !important;
+      color: #777777;
+      transition: all ease 0.2s;
+      &:hover {
+        background: #092D47;
+        border: 0.5px solid #092D47;
+        box-shadow: 0px 5px 40px rgba(21, 175, 151, 0.2);
+        border-radius: 15px;
+      }
+    }
+
+    .p-selectbutton .p-button.p-highlight {
+      background: #092D47;
+      border: 0.5px solid #092D47;
+      color: #fff;
+    }
+  }
+}

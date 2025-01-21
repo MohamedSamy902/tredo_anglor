@@ -1,0 +1,43 @@
+.nav-tabs {
+  border: none;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  width: 70%;
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  border-radius: 50%;
+  padding: 10px 10px;
+  width: 62px;
+  height: 62px;
+  color: #fff;
+  background-color: #6c757d;
+  text-align: center;
+  font-size: 16px;
+}
+
+.nav-item {
+  line-height: 45px;
+}
+
+.nav-tabs .nav-link.active {
+  background: linear-gradient(215.09deg, #092D47 14.58%, #71E7D5 100.18%);
+}
+
+.tab-content {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.new {
+  display: flex;
+  justify-content: center;
+}
+
+.txt {
+  margin-top: 12px;
+}

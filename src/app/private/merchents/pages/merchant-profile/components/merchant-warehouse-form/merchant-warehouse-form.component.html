@@ -1,0 +1,138 @@
+<p-dialog header="إضافة مستودع جديد" [(visible)]="openAddWarehouseDialog" [draggable]="false" [resizable]="false"
+  [modal]="true" appendTo="body" [rtl]="true" (onHide)="onCloseDialog.emit(false)" [style]="{width: '50vw'}">
+
+  <div class="merchant-warehouse-form">
+    <form [formGroup]="merchantWarehouseForm">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+
+            <ng-container formArrayName="merchantWarehouses">
+
+              <ng-container *ngFor="let merchantWareHouse of merchantWarehouseControls.controls; let i = index">
+                <div class="row row-cols-1 row-cols-md-2" [formGroupName]="i">
+
+                  <div class="col mb-4">
+                    <label class="mb-2">Name Tag</label>
+                    <input formControlName="nameTag" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('nameTag')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('nameTag')?.touched">
+                      رجاء ادخال Name Tag
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">الرمز البريدي</label>
+                    <input formControlName="postalCode" class="form-control" type="number" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('postalCode')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('postalCode')?.touched">
+                      رجاء ادخال الرمز البريدي
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">المقاطعة</label>
+                    <input formControlName="provinceId" class="form-control" type="number" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('provinceId')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('provinceId')?.touched">
+                      رجاء ادخال اسم المقاطعة
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">اسم المنطقة</label>
+                    <input formControlName="districtID" class="form-control" type="number" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('districtID')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('districtID')?.touched">
+                      رجاء ادخال اسم المنطقة
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">عنوان مختصر</label>
+                    <input formControlName="shortcutAddress" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('shortcutAddress')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('shortcutAddress')?.touched">
+                      رجاء ادخال عنوان مختصر
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">رقم المبني</label>
+                    <input formControlName="buildingNumber" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('buildingNumber')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('buildingNumber')?.touched">
+                      رجاء ادخال رقم المبني
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">اسم الشارع</label>
+                    <input formControlName="street" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('street')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('street')?.touched">
+                      رجاء ادخال اسم الشارع
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">رقم إضافي</label>
+                    <input formControlName="additionalNumber" class="form-control" type="number" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('additionalNumber')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('additionalNumber')?.touched">
+                      رجاء ادخال رقم إضافي
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">رقم الوحدة</label>
+                    <input formControlName="unitNumber" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('unitNumber')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('unitNumber')?.touched">
+                      رجاء ادخال رقم الوحدة
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">رقم الدور</label>
+                    <input formControlName="unitfloor" class="form-control" type="text" />
+                    <div class="error"
+                      *ngIf="merchantWarehouseControls.controls[i].get('unitfloor')?.errors?.['required'] && merchantWarehouseControls.controls[i].get('unitfloor')?.touched">
+                      رجاء ادخال رقم الدور
+                    </div>
+                  </div>
+
+                  <div class="col mb-4">
+                    <label class="mb-2">الموقع</label>
+                    <div class="warehouse-location">
+                      <div class="map" id="map" class="match-parent"></div>
+                    </div>
+                  </div>
+
+                  <div class="col mb-4 d-flex align-items-center address-btn" *ngIf="i > 0">
+                    <button (click)="deleteMerchantWarehouseFormGroup(i)" type="button"
+                      class="btn btn-outline-danger mt-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-trash3" viewBox="0 0 16 16">
+                        <path
+                          d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z" />
+                      </svg>
+                      حذف المستودع
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button (click)="addNewMerchantWarehouseFormGroup()" type="button" class="btn border-0">
+      <img src="assets/imgs/plus.png" width="20" height="20" alt="">
+      اضافة مستودع جديد
+    </button>
+  </ng-template>
+</p-dialog>

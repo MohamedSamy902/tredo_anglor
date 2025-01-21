@@ -1,0 +1,15 @@
+.merchant-category-form {
+  padding: 20px 0;
+  input,
+  select,
+  textarea {
+    border: 1px solid #e6e6ef;
+    background-color: #f2f2f7;
+    border-radius: 10px;
+  }
+
+  input,
+  select {
+    height: 48px;
+  }
+}
